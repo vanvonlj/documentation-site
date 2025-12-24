@@ -1,0 +1,45 @@
+#!/bin/bash
+# Quick development script - loads nvm and starts the dev server
+
+echo "🚀 Starting Docusaurus development server..."
+echo ""
+
+# Load nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Check Node version
+NODE_VERSION=$(node --version)
+echo "✓ Using Node.js $NODE_VERSION"
+echo ""
+
+# Extract port from arguments for display
+PORT=3000
+PREV_ARG=""
+for arg in "$@"; do
+  # Check if previous arg was --port
+  if [[ "$PREV_ARG" == "--port" ]]; then
+    PORT="$arg"
+    break
+  fi
+  # Check for --port=VALUE format
+  if [[ $arg == --port=* ]]; then
+    PORT="${arg#--port=}"
+    break
+  fi
+  PREV_ARG="$arg"
+done
+
+echo "📡 Server will run on port ${PORT}"
+echo "🌐 Access via: https://10.0.0.253/distiller/proxy/${PORT}/"
+echo ""
+
+# Start the dev server with host binding for proxy access
+# Use --host 0.0.0.0 to allow proxy access
+# Remove leading -- from arguments if present
+ARGS=("$@")
+if [[ "${ARGS[0]}" == "--" ]]; then
+  ARGS=("${ARGS[@]:1}")
+fi
+
+npm run _start -- --host 0.0.0.0 "${ARGS[@]}"

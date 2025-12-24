@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # Development server with hot-reload
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: docs-dev
+    ports:
+      - "3000:3000"
+    volumes:
+      # Mount source code for hot-reload
+      - ./docs:/app/docs
+      - ./docs-text-rpg:/app/docs-text-rpg
+      - ./docs-distiller:/app/docs-distiller
+      - ./docs-homelab:/app/docs-homelab
+      - ./src:/app/src
+      - ./static:/app/static
+      - ./docusaurus.config.ts:/app/docusaurus.config.ts
+      - ./sidebars.ts:/app/sidebars.ts
+      - ./sidebars-text-rpg.ts:/app/sidebars-text-rpg.ts
+      - ./sidebars-distiller.ts:/app/sidebars-distiller.ts
+      - ./sidebars-homelab.ts:/app/sidebars-homelab.ts
+      - ./tsconfig.json:/app/tsconfig.json
+      # Exclude node_modules to use container's version
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - SITE_URL=http://localhost:3000
+      - PROXY_BASE_URL=/
+    networks:
+      - docs-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Production build with nginx
+  prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+      args:
+        - SITE_URL=${SITE_URL:-https://your-domain.com}
+        - PROXY_BASE_URL=${PROXY_BASE_URL:-/}
+    container_name: docs-prod
+    ports:
+      - "8080:80"
+    networks:
+      - docs-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+networks:
+  docs-network:
+    driver: bridge

@@ -1,0 +1,113 @@
+name: Release Helm Chart
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+    paths:
+      - 'helm/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  release-helm-chart:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: 'v3.13.0'
+
+      - name: Lint Helm Chart
+        run: |
+          helm lint helm/documentation-site
+
+      - name: Package Helm Chart
+        run: |
+          helm package helm/documentation-site -d .helm-packages
+
+      - name: Log in to GitHub Container Registry
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | helm registry login ${{ env.REGISTRY }} --username ${{ github.actor }} --password-stdin
+        env:
+          REGISTRY: ghcr.io
+
+      - name: Push Helm Chart to GHCR
+        run: |
+          CHART_VERSION=$(helm show chart helm/documentation-site | grep '^version:' | awk '{print $2}')
+          helm push .helm-packages/documentation-site-${CHART_VERSION}.tgz oci://ghcr.io/${{ github.repository_owner }}/charts
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: .helm-packages/*.tgz
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  test-helm-chart:
+    runs-on: ubuntu-latest
+    needs: release-helm-chart
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: 'v3.13.0'
+
+      - name: Set up kind cluster
+        uses: helm/kind-action@v1.8.0
+        with:
+          cluster_name: test-cluster
+          wait: 120s
+
+      - name: Test Helm Chart installation
+        run: |
+          # Create test namespace
+          kubectl create namespace test-docs
+
+          # Install the chart
+          helm install test-release helm/documentation-site \
+            --namespace test-docs \
+            --set image.repository=nginx \
+            --set image.tag=alpine \
+            --wait \
+            --timeout 5m
+
+          # Verify deployment
+          kubectl rollout status deployment/test-release-documentation-site -n test-docs
+
+          # Check pods are running
+          kubectl get pods -n test-docs
+
+          # Test service is accessible
+          kubectl get svc -n test-docs
+
+          # Port forward and test
+          kubectl port-forward -n test-docs svc/test-release-documentation-site 8080:80 &
+          sleep 5
+          curl -f http://localhost:8080/ || exit 1
+
+          echo "✅ Helm chart installation test passed"
+
+      - name: Cleanup
+        if: always()
+        run: |
+          helm uninstall test-release -n test-docs || true
+          kubectl delete namespace test-docs || true

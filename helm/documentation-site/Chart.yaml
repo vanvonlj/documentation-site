@@ -1,0 +1,16 @@
+apiVersion: v2
+name: documentation-site
+description: A Helm chart for deploying the Docusaurus documentation site on Kubernetes
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - documentation
+  - docusaurus
+  - static-site
+home: https://github.com/your-org/documentation-site
+sources:
+  - https://github.com/your-org/documentation-site
+maintainers:
+  - name: Your Name
+    email: your-email@example.com

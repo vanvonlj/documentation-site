@@ -1,0 +1,100 @@
+# Production environment values
+# Usage: helm install docs ./helm/documentation-site -f helm/documentation-site/values-prod.yaml
+
+replicaCount: 3
+
+image:
+  repository: ghcr.io/your-org/documentation-site
+  # Use specific version tags in production, not 'latest'
+  tag: "v1.0.0"
+  pullPolicy: IfNotPresent
+
+buildArgs:
+  siteUrl: "https://docs.your-domain.com"
+  proxyBaseUrl: "/"
+
+serviceAccount:
+  create: true
+  annotations: {}
+
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "80"
+  prometheus.io/path: "/health"
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 256Mi
+  requests:
+    cpu: 200m
+    memory: 128Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    # Rate limiting
+    nginx.ingress.kubernetes.io/limit-rps: "100"
+    # CORS (uncomment if needed)
+    # nginx.ingress.kubernetes.io/enable-cors: "true"
+    # nginx.ingress.kubernetes.io/cors-allow-origin: "https://your-domain.com"
+  hosts:
+    - host: docs.your-domain.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: docs-tls
+      hosts:
+        - docs.your-domain.com
+
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 2
+
+networkPolicy:
+  enabled: true
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            name: ingress-nginx
+      ports:
+      - protocol: TCP
+        port: 80
+
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values:
+                - documentation-site
+        topologyKey: kubernetes.io/hostname
+
+# Node selector for production nodes (uncomment if using node labels)
+# nodeSelector:
+#   workload: production
+#   node-type: web
+
+# Tolerations (uncomment if needed)
+# tolerations:
+#   - key: "workload"
+#     operator: "Equal"
+#     value: "production"
+#     effect: "NoSchedule"

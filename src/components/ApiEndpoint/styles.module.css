@@ -1,0 +1,51 @@
+.apiEndpoint {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 20px;
+  background-color: var(--ifm-background-surface-color);
+  transition: box-shadow 0.2s ease;
+}
+
+.apiEndpoint:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.method {
+  color: white;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.path {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--ifm-font-family-monospace);
+  color: var(--ifm-color-emphasis-900);
+}
+
+.description {
+  margin-top: 12px;
+  margin-bottom: 0;
+  color: var(--ifm-color-emphasis-700);
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

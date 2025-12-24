@@ -1,0 +1,48 @@
+#!/bin/bash
+# Build and serve production version for proxy access
+
+echo "🏗️  Building production site for proxy..."
+echo ""
+
+# Load nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Extract port from arguments or use default
+PORT=3002
+PREV_ARG=""
+for arg in "$@"; do
+  if [[ "$PREV_ARG" == "--port" ]]; then
+    PORT="$arg"
+    break
+  fi
+  if [[ $arg == --port=* ]]; then
+    PORT="${arg#--port=}"
+    break
+  fi
+  PREV_ARG="$arg"
+done
+
+# Set environment variables for proxy build
+export PROXY_BASE_URL="/distiller/proxy/${PORT}/"
+export SITE_URL="https://10.0.0.253"
+
+echo "📦 Building with baseUrl: ${PROXY_BASE_URL}"
+echo ""
+
+# Build
+npm run _build
+
+if [ $? -eq 0 ]; then
+  echo ""
+  echo "✅ Build successful!"
+  echo "🚀 Starting server on port ${PORT}..."
+  echo "🌐 Access at: https://10.0.0.253/distiller/proxy/${PORT}/"
+  echo ""
+  
+  # Serve
+  npm run _serve -- --host 0.0.0.0 --port ${PORT}
+else
+  echo "❌ Build failed!"
+  exit 1
+fi
