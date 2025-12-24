@@ -1,0 +1,88 @@
+# .dockerignore Information
+
+## Critical Files That MUST Be Included
+
+The following files are required for Docker builds and should NOT be in .dockerignore:
+
+### Package Management
+- ✅ `package.json` - Required for npm install/ci
+- ✅ `package-lock.json` - Required for npm ci (deterministic builds)
+- ✅ `tsconfig.json` - Required for TypeScript compilation
+
+### Source Code
+- ✅ All files in `src/` directory
+- ✅ All files in `docs/`, `docs-*/` directories
+- ✅ All files in `static/` directory
+- ✅ Configuration files: `docusaurus.config.ts`, `sidebars*.ts`
+
+## Files That SHOULD Be Excluded
+
+### Build Artifacts (avoid copying stale builds)
+- ❌ `node_modules/` - Rebuilt in container
+- ❌ `build/` - Generated during container build
+- ❌ `.docusaurus/` - Generated during build
+- ❌ `.cache-loader/` - Build cache
+
+### Development Files
+- ❌ `.git/` - Not needed in container
+- ❌ `.github/` - CI/CD configs not needed in image
+- ❌ `*.md` files (documentation)
+- ❌ IDE configs (`.vscode`, `.idea`)
+- ❌ `Dockerfile`, `docker-compose.yml` - Avoid recursion
+
+### Security
+- ❌ `.env` files - Use build args or runtime env vars instead
+
+## Common .dockerignore Mistakes
+
+### ❌ WRONG - Excluding package-lock.json
+```
+package-lock.json  # This breaks npm ci!
+```
+
+### ✅ CORRECT - Only exclude node_modules
+```
+node_modules
+npm-debug.log*
+```
+
+### ❌ WRONG - Too broad wildcards
+```
+*.json  # This excludes package.json!
+*.yml   # Could exclude needed configs!
+```
+
+### ✅ CORRECT - Specific exclusions
+```
+# Only exclude specific files or directories
+helm/
+k8s/
+```
+
+## Verifying .dockerignore
+
+To see what files Docker will use for the build context:
+
+```bash
+# Create a test archive (simulates Docker build context)
+tar -czf test-context.tar.gz \
+  --exclude-from=.dockerignore \
+  -C /path/to/project .
+
+# List contents
+tar -tzf test-context.tar.gz | head -20
+
+# Check for critical files
+tar -tzf test-context.tar.gz | grep -E "package.*json|tsconfig"
+```
+
+## Current Status
+
+✅ Fixed: package-lock.json is now included
+✅ Fixed: Removed overly broad *.yaml and *.yml exclusions
+✅ All critical build files are accessible to Docker
+
+## Reference
+
+- Docker .dockerignore docs: https://docs.docker.com/engine/reference/builder/#dockerignore-file
+- npm ci requires package-lock.json: https://docs.npmjs.com/cli/ci.html
