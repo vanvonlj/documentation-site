@@ -3,8 +3,8 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 // Use proxy base URL in development if PROXY_BASE_URL is set
-const baseUrl = process.env.PROXY_BASE_URL || '/';
-const url = process.env.SITE_URL || 'https://your-domain.com';
+const baseUrl = process.env.PROXY_BASE_URL || '/documentation-site/';
+const url = process.env.SITE_URL || 'https://vanvonlj.github.io';
 
 const config: Config = {
   title: 'Documentation Hub',
@@ -19,7 +19,7 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'your-org', // Usually your GitHub org/user name.
+  organizationName: 'vanvonlj', // Usually your GitHub org/user name.
   projectName: 'documentation-site', // Usually your repo name.
 
   onBrokenLinks: 'throw',
@@ -152,7 +152,7 @@ const config: Config = {
           ],
         },
         {
-          href: 'https://github.com/your-org',
+          href: 'https://github.com/vanvonlj/documentation-site',
           label: 'GitHub',
           position: 'right',
         },
@@ -209,7 +209,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/your-org',
+              href: 'https://github.com/vanvonlj/documentation-site',
             },
           ],
         },
