@@ -8,9 +8,9 @@ keywords:
   - documentation
   - docusaurus
   - static-site
-home: https://github.com/your-org/documentation-site
+home: https://github.com/vanvonlj/documentation-site
 sources:
-  - https://github.com/your-org/documentation-site
+  - https://github.com/vanvonlj/documentation-site
 maintainers:
-  - name: Your Name
-    email: your-email@example.com
+  - name: vanvonlj
+    email: vanvonlj@users.noreply.github.com
