@@ -10,6 +10,7 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 0.9rem;
+  margin-bottom: 0;
 }
 
 .th {
@@ -70,6 +71,11 @@
   padding: 0.75rem;
   border-bottom: 1px solid var(--ifm-color-emphasis-200);
   color: var(--ifm-font-color-base);
+}
+
+/* Remove bottom border from last row */
+.dataTable tbody tr:last-child .td {
+  border-bottom: none;
 }
 
 .striped tbody tr:nth-child(odd) {
