@@ -6,12 +6,8 @@
 }
 
 .tooltip {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-bottom: 0.5rem;
-  z-index: 1000;
+  /* Position handled by inline styles via portal */
+  z-index: 9999;
   background: linear-gradient(to bottom, #1a1612 0%, #0f0d0a 100%);
   border: 3px solid;
   border-image: linear-gradient(135deg, #8b7355 0%, #5a4a3a 50%, #3a2a1a 100%) 1;

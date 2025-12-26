@@ -11,21 +11,17 @@ import D4Item from "@site/src/components/D4Item";
       sockets: "Neo-Ohm",
       have: true,
       details: {
-        stats: "+500 Armor, +100 Intelligence",
-        source: "Drops from World Boss",
-        notes: "Best in slot for casters",
+        sources: [{ source: "Random Drop", consumable: "" }],
       },
     },
     {
-      item: "Temerity",
-      slot: "Pants",
+      item: "Rune Mail of Tenacity",
+      slot: "Chest",
       sockets: "Emerald - Royal x2",
       have: false,
       details: {
-        stats: "",
-        source: "Lord Zir",
-        notes: ""
-      }
+        sources: [{ source: "Lord Zir", consumable: "Exquisite Blood" }],
+      },
     },
     {
       item: "Vehement Brawler's Runic Gloves",
@@ -38,6 +34,9 @@ import D4Item from "@site/src/components/D4Item";
       slot: "Pants",
       sockets: "Emerald - Royal x2",
       have: false,
+      details: {
+        sources: [{ source: "Lord Zir", consumable: "Exquisite Blood" }],
+      },
     },
     {
       item: "Wildbolt Runic Cleats",
@@ -62,6 +61,13 @@ import D4Item from "@site/src/components/D4Item";
       slot: "Ring",
       sockets: "Diamond - Royal",
       have: false,
+      details: {
+        sources: [
+          { source: "Grigoire", consumable: "Stygian Stone" },
+          { source: "The Galvanic Saint", consumable: "Distilled Fear" },
+          { source: "Lord Zir", consumable: "Exquisite Blood" },
+        ],
+      },
     },
     {
       item: "Soulwatch Hoop of Unyielding Hits",
@@ -69,78 +75,50 @@ import D4Item from "@site/src/components/D4Item";
       sockets: "Diamond - Royal",
       have: false,
     },
-
-]}
-columns={[
-{
-key: "item",
-header: "Item",
-render: (value, row) => (
-
-<D4Item
-name={value}
-rarity="unique"
-details={
-row.details
-? {
-stats: row.details.stats?.split(", "),
-source: row.details.source,
-notes: row.details.notes,
-}
-: undefined
-}
-/>
-),
-},
-{
-key: "slot",
-header: "Gear Slot",
-},
-{
-key: "sockets",
-header: "Sockets",
-},
-{
-key: "have",
-header: "Have",
-render: (value) => (
-<span
-style={{
-color: value ? "#49cc90" : "#f93e3e",
-}}>
-{value ? "Yes" : "No"}
-</span>
-),
-},
-]}
-expandable={true}
-renderExpandedRow={(row) => (
-<div
-style={{
-        padding: "0.5rem",
-        display: "flex",
-        gap: "0.5rem",
-      }}>
-<span style={{ color: "var(--ifm-color-primary)" }}>└─</span>
-<div
-style={{
-          flex: 1,
-          display: "grid",
-          gridTemplateColumns: "auto 1fr",
-          gap: "0.5rem 1rem",
-        }}>
-<strong>Stats:</strong>
-<span>{row.details.stats}</span>
-
-        <strong>Source:</strong>
-        <span>{row.details.source}</span>
-
-        <strong>Notes:</strong>
-        <span>{row.details.notes}</span>
-      </div>
-    </div>
-
-)}
+  ]}
+  columns={[
+    {
+      key: "item",
+      header: "Item",
+      render: (value, row) => <D4Item name={value} rarity="unique" />,
+    },
+    {
+      key: "slot",
+      header: "Gear Slot",
+    },
+    {
+      key: "sockets",
+      header: "Sockets",
+    },
+    {
+      key: "have",
+      header: "Have",
+      render: (value) => (
+        <span
+          style={{
+            color: value ? "#49cc90" : "#f93e3e",
+          }}>
+          {value ? "Yes" : "No"}
+        </span>
+      ),
+    },
+  ]}
+  expandable={true}
+  renderExpandedRow={(row) => (
+    <DataTable
+      data={row.details?.sources || []}
+      columns={[
+        { key: "source", header: "Source" },
+        { key: "consumable", header: "Consumable" },
+      ]}
+      compact={true}
+      striped={false}
+      footerless={true}
+      headerless={false}
+      sortable={false}
+      filterable={false}
+    />
+  )}
 />
 
 ### Socketables

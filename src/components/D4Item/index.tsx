@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import styles from "./styles.module.css";
-import { D4_ITEM_IDS } from "../data/d4-item-ids";
+import { D4_ITEM_IDS } from "../../data/d4-item-ids";
 
 export interface D4ItemProps {
   name: string;
@@ -44,6 +45,8 @@ export default function D4Item({
 }: D4ItemProps): JSX.Element {
   const [showTooltip, setShowTooltip] = useState(false);
   const [imgError, setImgError] = useState(false);
+  const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
+  const itemRef = useRef<HTMLSpanElement>(null);
 
   const rarityColors = {
     common: "#ffffff",
@@ -75,48 +78,73 @@ export default function D4Item({
   const fallbackUrl =
     "https://assets-ng.maxroll.gg/wordpress/Maxroll_Media_Uniques.webp";
 
-  return (
-    <span
-      className={styles.d4Item}
-      data-d4-id={resolvedItemId}
-      onMouseEnter={() => setShowTooltip(true)}
-      onMouseLeave={() => setShowTooltip(false)}>
-      <span style={{ color: rarityColors[rarity] }}>{name}</span>
-      {showTooltip && (
-        <div className={styles.tooltip}>
-          <div className={styles.tooltipImage}>
-            <img
-              src={imgError ? fallbackUrl : finalImageUrl}
-              alt={name}
-              onError={() => setImgError(true)}
-            />
-          </div>
-          <div className={styles.tooltipContent}>
-            <div
-              className={styles.tooltipName}
-              style={{ color: rarityColors[rarity] }}>
-              {name}
-            </div>
-            {details?.stats && (
-              <div className={styles.tooltipStats}>
-                {details.stats.map((stat, idx) => (
-                  <div key={idx} className={styles.tooltipStat}>
-                    {stat}
-                  </div>
-                ))}
-              </div>
-            )}
-            {details?.source && (
-              <div className={styles.tooltipSource}>
-                <em>{details.source}</em>
-              </div>
-            )}
-            {details?.notes && (
-              <div className={styles.tooltipNotes}>{details.notes}</div>
-            )}
-          </div>
+  // Update tooltip position when showing
+  useEffect(() => {
+    if (showTooltip && itemRef.current) {
+      const rect = itemRef.current.getBoundingClientRect();
+      setTooltipPosition({
+        top: rect.top, // Don't add scrollY for fixed positioning
+        left: rect.left + rect.width / 2,
+      });
+    }
+  }, [showTooltip]);
+
+  const tooltip = showTooltip && (
+    <div
+      className={styles.tooltip}
+      style={{
+        position: "fixed",
+        top: `${tooltipPosition.top}px`,
+        left: `${tooltipPosition.left}px`,
+        transform: "translate(-50%, calc(-100% - 0.5rem))",
+      }}>
+      <div className={styles.tooltipImage}>
+        <img
+          src={imgError ? fallbackUrl : finalImageUrl}
+          alt={name}
+          onError={() => setImgError(true)}
+        />
+      </div>
+      <div className={styles.tooltipContent}>
+        <div
+          className={styles.tooltipName}
+          style={{ color: rarityColors[rarity] }}>
+          {name}
         </div>
-      )}
-    </span>
+        {details?.stats && (
+          <div className={styles.tooltipStats}>
+            {details.stats.map((stat, idx) => (
+              <div key={idx} className={styles.tooltipStat}>
+                {stat}
+              </div>
+            ))}
+          </div>
+        )}
+        {details?.source && (
+          <div className={styles.tooltipSource}>
+            <em>{details.source}</em>
+          </div>
+        )}
+        {details?.notes && (
+          <div className={styles.tooltipNotes}>{details.notes}</div>
+        )}
+      </div>
+    </div>
+  );
+
+  return (
+    <>
+      <span
+        ref={itemRef}
+        className={styles.d4Item}
+        data-d4-id={resolvedItemId}
+        onMouseEnter={() => setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}>
+        <span style={{ color: rarityColors[rarity] }}>{name}</span>
+      </span>
+      {typeof document !== "undefined" &&
+        tooltip &&
+        createPortal(tooltip, document.body)}
+    </>
   );
 }
