@@ -11,7 +11,14 @@ import D4Item from "@site/src/components/D4Item";
       sockets: "Neo-Ohm",
       have: true,
       details: {
-        sources: [{ source: "Random Drop", consumable: "" }],
+        sources: [],
+        stats: [
+          { id: "1", stat: "Unique Effect" },
+          { id: "2", stat: "Desterity" },
+          { id: "3", stat: "All Stats" },
+          { id: "4", stat: "Ranks to Velocity" },
+          { id: "5", stat: "Movement Speed" },
+        ],
       },
     },
     {
@@ -20,7 +27,15 @@ import D4Item from "@site/src/components/D4Item";
       sockets: "Emerald - Royal x2",
       have: false,
       details: {
-        sources: [{ source: "Lord Zir", consumable: "Exquisite Blood" }],
+        sources: [],
+        stats: [
+          { id: "1", stat: "Maximum Life" },
+          { id: "2", stat: "Dexterity" },
+          { id: "3", stat: "Armor" },
+          { id: "4", stat: "Resistance to All Elements" },
+          { id: "5", stat: "Healing Received" },
+          { id: "*", stat: "Maximum Life" },
+        ],
       },
     },
     {
@@ -28,6 +43,18 @@ import D4Item from "@site/src/components/D4Item";
       slot: "Gloves",
       sockets: "N/A",
       have: false,
+      details: {
+        sources: [],
+        stats: [
+          { id: "1", stat: "Maximum Life" },
+          { id: "2", stat: "Dexterity" },
+          { id: "3", stat: "Armor" },
+          { id: "4", stat: "Critical Strike Damage" },
+          { id: "5", stat: "Vulnerable Damage" },
+          { id: "6", stat: "Cooldown Reduction" },
+          { id: "*", stat: "Storm Feather Potency" },
+        ],
+      },
     },
     {
       item: "Temerity",
@@ -36,6 +63,13 @@ import D4Item from "@site/src/components/D4Item";
       have: false,
       details: {
         sources: [{ source: "Lord Zir", consumable: "Exquisite Blood" }],
+        stats: [
+          { id: "1", stat: "Unique Effect" },
+          { id: "2", stat: "Maximum Life" },
+          { id: "3", stat: "Armor" },
+          { id: "4", stat: "Healing Received" },
+          { id: "5", stat: "15% Chance to Heal +298 Life on Hit" },
+        ],
       },
     },
     {
@@ -43,18 +77,54 @@ import D4Item from "@site/src/components/D4Item";
       slot: "Boots",
       sockets: "N/A",
       have: false,
+      details: {
+        sources: [{ source: "The Galvanic Saint", consumable: "???" }],
+        stats: [
+          { id: "1", stat: "Ranks to Focus Skills" },
+          { id: "2", stat: "Dexterity" },
+          { id: "3", stat: "Maximum Life" },
+          { id: "4", stat: "Armor" },
+          { id: "5", stat: "Evade Cooldown Reduction ↑" },
+        ],
+      },
     },
     {
       item: "Wushe Nak Pa",
       slot: "Weapon",
       sockets: "Cem-Zec",
       have: true,
+      details: {
+        sources: [],
+        stats: [
+          { id: "1", stat: "Ultimate Damage" },
+          { id: "2", stat: "Dexterity" },
+          { id: "3", stat: "Maximum Life" },
+          { id: "4", stat: "Ranks to Supremacy" },
+          { id: "5", stat: "Unique Effect" },
+        ],
+      },
     },
     {
       item: "Ocelot's Eye of Redirected Force",
       slot: "Amulet",
       sockets: "Diamond - Royal",
       have: false,
+      details: {
+        sources: [],
+        stats: [
+          { id: "1", stat: "Ranks to Brilliance" },
+          { id: "2", stat: "Ranks to Apex" },
+          { id: "3", stat: "Maximum Life" },
+          { id: "4", stat: "Dexterity" },
+          { id: "5", stat: "Ranks to Unrestrained Power" },
+          { id: "6", stat: "Damage" },
+          { id: "7", stat: "Resistance to All Elements" },
+          { id: "8", stat: "Healing Received" },
+          { id: "9", stat: "Life On Hit" },
+          { id: "10", stat: "Cooldown Reduction" },
+          { id: "*", stat: "Evade Cooldown Reduction ↑" },
+        ],
+      },
     },
     {
       item: "Band of First Breath",
@@ -63,9 +133,16 @@ import D4Item from "@site/src/components/D4Item";
       have: false,
       details: {
         sources: [
-          { source: "Grigoire", consumable: "Stygian Stone" },
-          { source: "The Galvanic Saint", consumable: "Distilled Fear" },
+          { source: "Grigoire", consumable: "Living Steel" },
+          { source: "The Galvanic Saint", consumable: "???" },
           { source: "Lord Zir", consumable: "Exquisite Blood" },
+        ],
+        stats: [
+          { id: "1", stat: "Vigor when Resolve is Lost" },
+          { id: "2", stat: "Resolve Generated" },
+          { id: "3", stat: "Maximum Life ↑" },
+          { id: "4", stat: "Maximum Resolve Stacks ↑↑" },
+          { id: "5", stat: "Unique Effect" },
         ],
       },
     },
@@ -74,6 +151,18 @@ import D4Item from "@site/src/components/D4Item";
       slot: "Ring",
       sockets: "Diamond - Royal",
       have: false,
+      details: {
+        sources: [],
+        stats: [
+          { id: "1", stat: "Cooldown Reduction" },
+          { id: "2", stat: "Dexterity" },
+          { id: "3", stat: "Maximum Life" },
+          { id: "4", stat: "Critical Strike Damage" },
+          { id: "5", stat: "Vulnerable Damage" },
+          { id: "6", stat: "Resistance to All Elements" },
+          { id: "*", stat: "The Seeker Charges ↑" },
+        ],
+      },
     },
   ]}
   columns={[
@@ -105,19 +194,32 @@ import D4Item from "@site/src/components/D4Item";
   ]}
   expandable={true}
   renderExpandedRow={(row) => (
-    <DataTable
-      data={row.details?.sources || []}
-      columns={[
-        { key: "source", header: "Source" },
-        { key: "consumable", header: "Consumable" },
-      ]}
-      compact={true}
-      striped={false}
-      footerless={true}
-      headerless={false}
-      sortable={false}
-      filterable={false}
-    />
+    <>
+      {row.details?.sources && row.details.sources.length > 0 && (
+        <DataTable
+          data={row.details.sources}
+          columns={[
+            { key: "source", header: "Source" },
+            { key: "consumable", header: "Consumable" },
+          ]}
+          compact={true}
+          footerless={true}
+          filterable={false}
+        />
+      )}
+      {row.details?.stats && row.details.stats.length > 0 && (
+        <DataTable
+          data={row.details.stats}
+          columns={[
+            { key: "id", header: "Id" },
+            { key: "stat", header: "Stats" },
+          ]}
+          compact={true}
+          footerless={true}
+          filterable={false}
+        />
+      )}
+    </>
   )}
 />
 
