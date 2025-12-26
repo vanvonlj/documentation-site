@@ -28,7 +28,7 @@ Read safety notes carefully — dd will overwrite devices if used incorrectly.
 
 ## Safety notes
 
-- Always confirm device names before running dd (e.g. /dev/sdb or /dev/mmcblk0). Do not use partition names (e.g. /dev/sdb1) for the device-level copy.  
+- Always confirm device names before running dd (e.g. `/dev/sdb` or `/dev/mmcblk0`). Do not use partition names (e.g. `/dev/sdb1`) for the device-level copy.  
 - Work on the powered-off Pi SD is safest (remove card and image on another computer).  
 - Keep a checksum of the image for later verification.
 
@@ -43,31 +43,54 @@ Read safety notes carefully — dd will overwrite devices if used incorrectly.
 
 3. Unmount any mounted partitions:
    - Example:
+
+       ```bash
        sudo umount /dev/sdX? || true
+       ```
 
 4. Create the image with progress and safe write:
    - Example:
+
+       ```bash
        sudo dd if=/dev/sdX of="$HOME/distiller-pi-$(date +%Y%m%d).img" bs=4M status=progress conv=fsync
        sync
+       ```
 
 5. Create a SHA256 checksum:
    - Example:
-       sha256sum "$HOME/distiller-pi-YYYYMMDD.img" > "$HOME/distiller-pi-YYYYMMDD.img.sha256"
+
+    ```bash
+    sha256sum "$HOME/distiller-pi-YYYYMMDD.img" > "$HOME/distiller-pi-YYYYMMDD.img.sha256"
+    ```
 
 6. Compress for storage (optional):
    - Example using xz:
-       xz -9 --threads=0 "$HOME/distiller-pi-YYYYMMDD.img"
+
+    ```bash
+    xz -9 --threads=0 "$HOME/distiller-pi-YYYYMMDD.img"
+    ```
 
 ## 2. Create the image over the network (Pi running, image stored on workstation)
 
 1. On the workstation, listen and write to file:
    - Example (run on workstation):
-       ssh user@pi 'sudo dd if=/dev/mmcblk0 bs=4M status=progress conv=fsync' | pv > ~/distiller-pi-$(date +%Y%m%d).img
+
+    ```bash
+    ssh user@pi 'sudo dd if=/dev/mmcblk0 bs=4M status=progress conv=fsync' | pv > ~/distiller-pi-$(date +%Y%m%d).img
+    ```
+
    - Or pull via netcat:
        On workstation:
-           nc -l 9000 > ~/distiller-pi.img
+
+       ```bash
+       nc -l 9000 > ~/distiller-pi.img
+       ```
+
        On Pi:
-           sudo dd if=/dev/mmcblk0 bs=4M | nc workstation-ip 9000
+
+        ```bash
+        sudo dd if=/dev/mmcblk0 bs=4M | nc workstation-ip 9000
+        ```
 
 2. Verify checksum and compress as above.
 
@@ -80,8 +103,12 @@ Notes: streaming a running root filesystem can produce an inconsistent snapshot;
 2. Unmount any mounted partitions on the USB drive.
 
 3. Run:
-       sudo dd if=/dev/mmcblk0 of=/path/to/usb/distiller-pi-$(date +%Y%m%d).img bs=4M status=progress conv=fsync
-       sync
+
+    ```bash
+    sudo dd if=/dev/mmcblk0 of=/path/to/usb/distiller-pi-$(date +%Y%m%d).img bs=4M status=progress conv=fsync
+
+    sync
+    ```
 
 4. Create checksum on the USB drive.
 
@@ -92,18 +119,30 @@ If you must create an image from the running Compute Module, prefer one of these
 Option A — minimal service stop (simple):
 
 - Drop to rescue and stop most services, then image:
+
+    ```bash
     sudo systemctl isolate rescue.target
+    
     sudo dd if=/dev/mmcblk0 of=/path/to/usb/distiller-cm-$(date +%Y%m%d).img bs=4M status=progress conv=fsync
+    
     sync
+
     sudo systemctl default
+    ```
 
 Option B — freeze filesystems (if supported):
 
 - Freeze, image, then unfreeze:
-    sudo fsfreeze -f /
-    sudo dd if=/dev/mmcblk0 of=/path/to/usb/distiller-cm-$(date +%Y%m%d).img bs=4M status=progress conv=fsync
-    sync
-    sudo fsfreeze -u /
+
+```bash
+sudo fsfreeze -f /
+
+sudo dd if=/dev/mmcblk0 of=/path/to/usb/distiller-cm-$(date +%Y%m%d).img bs=4M status=progress conv=fsync
+
+sync
+
+sudo fsfreeze -u /
+```
 
 Notes:
 
@@ -113,19 +152,33 @@ Notes:
 ## 4. Verify and restore
 
 - Verify checksum on the created image:
+
+    ```bash
     sha256sum -c distiller-pi-YYYYMMDD.img.sha256
+    ```
 
 - To restore to a target SD (careful: this overwrites the target):
+
+    ```bash
     sudo dd if=distiller-pi-YYYYMMDD.img of=/dev/sdY bs=4M status=progress conv=fsync
+    
     sync
+    ```
 
 - If the image is compressed:
+
+    ```bash
     xz -dc distiller-pi.img.xz | sudo dd of=/dev/sdY bs=4M status=progress conv=fsync
+    ```
 
 ## 5. Post-restore notes
 
 - On first boot of a cloned card, remove or regenerate SSH host keys if cloning many devices:
+
+    ```bash
     sudo rm /etc/ssh/ssh_host_*
+    ```
+
 - If the target SD is larger, expand the root filesystem using raspi-config after first boot or use growpart/resize2fs offline.
 
 ## Troubleshooting
@@ -135,4 +188,4 @@ Notes:
 
 ## Recommended: shrink before compressing
 
-- Use piShrink (<https://github.com/Drewsif/PiShrink>) to reduce image size before compression.
+- Use [piShrink](https://github.com/Drewsif/PiShrink) to reduce image size before compression.

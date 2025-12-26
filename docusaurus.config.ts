@@ -23,7 +23,12 @@ const config: Config = {
   projectName: 'documentation-site', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -115,8 +120,8 @@ const config: Config = {
               to: '/distiller/intro',
             },
             {
-              label: 'Raspberry Pi Setup',
-              to: '/distiller/guides/rpi-setup',
+              label: 'Cloning Distiller OS',
+              to: '/distiller/guides/cloning-distiller-os',
             },
             {
               label: 'UART IP Reset',
@@ -135,7 +140,7 @@ const config: Config = {
             },
             {
               label: 'Hardware',
-              to: '/homelab/hardware/overview',
+              to: '/homelab/hardware/intro',
             },
             {
               label: 'Proxmox',
@@ -178,8 +183,8 @@ const config: Config = {
           title: 'Distiller',
           items: [
             {
-              label: 'Raspberry Pi',
-              to: '/distiller/guides/rpi-setup',
+              label: 'Cloning Distiller OS',
+              to: '/distiller/guides/cloning-distiller-os',
             },
             {
               label: 'UART Guide',
@@ -192,7 +197,7 @@ const config: Config = {
           items: [
             {
               label: 'Hardware',
-              to: '/homelab/hardware/overview',
+              to: '/homelab/hardware/intro',
             },
             {
               label: 'Proxmox',

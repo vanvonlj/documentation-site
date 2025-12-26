@@ -20,7 +20,7 @@ This documentation covers the complete HomeLab setup from hardware to applicatio
 
 ## Quick Start Guides
 
-- [Hardware Setup](./hardware/overview.md)
+- [Hardware Setup](./hardware/intro.md)
 - [Proxmox Installation](./proxmox/installation.md)
 - [K3s Cluster Setup](./k8s/k3s/getting-started.md)
 - [RKE2 Cluster Setup](./k8s/rke2/getting-started.md)

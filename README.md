@@ -17,7 +17,7 @@ A modern documentation site built with [Docusaurus](https://docusaurus.io/), fea
 
 ## Project Structure
 
-```
+```text
 documentation-site/
 ├── docs/                       # Documentation content (MDX/Markdown)
 │   ├── intro.md               # Landing page
@@ -211,6 +211,7 @@ make test            # Test the image
 ```
 
 **See detailed documentation:**
+
 - [DOCKER.md](DOCKER.md) - Docker and Kubernetes deployment guide
 - [CI-CD.md](CI-CD.md) - GitHub Actions CI/CD setup
 
@@ -233,10 +234,13 @@ make helm-install
 
 1. Update `docusaurus.config.ts` with your GitHub details
 2. Set environment variable:
+
    ```bash
    export GIT_USER=your-username
    ```
+
 3. Deploy:
+
    ```bash
    npm run deploy
    ```

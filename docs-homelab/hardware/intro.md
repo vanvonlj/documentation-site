@@ -22,6 +22,7 @@ Document your hardware setup here:
 ## Specifications
 
 ### Server 1
+
 - CPU:
 - RAM:
 - Storage:
