@@ -66,6 +66,15 @@ const config: Config = {
         sidebarPath: './sidebars-homelab.ts',
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'gaming',
+        path: 'docs-gaming',
+        routeBasePath: 'gaming',
+        sidebarPath: './sidebars-gaming.ts',
+      },
+    ],
   ],
 
   presets: [
@@ -153,6 +162,29 @@ const config: Config = {
             {
               label: 'RKE2',
               to: '/homelab/k8s/rke2/getting-started',
+            },
+          ],
+        },
+        {
+          type: 'dropdown',
+          label: 'Gaming',
+          position: 'left',
+          items: [
+            {
+              label: 'Overview',
+              to: '/gaming/intro',
+            },
+            {
+              label: 'Diablo IV',
+              to: '/gaming/diablo-iv/intro',
+            },
+            {
+              label: 'Turtle WoW',
+              to: '/gaming/turtle-wow/intro',
+            },
+            {
+              label: 'WoW Retail',
+              to: '/gaming/wow-retail/intro',
             },
           ],
         },

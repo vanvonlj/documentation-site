@@ -14,7 +14,7 @@ Complete guide for Distiller hardware and software.
 ## Popular Guides
 
 - [Cloning Distiller OS](./guides/cloning-distiller-os.md)
-- [Resetting IP Address via UART](./guides/uart-ip-reset.md)
+- [Resetting IP Address via UART](./guides/uart-ip-reset.mdx)
 
 ## Overview
 
