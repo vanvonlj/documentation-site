@@ -1,15 +1,16 @@
+import D4GearTable from "@site/src/components/D4GearTable";
 import DataTable from "@site/src/components/DataTable";
-import D4Item from "@site/src/components/D4Item";
 
 ### Gear
 
-<DataTable
+<D4GearTable
   data={[
     {
       item: "Loyalty's Mantle",
       slot: "Helm",
       sockets: "Neo-Ohm",
       have: true,
+      rarity: "unique",
       details: {
         sources: [],
         stats: [
@@ -26,6 +27,7 @@ import D4Item from "@site/src/components/D4Item";
       slot: "Chest",
       sockets: "Emerald - Royal x2",
       have: false,
+      rarity: "legendary",
       details: {
         sources: [],
         stats: [
@@ -43,6 +45,7 @@ import D4Item from "@site/src/components/D4Item";
       slot: "Gloves",
       sockets: "N/A",
       have: false,
+      rarity: "legendary",
       details: {
         sources: [],
         stats: [
@@ -61,6 +64,7 @@ import D4Item from "@site/src/components/D4Item";
       slot: "Pants",
       sockets: "Emerald - Royal x2",
       have: false,
+      rarity: "unique",
       details: {
         sources: [{ source: "Lord Zir", consumable: "Exquisite Blood" }],
         stats: [
@@ -77,6 +81,7 @@ import D4Item from "@site/src/components/D4Item";
       slot: "Boots",
       sockets: "N/A",
       have: false,
+      rarity: "legendary",
       details: {
         sources: [{ source: "The Galvanic Saint", consumable: "???" }],
         stats: [
@@ -93,6 +98,7 @@ import D4Item from "@site/src/components/D4Item";
       slot: "Weapon",
       sockets: "Cem-Zec",
       have: true,
+      rarity: "unique",
       details: {
         sources: [],
         stats: [
@@ -109,6 +115,7 @@ import D4Item from "@site/src/components/D4Item";
       slot: "Amulet",
       sockets: "Diamond - Royal",
       have: false,
+      rarity: "legendary",
       details: {
         sources: [],
         stats: [
@@ -131,6 +138,7 @@ import D4Item from "@site/src/components/D4Item";
       slot: "Ring",
       sockets: "Diamond - Royal",
       have: false,
+      rarity: "unique",
       details: {
         sources: [
           { source: "Grigoire", consumable: "Living Steel" },
@@ -151,6 +159,7 @@ import D4Item from "@site/src/components/D4Item";
       slot: "Ring",
       sockets: "Diamond - Royal",
       have: false,
+      rarity: "legendary",
       details: {
         sources: [],
         stats: [
@@ -165,62 +174,6 @@ import D4Item from "@site/src/components/D4Item";
       },
     },
   ]}
-  columns={[
-    {
-      key: "item",
-      header: "Item",
-      render: (value, row) => <D4Item name={value} rarity="unique" />,
-    },
-    {
-      key: "slot",
-      header: "Gear Slot",
-    },
-    {
-      key: "sockets",
-      header: "Sockets",
-    },
-    {
-      key: "have",
-      header: "Have",
-      render: (value) => (
-        <span
-          style={{
-            color: value ? "#49cc90" : "#f93e3e",
-          }}>
-          {value ? "Yes" : "No"}
-        </span>
-      ),
-    },
-  ]}
-  expandable={true}
-  renderExpandedRow={(row) => (
-    <>
-      {row.details?.sources && row.details.sources.length > 0 && (
-        <DataTable
-          data={row.details.sources}
-          columns={[
-            { key: "source", header: "Source" },
-            { key: "consumable", header: "Consumable" },
-          ]}
-          compact={true}
-          footerless={true}
-          filterable={false}
-        />
-      )}
-      {row.details?.stats && row.details.stats.length > 0 && (
-        <DataTable
-          data={row.details.stats}
-          columns={[
-            { key: "id", header: "Id" },
-            { key: "stat", header: "Stats" },
-          ]}
-          compact={true}
-          footerless={true}
-          filterable={false}
-        />
-      )}
-    </>
-  )}
 />
 
 ### Socketables

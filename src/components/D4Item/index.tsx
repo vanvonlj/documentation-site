@@ -52,9 +52,9 @@ export default function D4Item({
     common: "#ffffff",
     magic: "#6969ff",
     rare: "#ffff00",
-    legendary: "#ffa800",
-    unique: "#bf642f",
-    mythic: "#ca45ca",
+    legendary: "#ff8000",
+    unique: "#dca779",
+    mythic: "#dc9bf2",
   };
 
   // Auto-lookup itemId from mapping if not provided
@@ -97,6 +97,7 @@ export default function D4Item({
         top: `${tooltipPosition.top}px`,
         left: `${tooltipPosition.left}px`,
         transform: "translate(-50%, calc(-100% - 0.5rem))",
+        borderColor: rarityColors[rarity],
       }}>
       <div className={styles.tooltipImage}>
         <img
