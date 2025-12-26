@@ -16,7 +16,9 @@
     "_deploy": "docusaurus deploy",
     "swizzle": "docusaurus swizzle",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "format": "prettier --write \"**/*.{mdx,md,tsx,ts,jsx,js,json,css}\"",
+    "format:check": "prettier --check \"**/*.{mdx,md,tsx,ts,jsx,js,json,css}\""
   },
   "keywords": [],
   "author": "",
@@ -34,6 +36,7 @@
   "devDependencies": {
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "prettier": "^3.7.4",
     "typescript": "^5.9.3"
   }
 }

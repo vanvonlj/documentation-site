@@ -24,3 +24,33 @@
 | Yul             | 1        | Weapon        | False |
 | Qax             | 1        | Weapon        | False |
 | Diamond - Grand | 3        | Amulet, Rings | False |
+
+
+### Socketables
+
+<DataTable
+    data={[
+        { type: "Gem", tier: "", quantity: 1, slot: 'Helm', have: false },
+        { type: "Ohm", tier: "", quantity: 1, slot: 'Helm', have: true },
+        { type: "Emerald", tier: "Grand", quantity: 1, slot: 'Chest', have: false },
+        { type: "Emerald", tier: "Grand", quantity: 1, slot: 'Pants', have: false },
+        { type: "Yul", tier: "", quantity: 1, slot: 'Weapon', have: false },
+        { type: "Qax", tier: "", quantity: 1, slot: 'Weapon', have: false },
+        { type: "Diamond", tier: "Grand", quantity: 1, slot: 'Amulet', have: true },
+        { type: "Diamond", tier: "Grand", quantity: 1, slot: 'Ring', have: true },
+        { type: "Diamond", tier: "Grand", quantity: 1, slot: 'Ring', have: true },
+    ]}
+    columns={[
+        { key: 'type', header: 'Type' },
+        { key: 'tier', header: 'Tier' },
+        { key: 'quantity', header: 'Quantity' },
+        { key: 'slot', header: 'Slot' },
+        { key: 'have', header: 'Have',
+            render: (value) => (
+            <span style={{ color: value ? '#49cc90' : '#f93e3e' }}>
+                {value ? 'Yes' : 'No'}
+            </span>),
+        }
+    ]}
+/>
+

@@ -60,14 +60,14 @@ export default function DataTable<T extends Record<string, any>>({
   };
 
   const handleFilter = (key: string, value: string) => {
-    setFilters(prev => ({
+    setFilters((prev) => ({
       ...prev,
       [key]: value,
     }));
   };
 
   const toggleRowExpansion = (rowIndex: number) => {
-    setExpandedRows(prev => {
+    setExpandedRows((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(rowIndex)) {
         newSet.delete(rowIndex);
@@ -85,18 +85,24 @@ export default function DataTable<T extends Record<string, any>>({
     if (filterable) {
       Object.entries(filters).forEach(([key, filterValue]) => {
         if (filterValue) {
-          result = result.filter(row => {
+          result = result.filter((row) => {
             const cellValue = row[key];
             const filterLower = filterValue.toLowerCase().trim();
 
             // Handle boolean values with yes/no matching
             if (typeof cellValue === 'boolean') {
               // Check if filter matches 'yes' or 'true' (partial match)
-              if ('yes'.startsWith(filterLower) || 'true'.startsWith(filterLower)) {
+              if (
+                'yes'.startsWith(filterLower) ||
+                'true'.startsWith(filterLower)
+              ) {
                 return cellValue === true;
               }
               // Check if filter matches 'no' or 'false' (partial match)
-              if ('no'.startsWith(filterLower) || 'false'.startsWith(filterLower)) {
+              if (
+                'no'.startsWith(filterLower) ||
+                'false'.startsWith(filterLower)
+              ) {
                 return cellValue === false;
               }
               // No match
@@ -104,7 +110,9 @@ export default function DataTable<T extends Record<string, any>>({
             }
 
             // Default string matching
-            return String(cellValue || '').toLowerCase().includes(filterLower);
+            return String(cellValue || '')
+              .toLowerCase()
+              .includes(filterLower);
           });
         }
       });
@@ -148,19 +156,18 @@ export default function DataTable<T extends Record<string, any>>({
           <thead>
             <tr>
               {expandable && <th className={styles.th}></th>}
-              {columns.map(column => (
+              {columns.map((column) => (
                 <th key={column.key} className={styles.th}>
                   <div className={styles.headerContent}>
                     <div
                       className={
-                        sortable && (column.sortable !== false)
+                        sortable && column.sortable !== false
                           ? styles.sortable
                           : undefined
                       }
                       onClick={() =>
                         column.sortable !== false && handleSort(column.key)
-                      }
-                    >
+                      }>
                       {column.header}
                       {sortable && column.sortable !== false && (
                         <span className={styles.sortIcon}>
@@ -182,8 +189,10 @@ export default function DataTable<T extends Record<string, any>>({
                         className={styles.filterInput}
                         placeholder={`Filter ${column.header}...`}
                         value={filters[column.key] || ''}
-                        onChange={e => handleFilter(column.key, e.target.value)}
-                        onClick={e => e.stopPropagation()}
+                        onChange={(e) =>
+                          handleFilter(column.key, e.target.value)
+                        }
+                        onClick={(e) => e.stopPropagation()}
                       />
                     )}
                   </div>
@@ -195,13 +204,16 @@ export default function DataTable<T extends Record<string, any>>({
         <tbody>
           {filteredAndSortedData.length === 0 ? (
             <tr>
-              <td colSpan={columns.length + (expandable ? 1 : 0)} className={styles.noData}>
+              <td
+                colSpan={columns.length + (expandable ? 1 : 0)}
+                className={styles.noData}>
                 No data found
               </td>
             </tr>
           ) : (
             filteredAndSortedData.map((row, rowIndex) => {
-              const hasExpandableContent = expandable && renderExpandedRow && row.details;
+              const hasExpandableContent =
+                expandable && renderExpandedRow && row.details;
               return (
                 <React.Fragment key={rowIndex}>
                   <tr>
@@ -211,14 +223,17 @@ export default function DataTable<T extends Record<string, any>>({
                           <button
                             className={styles.expandButton}
                             onClick={() => toggleRowExpansion(rowIndex)}
-                            aria-label={expandedRows.has(rowIndex) ? 'Collapse row' : 'Expand row'}
-                          >
+                            aria-label={
+                              expandedRows.has(rowIndex)
+                                ? 'Collapse row'
+                                : 'Expand row'
+                            }>
                             {expandedRows.has(rowIndex) ? '▼' : '▶'}
                           </button>
                         ) : null}
                       </td>
                     )}
-                    {columns.map(column => (
+                    {columns.map((column) => (
                       <td key={column.key} className={styles.td}>
                         {column.render
                           ? column.render(row[column.key], row)
@@ -228,7 +243,9 @@ export default function DataTable<T extends Record<string, any>>({
                   </tr>
                   {hasExpandableContent && expandedRows.has(rowIndex) && (
                     <tr className={styles.expandedRow}>
-                      <td colSpan={columns.length + 1} className={styles.expandedContent}>
+                      <td
+                        colSpan={columns.length + 1}
+                        className={styles.expandedContent}>
                         {renderExpandedRow(row)}
                       </td>
                     </tr>

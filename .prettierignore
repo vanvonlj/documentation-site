@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Production
+build/
+.docusaurus/
+.cache-loader/
+
+# Generated files
+.DS_Store
+*.log
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
