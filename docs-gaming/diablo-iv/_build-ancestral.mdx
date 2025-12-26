@@ -1,4 +1,33 @@
+import DataTable from '@site/src/components/DataTable';
+
+<DataTable
+data={[
+    { item: "Loyalty's Mantle", slot: 'Helm', sockets: 'Neo-Ohm', have: true },
+    { item: 'Temerity', slot: 'Pants', sockets: 'Emerald - Royal x2', have: false },
+    { item: "Vehement Brawler's Runic Gloves", slot: "Gloves", sockets: "N/A", have: false},
+    { item: "Temerity", slot: "Pants", sockets: "Emerald - Royal x2", have: false},
+    { item: "Wildbolt Runic Cleats", slot: "Boots", sockets: "N/A", have: false},
+    { item: "Wushe Nak Pa", slot: "Weapon", sockets: "Cem-Zec", have: true},
+    { item: "Ocelot's Eye of Redirected Force", slot: "Amulet", sockets: "Diamond - Royal", have: false},
+    { item: "Band of First Breath", slot: "Ring", sockets: "Diamond - Royal", have: false},
+    { item: "Soulwatch Hoop of Unyielding Hits", slot: "Ring", sockets: "Diamond - Royal", have: false}
+]}
+columns={[
+    { key: 'item', header: 'Item' },
+    { key: 'slot', header: 'Gear Slot' },
+    { key: 'sockets', header: 'Sockets' },
+    { key: 'have', header: 'Have', 
+        render: (value) => (
+            <span style={{ color: value ? '#49cc90' : '#f93e3e' }}>
+                {value ? 'Yes' : 'No'}
+            </span>),
+    }
+]}
+/>
+
 #### Gear
+
+
 
 | Item                              | Gear Slot | Sockets            | Have  |
 | --------------------------------- | --------- | ------------------ | ----- |

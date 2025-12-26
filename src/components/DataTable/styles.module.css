@@ -1,0 +1,111 @@
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1rem 0;
+  border-radius: 8px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.th {
+  background-color: var(--ifm-color-emphasis-100);
+  padding: 0;
+  text-align: left;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-900);
+  border-bottom: 2px solid var(--ifm-color-emphasis-300);
+}
+
+.headerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem;
+}
+
+.sortable {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.sortable:hover {
+  color: var(--ifm-color-primary);
+}
+
+.sortIcon {
+  font-size: 0.8rem;
+  color: var(--ifm-color-primary);
+  font-weight: bold;
+}
+
+.sortIconInactive {
+  opacity: 0.3;
+}
+
+.filterInput {
+  width: 100%;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+.filterInput:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 2px var(--ifm-color-primary-lightest);
+}
+
+.td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  color: var(--ifm-font-color-base);
+}
+
+.striped tbody tr:nth-child(odd) {
+  background-color: var(--ifm-color-emphasis-50);
+}
+
+.hoverable tbody tr:hover {
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.compact .td,
+.compact .headerContent {
+  padding: 0.5rem;
+}
+
+.noData {
+  text-align: center;
+  padding: 2rem;
+  color: var(--ifm-color-emphasis-600);
+  font-style: italic;
+}
+
+.tableFooter {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-700);
+  background-color: var(--ifm-color-emphasis-50);
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  text-align: right;
+}
+
+/* Dark mode support */
+html[data-theme='dark'] .th {
+  background-color: var(--ifm-color-emphasis-200);
+}
+
+html[data-theme='dark'] .filterInput {
+  background-color: var(--ifm-background-surface-color);
+}
