@@ -16,7 +16,7 @@ How to reset the IP address using the UART interface.
 
 ### Wiring
 
-![Distiller Pinout Diagram](img/pin-out-info.png)
+![Distiller Pinout Diagram](/assets/pin-out-info.png)
 
 Connect your UART adapter to the Distiller:
 
