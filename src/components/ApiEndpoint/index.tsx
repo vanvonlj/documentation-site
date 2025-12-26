@@ -1,19 +1,23 @@
-import React from 'react';
-import styles from './styles.module.css';
+import React from "react";
+import styles from "./styles.module.css";
 
 interface ApiEndpointProps {
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
+  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
   path: string;
   description: string;
 }
 
-export default function ApiEndpoint({method, path, description}: ApiEndpointProps): JSX.Element {
+export default function ApiEndpoint({
+  method,
+  path,
+  description,
+}: ApiEndpointProps): JSX.Element {
   const methodColors = {
-    GET: '#61affe',
-    POST: '#49cc90',
-    PUT: '#fca130',
-    DELETE: '#f93e3e',
-    PATCH: '#50e3c2',
+    GET: "#61affe",
+    POST: "#49cc90",
+    PUT: "#fca130",
+    DELETE: "#f93e3e",
+    PATCH: "#50e3c2",
   };
 
   return (
@@ -21,8 +25,7 @@ export default function ApiEndpoint({method, path, description}: ApiEndpointProp
       <div className={styles.header}>
         <span
           className={styles.method}
-          style={{backgroundColor: methodColors[method]}}
-        >
+          style={{ backgroundColor: methodColors[method] }}>
           {method}
         </span>
         <code className={styles.path}>{path}</code>

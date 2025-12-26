@@ -3,219 +3,254 @@
 ## Basic Usage
 
 ```tsx
-import DataTable from '@site/src/components/DataTable';
+import DataTable from "@site/src/components/DataTable";
 
 <DataTable
   data={[
-    { name: 'John', age: 30, role: 'Developer' },
-    { name: 'Jane', age: 25, role: 'Designer' },
-    { name: 'Bob', age: 35, role: 'Manager' },
+    { name: "John", age: 30, role: "Developer" },
+    { name: "Jane", age: 25, role: "Designer" },
+    { name: "Bob", age: 35, role: "Manager" },
   ]}
   columns={[
-    { key: 'name', header: 'Name' },
-    { key: 'age', header: 'Age' },
-    { key: 'role', header: 'Role' },
+    { key: "name", header: "Name" },
+    { key: "age", header: "Age" },
+    { key: "role", header: "Role" },
   ]}
-/>
+/>;
 ```
 
 ## Diablo IV Gear Example
 
 ```tsx
-import DataTable from '@site/src/components/DataTable';
+import DataTable from "@site/src/components/DataTable";
 
 <DataTable
   data={[
-    { item: "Loyalty's Mantle", slot: 'Helm', sockets: 'Neo-Ohm', have: true },
-    { item: 'Runic Mail of Tenacity', slot: 'Armor', sockets: 'Emerald - Royal x2', have: false },
-    { item: "Vehement Brawler's Runic Gloves", slot: 'Gloves', sockets: 'N/A', have: false },
-    { item: 'Temerity', slot: 'Pants', sockets: 'Emerald - Royal x2', have: false },
-    { item: 'Wildbolt Runic Cleats', slot: 'Boots', sockets: 'N/A', have: false },
-    { item: 'Wushe Nak Pa', slot: 'Weapon', sockets: 'Cem-Zec', have: true },
-    { item: "Ocelot's Eye of Redirected Force", slot: 'Amulet', sockets: 'Diamond - Royal', have: false },
-    { item: 'Band of First Breath', slot: 'Ring', sockets: 'Diamond - Royal', have: false },
-    { item: 'Soulwatch Hoop of Unyielding Hits', slot: 'Ring', sockets: 'Diamond - Royal', have: false },
+    { item: "Loyalty's Mantle", slot: "Helm", sockets: "Neo-Ohm", have: true },
+    {
+      item: "Runic Mail of Tenacity",
+      slot: "Armor",
+      sockets: "Emerald - Royal x2",
+      have: false,
+    },
+    {
+      item: "Vehement Brawler's Runic Gloves",
+      slot: "Gloves",
+      sockets: "N/A",
+      have: false,
+    },
+    {
+      item: "Temerity",
+      slot: "Pants",
+      sockets: "Emerald - Royal x2",
+      have: false,
+    },
+    {
+      item: "Wildbolt Runic Cleats",
+      slot: "Boots",
+      sockets: "N/A",
+      have: false,
+    },
+    { item: "Wushe Nak Pa", slot: "Weapon", sockets: "Cem-Zec", have: true },
+    {
+      item: "Ocelot's Eye of Redirected Force",
+      slot: "Amulet",
+      sockets: "Diamond - Royal",
+      have: false,
+    },
+    {
+      item: "Band of First Breath",
+      slot: "Ring",
+      sockets: "Diamond - Royal",
+      have: false,
+    },
+    {
+      item: "Soulwatch Hoop of Unyielding Hits",
+      slot: "Ring",
+      sockets: "Diamond - Royal",
+      have: false,
+    },
   ]}
   columns={[
-    { key: 'item', header: 'Item' },
-    { key: 'slot', header: 'Gear Slot' },
-    { key: 'sockets', header: 'Sockets' },
+    { key: "item", header: "Item" },
+    { key: "slot", header: "Gear Slot" },
+    { key: "sockets", header: "Sockets" },
     {
-      key: 'have',
-      header: 'Have',
+      key: "have",
+      header: "Have",
       render: (value) => (
-        <span style={{
-          color: value ? '#49cc90' : '#f93e3e',
-          fontWeight: 'bold'
-        }}>
-          {value ? '✓' : '✗'}
+        <span
+          style={{
+            color: value ? "#49cc90" : "#f93e3e",
+            fontWeight: "bold",
+          }}>
+          {value ? "✓" : "✗"}
         </span>
       ),
     },
   ]}
-/>
+/>;
 ```
 
 ## Custom Rendering with Badges
 
 ```tsx
-import DataTable from '@site/src/components/DataTable';
+import DataTable from "@site/src/components/DataTable";
 
 <DataTable
   data={[
-    { type: 'Neo', quantity: 1, slot: 'Head', have: true },
-    { type: 'Ohm', quantity: 1, slot: 'Head', have: true },
-    { type: 'Emerald - Royal', quantity: 2, slot: 'Armor', have: true },
-    { type: 'Emerald - Royal', quantity: 2, slot: 'Pants', have: true },
-    { type: 'Gem', quantity: 1, slot: 'Weapon', have: false },
-    { type: 'Zec', quantity: 1, slot: 'Weapon', have: false },
-    { type: 'Diamond - Royal', quantity: 3, slot: 'Amulet, Rings', have: true },
+    { type: "Neo", quantity: 1, slot: "Head", have: true },
+    { type: "Ohm", quantity: 1, slot: "Head", have: true },
+    { type: "Emerald - Royal", quantity: 2, slot: "Armor", have: true },
+    { type: "Emerald - Royal", quantity: 2, slot: "Pants", have: true },
+    { type: "Gem", quantity: 1, slot: "Weapon", have: false },
+    { type: "Zec", quantity: 1, slot: "Weapon", have: false },
+    { type: "Diamond - Royal", quantity: 3, slot: "Amulet, Rings", have: true },
   ]}
   columns={[
-    { key: 'type', header: 'Type' },
-    { key: 'quantity', header: 'Quantity' },
-    { key: 'slot', header: 'Gear Slot' },
+    { key: "type", header: "Type" },
+    { key: "quantity", header: "Quantity" },
+    { key: "slot", header: "Gear Slot" },
     {
-      key: 'have',
-      header: 'Status',
+      key: "have",
+      header: "Status",
       render: (value) => (
-        <span style={{
-          padding: '0.25rem 0.5rem',
-          borderRadius: '4px',
-          fontSize: '0.85rem',
-          fontWeight: '500',
-          backgroundColor: value ? '#49cc9022' : '#f93e3e22',
-          color: value ? '#49cc90' : '#f93e3e',
-        }}>
-          {value ? 'Available' : 'Missing'}
+        <span
+          style={{
+            padding: "0.25rem 0.5rem",
+            borderRadius: "4px",
+            fontSize: "0.85rem",
+            fontWeight: "500",
+            backgroundColor: value ? "#49cc9022" : "#f93e3e22",
+            color: value ? "#49cc90" : "#f93e3e",
+          }}>
+          {value ? "Available" : "Missing"}
         </span>
       ),
     },
   ]}
-/>
+/>;
 ```
 
 ## Disable Filtering on Specific Columns
 
 ```tsx
-import DataTable from '@site/src/components/DataTable';
+import DataTable from "@site/src/components/DataTable";
 
 <DataTable
   data={[
-    { name: 'Item 1', price: 100, stock: 50 },
-    { name: 'Item 2', price: 200, stock: 30 },
+    { name: "Item 1", price: 100, stock: 50 },
+    { name: "Item 2", price: 200, stock: 30 },
   ]}
   columns={[
-    { key: 'name', header: 'Product Name' },
-    { key: 'price', header: 'Price', filterable: false },
-    { key: 'stock', header: 'Stock', filterable: false },
+    { key: "name", header: "Product Name" },
+    { key: "price", header: "Price", filterable: false },
+    { key: "stock", header: "Stock", filterable: false },
   ]}
-/>
+/>;
 ```
 
 ## Compact Table Without Striping
 
 ```tsx
-import DataTable from '@site/src/components/DataTable';
+import DataTable from "@site/src/components/DataTable";
 
 <DataTable
   data={[
-    { id: 1, status: 'Active' },
-    { id: 2, status: 'Inactive' },
+    { id: 1, status: "Active" },
+    { id: 2, status: "Inactive" },
   ]}
   columns={[
-    { key: 'id', header: 'ID' },
-    { key: 'status', header: 'Status' },
+    { key: "id", header: "ID" },
+    { key: "status", header: "Status" },
   ]}
   compact={true}
   striped={false}
-/>
+/>;
 ```
 
 ## Disable All Interactivity
 
 ```tsx
-import DataTable from '@site/src/components/DataTable';
+import DataTable from "@site/src/components/DataTable";
 
 <DataTable
-  data={[
-    { name: 'Read Only', value: '123' },
-  ]}
+  data={[{ name: "Read Only", value: "123" }]}
   columns={[
-    { key: 'name', header: 'Name' },
-    { key: 'value', header: 'Value' },
+    { key: "name", header: "Name" },
+    { key: "value", header: "Value" },
   ]}
   sortable={false}
   filterable={false}
   hoverable={false}
-/>
+/>;
 ```
 
 ## Headerless Table
 
 ```tsx
-import DataTable from '@site/src/components/DataTable';
+import DataTable from "@site/src/components/DataTable";
 
 <DataTable
   data={[
-    { label: 'Total Items', value: '1,234' },
-    { label: 'Active Users', value: '567' },
-    { label: 'Revenue', value: '$12,345' },
+    { label: "Total Items", value: "1,234" },
+    { label: "Active Users", value: "567" },
+    { label: "Revenue", value: "$12,345" },
   ]}
   columns={[
-    { key: 'label', header: 'Label' },
-    { key: 'value', header: 'Value' },
+    { key: "label", header: "Label" },
+    { key: "value", header: "Value" },
   ]}
   headerless={true}
   sortable={false}
   filterable={false}
-/>
+/>;
 ```
 
 ## Footerless Table
 
 ```tsx
-import DataTable from '@site/src/components/DataTable';
+import DataTable from "@site/src/components/DataTable";
 
 <DataTable
   data={[
-    { name: 'Item 1', status: 'Active' },
-    { name: 'Item 2', status: 'Inactive' },
+    { name: "Item 1", status: "Active" },
+    { name: "Item 2", status: "Inactive" },
   ]}
   columns={[
-    { key: 'name', header: 'Name' },
-    { key: 'status', header: 'Status' },
+    { key: "name", header: "Name" },
+    { key: "status", header: "Status" },
   ]}
   footerless={true}
-/>
+/>;
 ```
 
 ## Minimal Table (No Header or Footer)
 
 ```tsx
-import DataTable from '@site/src/components/DataTable';
+import DataTable from "@site/src/components/DataTable";
 
 <DataTable
   data={[
-    { label: 'CPU Usage', value: '45%' },
-    { label: 'Memory', value: '2.3 GB' },
-    { label: 'Disk Space', value: '128 GB' },
+    { label: "CPU Usage", value: "45%" },
+    { label: "Memory", value: "2.3 GB" },
+    { label: "Disk Space", value: "128 GB" },
   ]}
   columns={[
-    { key: 'label', header: 'Label' },
-    { key: 'value', header: 'Value' },
+    { key: "label", header: "Label" },
+    { key: "value", header: "Value" },
   ]}
   headerless={true}
   footerless={true}
   sortable={false}
   filterable={false}
-/>
+/>;
 ```
 
 ## TypeScript Type Safety
 
 ```tsx
-import DataTable, { Column } from '@site/src/components/DataTable';
+import DataTable, { Column } from "@site/src/components/DataTable";
 
 interface GearItem {
   item: string;
@@ -225,103 +260,111 @@ interface GearItem {
 }
 
 const columns: Column<GearItem>[] = [
-  { key: 'item', header: 'Item' },
-  { key: 'slot', header: 'Gear Slot' },
-  { key: 'sockets', header: 'Sockets' },
+  { key: "item", header: "Item" },
+  { key: "slot", header: "Gear Slot" },
+  { key: "sockets", header: "Sockets" },
   {
-    key: 'have',
-    header: 'Have',
+    key: "have",
+    header: "Have",
     render: (value: boolean, row: GearItem) => (
-      <span>{value ? '✓' : '✗'} {row.item}</span>
+      <span>
+        {value ? "✓" : "✗"} {row.item}
+      </span>
     ),
   },
 ];
 
 const gearData: GearItem[] = [
-  { item: 'Helmet', slot: 'Head', sockets: 'x2', have: true },
+  { item: "Helmet", slot: "Head", sockets: "x2", have: true },
 ];
 
-<DataTable<GearItem> data={gearData} columns={columns} />
+<DataTable<GearItem> data={gearData} columns={columns} />;
 ```
 
 ## Expandable Rows
 
 ```tsx
-import DataTable from '@site/src/components/DataTable';
+import DataTable from "@site/src/components/DataTable";
 
 <DataTable
   data={[
     {
       item: "Loyalty's Mantle",
-      slot: 'Helm',
-      sockets: 'Neo-Ohm',
+      slot: "Helm",
+      sockets: "Neo-Ohm",
       have: true,
       details: {
-        stats: '+500 Armor, +100 Intelligence',
-        source: 'Drops from World Boss',
-        notes: 'Best in slot for casters'
-      }
+        stats: "+500 Armor, +100 Intelligence",
+        source: "Drops from World Boss",
+        notes: "Best in slot for casters",
+      },
     },
     {
-      item: 'Temerity',
-      slot: 'Pants',
-      sockets: 'Emerald - Royal x2',
+      item: "Temerity",
+      slot: "Pants",
+      sockets: "Emerald - Royal x2",
       have: false,
       details: {
-        stats: '+300 Armor, Barrier Generation',
-        source: 'Random world drop',
-        notes: 'Essential for defensive builds'
-      }
+        stats: "+300 Armor, Barrier Generation",
+        source: "Random world drop",
+        notes: "Essential for defensive builds",
+      },
     },
   ]}
   columns={[
-    { key: 'item', header: 'Item' },
-    { key: 'slot', header: 'Gear Slot' },
-    { key: 'sockets', header: 'Sockets' },
+    { key: "item", header: "Item" },
+    { key: "slot", header: "Gear Slot" },
+    { key: "sockets", header: "Sockets" },
     {
-      key: 'have',
-      header: 'Have',
+      key: "have",
+      header: "Have",
       render: (value) => (
-        <span style={{ color: value ? '#49cc90' : '#f93e3e' }}>
-          {value ? '✓' : '✗'}
+        <span style={{ color: value ? "#49cc90" : "#f93e3e" }}>
+          {value ? "✓" : "✗"}
         </span>
       ),
     },
   ]}
   expandable={true}
   renderExpandedRow={(row) => (
-    <div style={{ padding: '0.5rem' }}>
+    <div style={{ padding: "0.5rem" }}>
       <h4 style={{ marginTop: 0 }}>{row.item} Details</h4>
-      <p><strong>Stats:</strong> {row.details.stats}</p>
-      <p><strong>Source:</strong> {row.details.source}</p>
-      <p><strong>Notes:</strong> {row.details.notes}</p>
+      <p>
+        <strong>Stats:</strong> {row.details.stats}
+      </p>
+      <p>
+        <strong>Source:</strong> {row.details.source}
+      </p>
+      <p>
+        <strong>Notes:</strong> {row.details.notes}
+      </p>
     </div>
   )}
-/>
+/>;
 ```
 
 ## Props API
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `data` | `T[]` | **required** | Array of data objects to display |
-| `columns` | `Column<T>[]` | **required** | Column configuration array |
-| `sortable` | `boolean` | `true` | Enable sorting functionality |
-| `filterable` | `boolean` | `true` | Enable filtering functionality |
-| `striped` | `boolean` | `true` | Alternate row colors |
-| `hoverable` | `boolean` | `true` | Highlight rows on hover |
-| `compact` | `boolean` | `false` | Reduce padding for smaller tables |
-| `expandable` | `boolean` | `false` | Enable expandable rows with toggle button |
-| `renderExpandedRow` | `(row: T) => ReactNode` | `undefined` | Function to render expanded row content |
-| `headerless` | `boolean` | `false` | Hide the table header (thead) completely |
-| `footerless` | `boolean` | `false` | Hide the table footer (row count) completely |
+| Prop                | Type                    | Default      | Description                                  |
+| ------------------- | ----------------------- | ------------ | -------------------------------------------- |
+| `data`              | `T[]`                   | **required** | Array of data objects to display             |
+| `columns`           | `Column<T>[]`           | **required** | Column configuration array                   |
+| `sortable`          | `boolean`               | `true`       | Enable sorting functionality                 |
+| `filterable`        | `boolean`               | `true`       | Enable filtering functionality               |
+| `striped`           | `boolean`               | `true`       | Alternate row colors                         |
+| `hoverable`         | `boolean`               | `true`       | Highlight rows on hover                      |
+| `compact`           | `boolean`               | `false`      | Reduce padding for smaller tables            |
+| `expandable`        | `boolean`               | `false`      | Enable expandable rows with toggle button    |
+| `renderExpandedRow` | `(row: T) => ReactNode` | `undefined`  | Function to render expanded row content      |
+| `headerless`        | `boolean`               | `false`      | Hide the table header (thead) completely     |
+| `footerless`        | `boolean`               | `false`      | Hide the table footer (row count) completely |
 
 ### Column Configuration
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `key` | `string` | Key to access value in data object |
-| `header` | `string` | Column header text |
-| `sortable` | `boolean` | Override global sortable setting for this column |
-| `filterable` | `boolean` | Override global filterable setting for this column |
-| `render` | `(value, row) => ReactNode` | Custom cell renderer function |
+| Property     | Type                        | Description                                        |
+| ------------ | --------------------------- | -------------------------------------------------- |
+| `key`        | `string`                    | Key to access value in data object                 |
+| `header`     | `string`                    | Column header text                                 |
+| `sortable`   | `boolean`                   | Override global sortable setting for this column   |
+| `filterable` | `boolean`                   | Override global filterable setting for this column |
+| `render`     | `(value, row) => ReactNode` | Custom cell renderer function                      |

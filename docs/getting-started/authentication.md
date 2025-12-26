@@ -24,11 +24,11 @@ Never commit API keys to version control or share them publicly!
 ```javascript
 const apiKey = process.env.API_KEY;
 
-const response = await fetch('https://api.example.com/endpoint', {
+const response = await fetch("https://api.example.com/endpoint", {
   headers: {
-    'Authorization': `Bearer ${apiKey}`,
-    'Content-Type': 'application/json'
-  }
+    Authorization: `Bearer ${apiKey}`,
+    "Content-Type": "application/json",
+  },
 });
 ```
 

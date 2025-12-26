@@ -115,7 +115,7 @@ Your content here...
 Import and use the ApiEndpoint component in your MDX files:
 
 ```mdx
-import ApiEndpoint from '@site/src/components/ApiEndpoint';
+import ApiEndpoint from "@site/src/components/ApiEndpoint";
 
 <ApiEndpoint
   method="GET"
@@ -130,7 +130,7 @@ Add syntax-highlighted code blocks:
 
 ````mdx
 ```javascript title="example.js"
-const response = await fetch('/api/endpoint');
+const response = await fetch("/api/endpoint");
 const data = await response.json();
 ```
 ````

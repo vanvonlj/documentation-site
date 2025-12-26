@@ -1,15 +1,15 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
-import type * as Preset from '@docusaurus/preset-classic';
+import { themes as prismThemes } from "prism-react-renderer";
+import type { Config } from "@docusaurus/types";
+import type * as Preset from "@docusaurus/preset-classic";
 
 // Use proxy base URL in development if PROXY_BASE_URL is set
-const baseUrl = process.env.PROXY_BASE_URL || '/documentation-site/';
-const url = process.env.SITE_URL || 'https://vanvonlj.github.io';
+const baseUrl = process.env.PROXY_BASE_URL || "/documentation-site/";
+const url = process.env.SITE_URL || "https://vanvonlj.github.io";
 
 const config: Config = {
-  title: 'Documentation Hub',
-  tagline: 'Complete documentation for all projects',
-  favicon: 'img/favicon.ico',
+  title: "Documentation Hub",
+  tagline: "Complete documentation for all projects",
+  favicon: "img/favicon.ico",
 
   // Set the production url of your site here
   url: url,
@@ -19,14 +19,14 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'vanvonlj', // Usually your GitHub org/user name.
-  projectName: 'documentation-site', // Usually your repo name.
+  organizationName: "vanvonlj", // Usually your GitHub org/user name.
+  projectName: "documentation-site", // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: "throw",
 
   markdown: {
     hooks: {
-      onBrokenMarkdownLinks: 'warn',
+      onBrokenMarkdownLinks: "warn",
     },
   },
 
@@ -34,57 +34,57 @@ const config: Config = {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: "en",
+    locales: ["en"],
   },
 
   plugins: [
     [
-      '@docusaurus/plugin-content-docs',
+      "@docusaurus/plugin-content-docs",
       {
-        id: 'text-rpg',
-        path: 'docs-text-rpg',
-        routeBasePath: 'text-rpg',
-        sidebarPath: './sidebars-text-rpg.ts',
+        id: "text-rpg",
+        path: "docs-text-rpg",
+        routeBasePath: "text-rpg",
+        sidebarPath: "./sidebars-text-rpg.ts",
       },
     ],
     [
-      '@docusaurus/plugin-content-docs',
+      "@docusaurus/plugin-content-docs",
       {
-        id: 'distiller',
-        path: 'docs-distiller',
-        routeBasePath: 'distiller',
-        sidebarPath: './sidebars-distiller.ts',
+        id: "distiller",
+        path: "docs-distiller",
+        routeBasePath: "distiller",
+        sidebarPath: "./sidebars-distiller.ts",
       },
     ],
     [
-      '@docusaurus/plugin-content-docs',
+      "@docusaurus/plugin-content-docs",
       {
-        id: 'homelab',
-        path: 'docs-homelab',
-        routeBasePath: 'homelab',
-        sidebarPath: './sidebars-homelab.ts',
+        id: "homelab",
+        path: "docs-homelab",
+        routeBasePath: "homelab",
+        sidebarPath: "./sidebars-homelab.ts",
       },
     ],
     [
-      '@docusaurus/plugin-content-docs',
+      "@docusaurus/plugin-content-docs",
       {
-        id: 'gaming',
-        path: 'docs-gaming',
-        routeBasePath: 'gaming',
-        sidebarPath: './sidebars-gaming.ts',
+        id: "gaming",
+        path: "docs-gaming",
+        routeBasePath: "gaming",
+        sidebarPath: "./sidebars-gaming.ts",
       },
     ],
   ],
 
   presets: [
     [
-      'classic',
+      "classic",
       {
         docs: false, // Disable default docs
         blog: false, // Disable blog
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: "./src/css/custom.css",
         },
       } satisfies Preset.Options,
     ],
@@ -92,161 +92,161 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: 'Docs Hub',
+      title: "Docs Hub",
       logo: {
-        alt: 'Logo',
-        src: 'img/logo.svg',
+        alt: "Logo",
+        src: "img/logo.svg",
       },
       items: [
         {
-          type: 'dropdown',
-          label: 'Text RPG',
-          position: 'left',
+          type: "dropdown",
+          label: "Text RPG",
+          position: "left",
           items: [
             {
-              label: 'Overview',
-              to: '/text-rpg/intro',
+              label: "Overview",
+              to: "/text-rpg/intro",
             },
             {
-              label: 'Developer Docs',
-              to: '/text-rpg/developer/overview',
+              label: "Developer Docs",
+              to: "/text-rpg/developer/overview",
             },
             {
-              label: 'Admin Guides',
-              to: '/text-rpg/admin/overview',
+              label: "Admin Guides",
+              to: "/text-rpg/admin/overview",
             },
           ],
         },
         {
-          type: 'dropdown',
-          label: 'Distiller',
-          position: 'left',
+          type: "dropdown",
+          label: "Distiller",
+          position: "left",
           items: [
             {
-              label: 'Overview',
-              to: '/distiller/intro',
+              label: "Overview",
+              to: "/distiller/intro",
             },
             {
-              label: 'Cloning Distiller OS',
-              to: '/distiller/guides/cloning-distiller-os',
+              label: "Cloning Distiller OS",
+              to: "/distiller/guides/cloning-distiller-os",
             },
             {
-              label: 'UART IP Reset',
-              to: '/distiller/guides/uart-ip-reset',
+              label: "UART IP Reset",
+              to: "/distiller/guides/uart-ip-reset",
             },
           ],
         },
         {
-          type: 'dropdown',
-          label: 'HomeLab',
-          position: 'left',
+          type: "dropdown",
+          label: "HomeLab",
+          position: "left",
           items: [
             {
-              label: 'Overview',
-              to: '/homelab/intro',
+              label: "Overview",
+              to: "/homelab/intro",
             },
             {
-              label: 'Hardware',
-              to: '/homelab/hardware/intro',
+              label: "Hardware",
+              to: "/homelab/hardware/intro",
             },
             {
-              label: 'Proxmox',
-              to: '/homelab/proxmox/installation',
+              label: "Proxmox",
+              to: "/homelab/proxmox/installation",
             },
             {
-              label: 'K3s',
-              to: '/homelab/k8s/k3s/getting-started',
+              label: "K3s",
+              to: "/homelab/k8s/k3s/getting-started",
             },
             {
-              label: 'RKE2',
-              to: '/homelab/k8s/rke2/getting-started',
+              label: "RKE2",
+              to: "/homelab/k8s/rke2/getting-started",
             },
           ],
         },
         {
-          type: 'dropdown',
-          label: 'Gaming',
-          position: 'left',
+          type: "dropdown",
+          label: "Gaming",
+          position: "left",
           items: [
             {
-              label: 'Overview',
-              to: '/gaming/intro',
+              label: "Overview",
+              to: "/gaming/intro",
             },
             {
-              label: 'Diablo IV',
-              to: '/gaming/diablo-iv/intro',
+              label: "Diablo IV",
+              to: "/gaming/diablo-iv/intro",
             },
             {
-              label: 'Turtle WoW',
-              to: '/gaming/turtle-wow/intro',
+              label: "Turtle WoW",
+              to: "/gaming/turtle-wow/intro",
             },
             {
-              label: 'WoW Retail',
-              to: '/gaming/wow-retail/intro',
+              label: "WoW Retail",
+              to: "/gaming/wow-retail/intro",
             },
           ],
         },
         {
-          href: 'https://github.com/vanvonlj/documentation-site',
-          label: 'GitHub',
-          position: 'right',
+          href: "https://github.com/vanvonlj/documentation-site",
+          label: "GitHub",
+          position: "right",
         },
       ],
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       links: [
         {
-          title: 'Text RPG',
+          title: "Text RPG",
           items: [
             {
-              label: 'Developer Docs',
-              to: '/text-rpg/developer/overview',
+              label: "Developer Docs",
+              to: "/text-rpg/developer/overview",
             },
             {
-              label: 'Admin Guides',
-              to: '/text-rpg/admin/overview',
+              label: "Admin Guides",
+              to: "/text-rpg/admin/overview",
             },
           ],
         },
         {
-          title: 'Distiller',
+          title: "Distiller",
           items: [
             {
-              label: 'Cloning Distiller OS',
-              to: '/distiller/guides/cloning-distiller-os',
+              label: "Cloning Distiller OS",
+              to: "/distiller/guides/cloning-distiller-os",
             },
             {
-              label: 'UART Guide',
-              to: '/distiller/guides/uart-ip-reset',
+              label: "UART Guide",
+              to: "/distiller/guides/uart-ip-reset",
             },
           ],
         },
         {
-          title: 'HomeLab',
+          title: "HomeLab",
           items: [
             {
-              label: 'Hardware',
-              to: '/homelab/hardware/intro',
+              label: "Hardware",
+              to: "/homelab/hardware/intro",
             },
             {
-              label: 'Proxmox',
-              to: '/homelab/proxmox/installation',
+              label: "Proxmox",
+              to: "/homelab/proxmox/installation",
             },
             {
-              label: 'Kubernetes',
-              to: '/homelab/k8s/k3s/getting-started',
+              label: "Kubernetes",
+              to: "/homelab/k8s/k3s/getting-started",
             },
           ],
         },
         {
-          title: 'More',
+          title: "More",
           items: [
             {
-              label: 'GitHub',
-              href: 'https://github.com/vanvonlj/documentation-site',
+              label: "GitHub",
+              href: "https://github.com/vanvonlj/documentation-site",
             },
           ],
         },
@@ -256,7 +256,7 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
-      additionalLanguages: ['bash', 'json', 'typescript', 'python'],
+      additionalLanguages: ["bash", "json", "typescript", "python"],
     },
   } satisfies Preset.ThemeConfig,
 };

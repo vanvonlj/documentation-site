@@ -52,7 +52,9 @@ documentation-site/
 ### Container Core Files
 
 #### Dockerfile
+
 Multi-stage Dockerfile with:
+
 - **Development stage**: Hot-reload Node.js server on port 3000
 - **Production stage**: Optimized nginx server on port 80
 - Multi-platform support (AMD64/ARM64)
@@ -60,20 +62,26 @@ Multi-stage Dockerfile with:
 - Health checks and nginx optimizations
 
 #### .dockerignore
+
 Optimizes build context by excluding:
+
 - node_modules, build artifacts
 - Git files, documentation
 - IDE configuration
 - Test files
 
 #### docker-compose.yml
+
 Defines two services:
+
 - **dev**: Development with volume mounts for hot-reload
 - **prod**: Production nginx server
 - Health checks and networking configured
 
 #### .env.example
+
 Template for environment variables:
+
 - SITE_URL, PROXY_BASE_URL
 - Registry credentials
 - Kubernetes configuration
@@ -81,7 +89,9 @@ Template for environment variables:
 ### Build & Deployment Tools
 
 #### Makefile
+
 Convenient commands for:
+
 - Building images (`make build-prod`)
 - Running containers (`make run-dev`)
 - Testing (`make test`)
@@ -91,7 +101,9 @@ Convenient commands for:
 ### Documentation Files
 
 #### DOCKER.md (Comprehensive Guide)
+
 Complete documentation covering:
+
 - Docker build and run instructions
 - Docker Compose usage
 - Kubernetes deployment with Helm
@@ -100,7 +112,9 @@ Complete documentation covering:
 - CI/CD integration examples
 
 #### CI-CD.md (GitHub Actions Guide)
+
 Detailed CI/CD setup guide:
+
 - Workflow descriptions
 - Setup instructions
 - Configuration options
@@ -109,7 +123,9 @@ Detailed CI/CD setup guide:
 - Troubleshooting
 
 #### CONTAINER-QUICKSTART.md (Quick Start)
+
 Fast-track guide with:
+
 - Quick start commands
 - Common tasks
 - Minimal explanations
@@ -118,7 +134,9 @@ Fast-track guide with:
 ### GitHub Actions Workflows
 
 #### .github/workflows/docker-build-push.yml
+
 Automated Docker image builds:
+
 - **Triggers**: Push, PR, tags, manual
 - **Features**:
   - Multi-platform builds (AMD64 + ARM64)
@@ -129,7 +147,9 @@ Automated Docker image builds:
   - Build attestation
 
 #### .github/workflows/helm-release.yml
+
 Helm chart releases:
+
 - **Triggers**: Version tags, helm changes, manual
 - **Features**:
   - Chart linting and packaging
@@ -140,13 +160,17 @@ Helm chart releases:
 ### Helm Chart Files
 
 #### Chart.yaml
+
 Chart metadata:
+
 - Name, version, description
 - Maintainer information
 - Keywords and sources
 
 #### values.yaml (Default)
+
 Default configuration:
+
 - Image repository and tag
 - Resource limits
 - Replica count
@@ -155,14 +179,18 @@ Default configuration:
 - Security contexts
 
 #### values-dev.yaml
+
 Development overrides:
+
 - Single replica
 - Reduced resources
 - No ingress
 - Latest tag with Always pull policy
 
 #### values-prod.yaml
+
 Production configuration:
+
 - Multiple replicas (3)
 - Autoscaling enabled
 - Ingress with TLS
@@ -171,7 +199,9 @@ Production configuration:
 - Anti-affinity rules
 
 #### templates/deployment.yaml
+
 Kubernetes Deployment:
+
 - Pod specification
 - Container configuration
 - Volume mounts
@@ -180,31 +210,41 @@ Kubernetes Deployment:
 - Security contexts
 
 #### templates/service.yaml
+
 Kubernetes Service:
+
 - ClusterIP service
 - Port configuration
 - Label selectors
 
 #### templates/ingress.yaml
+
 Ingress resource:
+
 - Host configuration
 - TLS settings
 - Path routing
 - Annotations
 
 #### templates/hpa.yaml
+
 Horizontal Pod Autoscaler:
+
 - CPU/memory based scaling
 - Min/max replicas
 - Target utilization
 
 #### templates/pdb.yaml
+
 Pod Disruption Budget:
+
 - Ensures availability during updates
 - Minimum available pods
 
 #### templates/networkpolicy.yaml
+
 Network policies:
+
 - Ingress rules
 - Namespace selectors
 
@@ -235,15 +275,15 @@ helm install docs ./helm/documentation-site -f values-prod.yaml
 
 ### File Locations
 
-| Purpose | File |
-|---------|------|
-| Build image | `Dockerfile` |
-| Run locally | `docker-compose.yml` |
-| Quick commands | `Makefile` |
-| K8s deployment | `helm/documentation-site/` |
-| CI/CD | `.github/workflows/` |
-| Config reference | `DOCKER.md`, `CI-CD.md` |
-| Quick start | `CONTAINER-QUICKSTART.md` |
+| Purpose          | File                       |
+| ---------------- | -------------------------- |
+| Build image      | `Dockerfile`               |
+| Run locally      | `docker-compose.yml`       |
+| Quick commands   | `Makefile`                 |
+| K8s deployment   | `helm/documentation-site/` |
+| CI/CD            | `.github/workflows/`       |
+| Config reference | `DOCKER.md`, `CI-CD.md`    |
+| Quick start      | `CONTAINER-QUICKSTART.md`  |
 
 ## 🔄 Workflow Overview
 
@@ -303,6 +343,7 @@ helm install docs ./helm/documentation-site -f values-prod.yaml
 5. **Deploy**: Use Helm to deploy to Kubernetes
 
 For detailed instructions, see:
+
 - Quick start: [CONTAINER-QUICKSTART.md](CONTAINER-QUICKSTART.md)
 - Docker guide: [DOCKER.md](DOCKER.md)
 - CI/CD setup: [CI-CD.md](CI-CD.md)

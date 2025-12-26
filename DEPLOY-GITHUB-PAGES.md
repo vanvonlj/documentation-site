@@ -52,6 +52,7 @@ git push origin main
 ## 🔄 How It Works
 
 Every time you push to `main`:
+
 1. GitHub Actions triggers the workflow
 2. Installs dependencies with `npm ci`
 3. Builds your site with `npm run _build`
@@ -68,6 +69,7 @@ GIT_USER=vanvonlj npm run _deploy
 ```
 
 This will:
+
 - Build your site
 - Push to the `gh-pages` branch
 - GitHub Pages will serve from that branch
@@ -114,12 +116,13 @@ These match your production GitHub Pages setup.
 ### Assets not loading
 
 Check that all asset paths use relative URLs:
+
 ```jsx
 // Good
-<img src="/documentation-site/img/logo.svg" />
+<img src="/documentation-site/img/logo.svg" />;
 
 // Better - use require or import
-import logo from '@site/static/img/logo.svg';
+import logo from "@site/static/img/logo.svg";
 ```
 
 ## 📚 Next Steps

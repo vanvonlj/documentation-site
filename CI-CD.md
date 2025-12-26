@@ -34,17 +34,20 @@ This project includes two main GitHub Actions workflows:
 **File:** [.github/workflows/docker-build-push.yml](.github/workflows/docker-build-push.yml)
 
 **Triggers:**
+
 - Push to `main` or `develop` branches
 - Pull requests to `main` or `develop`
 - Git tags matching `v*.*.*`
 - Manual workflow dispatch
 
 **Jobs:**
+
 1. **build-and-push**: Builds and pushes Docker images
 2. **security-scan**: Scans images for vulnerabilities using Trivy
 3. **test-image**: Validates the built image works correctly
 
 **Image Tags Generated:**
+
 - `latest` - Latest commit on main branch
 - `main` - Latest commit on main branch
 - `develop` - Latest commit on develop branch
@@ -58,11 +61,13 @@ This project includes two main GitHub Actions workflows:
 **File:** [.github/workflows/helm-release.yml](.github/workflows/helm-release.yml)
 
 **Triggers:**
+
 - Push of version tags (`v*.*.*`)
 - Changes to `helm/**` directory
 - Manual workflow dispatch
 
 **Jobs:**
+
 1. **release-helm-chart**: Packages and publishes Helm chart
 2. **test-helm-chart**: Tests chart installation in a Kind cluster
 
@@ -92,10 +97,10 @@ For custom site URLs, set repository variables:
 1. Go to **Settings** → **Secrets and variables** → **Actions** → **Variables**
 2. Add the following variables:
 
-| Variable Name | Description | Example |
-|--------------|-------------|---------|
-| `SITE_URL` | Production URL | `https://docs.example.com` |
-| `PROXY_BASE_URL` | Base URL path | `/` or `/docs/` |
+| Variable Name    | Description    | Example                    |
+| ---------------- | -------------- | -------------------------- |
+| `SITE_URL`       | Production URL | `https://docs.example.com` |
+| `PROXY_BASE_URL` | Base URL path  | `/` or `/docs/`            |
 
 ### Step 4: Enable GitHub Packages
 
@@ -125,13 +130,13 @@ The workflows use `GITHUB_TOKEN` which is automatically provided. No manual secr
 
 For deployment to external registries or Kubernetes:
 
-| Secret Name | Description | Required For |
-|------------|-------------|--------------|
-| `DOCKERHUB_USERNAME` | Docker Hub username | Docker Hub registry |
-| `DOCKERHUB_TOKEN` | Docker Hub access token | Docker Hub registry |
-| `KUBE_CONFIG` | Base64 encoded kubeconfig | K8s deployment |
-| `AWS_ACCESS_KEY_ID` | AWS access key | ECR registry |
-| `AWS_SECRET_ACCESS_KEY` | AWS secret key | ECR registry |
+| Secret Name             | Description               | Required For        |
+| ----------------------- | ------------------------- | ------------------- |
+| `DOCKERHUB_USERNAME`    | Docker Hub username       | Docker Hub registry |
+| `DOCKERHUB_TOKEN`       | Docker Hub access token   | Docker Hub registry |
+| `KUBE_CONFIG`           | Base64 encoded kubeconfig | K8s deployment      |
+| `AWS_ACCESS_KEY_ID`     | AWS access key            | ECR registry        |
+| `AWS_SECRET_ACCESS_KEY` | AWS secret key            | ECR registry        |
 
 ### Customizing Build Arguments
 
@@ -168,12 +173,14 @@ To push to Docker Hub in addition to GHCR:
 #### Automatic Builds
 
 Builds trigger automatically on:
+
 - Every push to `main` or `develop`
 - Every pull request to `main` or `develop`
 
 #### Manual Builds
 
 Trigger manually via GitHub UI:
+
 1. Go to **Actions** tab
 2. Select "Build and Push Docker Images"
 3. Click **Run workflow**
@@ -191,6 +198,7 @@ git push origin v1.0.0
 ```
 
 This will:
+
 - Build Docker image with tag `v1.0.0`
 - Package and release Helm chart
 - Create GitHub release with artifacts
@@ -254,6 +262,7 @@ helm install documentation-site ./helm/documentation-site \
 ### Build Artifacts
 
 Each successful build produces:
+
 - Docker images in GHCR
 - SBOM (Software Bill of Materials)
 - Build provenance attestation
@@ -262,12 +271,15 @@ Each successful build produces:
 ### Viewing Results
 
 **Docker Images:**
+
 - Navigate to: `https://github.com/YOUR-USERNAME?tab=packages`
 
 **Security Scans:**
+
 - Go to **Security** tab → **Code scanning alerts**
 
 **Workflow Runs:**
+
 - Go to **Actions** tab → Select workflow run
 
 ## Advanced Configuration
@@ -342,6 +354,7 @@ Add Slack/Discord notifications:
 ### Caching Strategies
 
 The workflow uses GitHub Actions cache for:
+
 - Docker layer caching (mode: max)
 - Buildx cache
 
@@ -357,49 +370,62 @@ cache-to: type=s3,region=us-east-1,bucket=my-cache-bucket,mode=max
 ### Build Failures
 
 **Permission Denied:**
+
 ```
 Error: Permission denied while trying to connect to the Docker daemon
 ```
+
 **Solution:** Check workflow permissions in repository settings.
 
 **Image Push Fails:**
+
 ```
 Error: denied: permission_denied
 ```
+
 **Solution:** Ensure `GITHUB_TOKEN` has package write permissions.
 
 ### Security Scan Issues
 
 **High/Critical Vulnerabilities:**
+
 - Review Trivy output in Security tab
 - Update base images in Dockerfile
 - Update npm dependencies
 
 **Scan Timeout:**
+
 - Increase timeout in workflow
 - Use selective scanning for large images
 
 ### Helm Chart Issues
 
 **Chart Already Exists:**
+
 ```
 Error: chart already exists
 ```
+
 **Solution:** Increment chart version in `Chart.yaml`
 
 **Template Validation Fails:**
+
 ```
 Error: YAML parse error
 ```
+
 **Solution:** Run `helm lint` locally before pushing
 
 ### Registry Authentication
 
 **Login Failed:**
+
 ```
 Error: incorrect username or password
 ```
+
 **Solutions:**
+
 1. For GHCR: Use personal access token with `write:packages` scope
 2. Verify token hasn't expired
 3. Check username is correct (lowercase for GHCR)
@@ -426,6 +452,7 @@ Error: incorrect username or password
 ## Support
 
 For issues with workflows:
+
 1. Check workflow run logs in Actions tab
 2. Review this documentation
 3. Check GitHub Actions status page

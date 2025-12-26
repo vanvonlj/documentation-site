@@ -1,58 +1,82 @@
-import DataTable from '@site/src/components/DataTable';
+import DataTable from "@site/src/components/DataTable";
 
 #### Gear
-/* TODO */
-| Item                              | Gear Slot | Sockets            | Have  |
-| --------------------------------- | --------- | ------------------ | ----- |
-| Loyalty's Mantle                  | Helm      | Neo-Ohm            | True  |
-| Runic Mail of Tenacity            | Armor     | Emerald - Royal x2 | False |
-| Vehement Brawler's Runic Gloves   | Gloves    | N/A                | False |
-| Temerity                          | Pants     | Emerald - Royal x2 | False |
-| Wildbolt Runic Cleats             | Boots     | N/A                | False |
-| Wushe Nak Pa                      | Weapon    | Cem-Zec            | True  |
-| Ocelot's Eye of Redirected Force  | Amulet    | Diaond - Royal     | False |
-| Band of First Breath              | Ring      | Diaond - Royal     | False |
-| Soulwatch Hoop of Unyielding Hits | Ring      | Diaond - Royal     | False |
-/* End TODO */
 
-#### Socketables
-
-| Type            | Quantity | Gear Slot     | Have  |
-|-----------------|----------|---------------|-------|
-| Gem             | 1        | Head          | False |
-| Ohm             | 1        | Head          | False |
-| Emerald - Grand | 2        | Armor         | False |
-| Emerald - Grand | 2        | Pants         | False |
-| Yul             | 1        | Weapon        | False |
-| Qax             | 1        | Weapon        | False |
-| Diamond - Grand | 3        | Amulet, Rings | False |
-
+<DataTable
+  data={[
+    {
+      item: "",
+      slot: "",
+      sockets: "",
+      have: true,
+      details: {
+        stats: "",
+        source: "",
+        notes: "",
+      },
+    },
+  ]}
+  columns={[
+    { key: "item", header: "Item" },
+    {
+      key: "slot",
+      header: "Gear Slot",
+    },
+    {
+      key: "sockets",
+      header: "Sockets",
+    },
+    {
+      key: "have",
+      header: "Have",
+      render: (value) => (
+        <span
+          style={{
+            color: value ? "#49cc90" : "#f93e3e",
+          }}>
+          {value ? "Yes" : "No"}
+        </span>
+      ),
+    },
+  ]}
+  expandable={true}
+  renderExpandedRow={(row) => (
+    <div style={{ padding: "0.5rem" }}>
+      <h4 style={{ marginTop: 0 }}>{row.item} Details</h4>
+      <p>
+        <strong>Stats:</strong> {row.details.stats}
+      </p>
+    </div>
+  )}
+/>
 
 ### Socketables
 
 <DataTable
-    data={[
-        { type: "Gem", tier: "", quantity: 1, slot: 'Helm', have: false },
-        { type: "Ohm", tier: "", quantity: 1, slot: 'Helm', have: true },
-        { type: "Emerald", tier: "Grand", quantity: 1, slot: 'Chest', have: false },
-        { type: "Emerald", tier: "Grand", quantity: 1, slot: 'Pants', have: false },
-        { type: "Yul", tier: "", quantity: 1, slot: 'Weapon', have: false },
-        { type: "Qax", tier: "", quantity: 1, slot: 'Weapon', have: false },
-        { type: "Diamond", tier: "Grand", quantity: 1, slot: 'Amulet', have: true },
-        { type: "Diamond", tier: "Grand", quantity: 1, slot: 'Ring', have: true },
-        { type: "Diamond", tier: "Grand", quantity: 1, slot: 'Ring', have: true },
-    ]}
-    columns={[
-        { key: 'type', header: 'Type' },
-        { key: 'tier', header: 'Tier' },
-        { key: 'quantity', header: 'Quantity' },
-        { key: 'slot', header: 'Slot' },
-        { key: 'have', header: 'Have',
-            render: (value) => (
-            <span style={{ color: value ? '#49cc90' : '#f93e3e' }}>
-                {value ? 'Yes' : 'No'}
-            </span>),
-        }
-    ]}
+  data={[
+    { type: "Gem", tier: "", quantity: 1, slot: "Helm", have: false },
+    { type: "Ohm", tier: "", quantity: 1, slot: "Helm", have: true },
+    { type: "Emerald", tier: "Grand", quantity: 1, slot: "Chest", have: false },
+    { type: "Emerald", tier: "Grand", quantity: 1, slot: "Pants", have: false },
+    { type: "Yul", tier: "", quantity: 1, slot: "Weapon", have: false },
+    { type: "Qax", tier: "", quantity: 1, slot: "Weapon", have: false },
+    { type: "Diamond", tier: "Grand", quantity: 1, slot: "Amulet", have: true },
+    { type: "Diamond", tier: "Grand", quantity: 1, slot: "Ring", have: true },
+    { type: "Diamond", tier: "Grand", quantity: 1, slot: "Ring", have: true },
+  ]}
+  columns={[
+    { key: "type", header: "Type" },
+    { key: "tier", header: "Tier" },
+    { key: "quantity", header: "Quantity" },
+    { key: "slot", header: "Slot" },
+    {
+      key: "have",
+      header: "Have",
+      render: (value) => (
+        <span style={{ color: value ? "#49cc90" : "#f93e3e" }}>
+          {value ? "Yes" : "No"}
+        </span>
+      ),
+    },
+  ]}
 />
-

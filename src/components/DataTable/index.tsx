@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import styles from './styles.module.css';
+import React, { useState, useMemo } from "react";
+import styles from "./styles.module.css";
 
 export interface Column<T = any> {
   key: string;
@@ -23,7 +23,7 @@ export interface DataTableProps<T = any> {
   footerless?: boolean;
 }
 
-type SortDirection = 'asc' | 'desc' | null;
+type SortDirection = "asc" | "desc" | null;
 
 export default function DataTable<T extends Record<string, any>>({
   data,
@@ -47,15 +47,15 @@ export default function DataTable<T extends Record<string, any>>({
     if (!sortable) return;
 
     if (sortKey === key) {
-      if (sortDirection === 'asc') {
-        setSortDirection('desc');
-      } else if (sortDirection === 'desc') {
+      if (sortDirection === "asc") {
+        setSortDirection("desc");
+      } else if (sortDirection === "desc") {
         setSortKey(null);
         setSortDirection(null);
       }
     } else {
       setSortKey(key);
-      setSortDirection('asc');
+      setSortDirection("asc");
     }
   };
 
@@ -90,18 +90,18 @@ export default function DataTable<T extends Record<string, any>>({
             const filterLower = filterValue.toLowerCase().trim();
 
             // Handle boolean values with yes/no matching
-            if (typeof cellValue === 'boolean') {
+            if (typeof cellValue === "boolean") {
               // Check if filter matches 'yes' or 'true' (partial match)
               if (
-                'yes'.startsWith(filterLower) ||
-                'true'.startsWith(filterLower)
+                "yes".startsWith(filterLower) ||
+                "true".startsWith(filterLower)
               ) {
                 return cellValue === true;
               }
               // Check if filter matches 'no' or 'false' (partial match)
               if (
-                'no'.startsWith(filterLower) ||
-                'false'.startsWith(filterLower)
+                "no".startsWith(filterLower) ||
+                "false".startsWith(filterLower)
               ) {
                 return cellValue === false;
               }
@@ -110,7 +110,7 @@ export default function DataTable<T extends Record<string, any>>({
             }
 
             // Default string matching
-            return String(cellValue || '')
+            return String(cellValue || "")
               .toLowerCase()
               .includes(filterLower);
           });
@@ -127,13 +127,13 @@ export default function DataTable<T extends Record<string, any>>({
         if (aVal === bVal) return 0;
 
         let comparison = 0;
-        if (typeof aVal === 'number' && typeof bVal === 'number') {
+        if (typeof aVal === "number" && typeof bVal === "number") {
           comparison = aVal - bVal;
         } else {
           comparison = String(aVal).localeCompare(String(bVal));
         }
 
-        return sortDirection === 'asc' ? comparison : -comparison;
+        return sortDirection === "asc" ? comparison : -comparison;
       });
     }
 
@@ -147,7 +147,7 @@ export default function DataTable<T extends Record<string, any>>({
     compact && styles.compact,
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   return (
     <div className={styles.tableWrapper}>
@@ -172,10 +172,10 @@ export default function DataTable<T extends Record<string, any>>({
                       {sortable && column.sortable !== false && (
                         <span className={styles.sortIcon}>
                           {sortKey === column.key ? (
-                            sortDirection === 'asc' ? (
-                              ' ↑'
+                            sortDirection === "asc" ? (
+                              " ↑"
                             ) : (
-                              ' ↓'
+                              " ↓"
                             )
                           ) : (
                             <span className={styles.sortIconInactive}> ↕</span>
@@ -188,7 +188,7 @@ export default function DataTable<T extends Record<string, any>>({
                         type="text"
                         className={styles.filterInput}
                         placeholder={`Filter ${column.header}...`}
-                        value={filters[column.key] || ''}
+                        value={filters[column.key] || ""}
                         onChange={(e) =>
                           handleFilter(column.key, e.target.value)
                         }
@@ -225,10 +225,10 @@ export default function DataTable<T extends Record<string, any>>({
                             onClick={() => toggleRowExpansion(rowIndex)}
                             aria-label={
                               expandedRows.has(rowIndex)
-                                ? 'Collapse row'
-                                : 'Expand row'
+                                ? "Collapse row"
+                                : "Expand row"
                             }>
-                            {expandedRows.has(rowIndex) ? '▼' : '▶'}
+                            {expandedRows.has(rowIndex) ? "▼" : "▶"}
                           </button>
                         ) : null}
                       </td>
@@ -237,7 +237,7 @@ export default function DataTable<T extends Record<string, any>>({
                       <td key={column.key} className={styles.td}>
                         {column.render
                           ? column.render(row[column.key], row)
-                          : String(row[column.key] ?? '')}
+                          : String(row[column.key] ?? "")}
                       </td>
                     ))}
                   </tr>

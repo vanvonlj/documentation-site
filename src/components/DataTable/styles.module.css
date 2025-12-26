@@ -137,14 +137,14 @@
 }
 
 /* Dark mode support */
-html[data-theme='dark'] .th {
+html[data-theme="dark"] .th {
   background-color: var(--ifm-color-emphasis-200);
 }
 
-html[data-theme='dark'] .filterInput {
+html[data-theme="dark"] .filterInput {
   background-color: var(--ifm-background-surface-color);
 }
 
-html[data-theme='dark'] .expandedRow {
+html[data-theme="dark"] .expandedRow {
   background-color: var(--ifm-color-emphasis-100);
 }

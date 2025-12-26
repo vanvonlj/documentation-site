@@ -1,0 +1,125 @@
+.d4Item {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 0.5rem;
+  z-index: 1000;
+  background: linear-gradient(to bottom, #1a1612 0%, #0f0d0a 100%);
+  border: 3px solid;
+  border-image: linear-gradient(135deg, #8b7355 0%, #5a4a3a 50%, #3a2a1a 100%) 1;
+  box-shadow:
+    0 0 20px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 0;
+  min-width: 350px;
+  max-width: 450px;
+  pointer-events: none;
+  white-space: normal;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.tooltipImage {
+  background: linear-gradient(to bottom, #2a2216 0%, #1a1612 100%);
+  border-bottom: 2px solid #3a2a1a;
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.tooltipImage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(139, 115, 85, 0.5) 50%,
+    transparent 100%
+  );
+}
+
+.tooltipImage img {
+  max-width: 120px;
+  height: auto;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
+}
+
+.tooltipContent {
+  padding: 1rem 1.25rem 1.25rem;
+  color: #d4d0c8;
+}
+
+.tooltipName {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  letter-spacing: 0.5px;
+}
+
+.tooltipStats {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(139, 115, 85, 0.3);
+}
+
+.tooltipStat {
+  color: #89d2ff;
+  margin: 0.35rem 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.tooltipStat::before {
+  content: "◆ ";
+  color: #8b7355;
+  margin-right: 0.25rem;
+}
+
+.tooltipSource {
+  color: #b8a580;
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(139, 115, 85, 0.3);
+  font-style: italic;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.tooltipNotes {
+  color: #9e8f7a;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  font-style: italic;
+  line-height: 1.5;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* Unique border color */
+.tooltip {
+  border-image: linear-gradient(135deg, #bf642f 0%, #8b4a25 50%, #5a2f15 100%)
+    1;
+}
+
+/* Dark mode - tooltip is already styled for dark */
+html[data-theme="dark"] .tooltip {
+  /* Keep existing dark theme */
+}
+
+/* Light mode - keep dark D4 aesthetic */
+html[data-theme="light"] .tooltip {
+  /* Keep dark D4 aesthetic even in light mode */
+}

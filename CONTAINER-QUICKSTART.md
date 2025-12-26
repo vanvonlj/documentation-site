@@ -7,15 +7,19 @@ Get your documentation site running in containers in minutes!
 ### Option 1: Docker Compose (Easiest)
 
 **Development Mode:**
+
 ```bash
 docker-compose up dev
 ```
+
 Visit http://localhost:3000 - Changes auto-reload!
 
 **Production Mode:**
+
 ```bash
 docker-compose up prod
 ```
+
 Visit http://localhost:8080 - Optimized nginx server
 
 ### Option 2: Makefile Commands
@@ -39,12 +43,14 @@ make help
 ### Option 3: Docker CLI
 
 **Development:**
+
 ```bash
 docker build --target development -t docs:dev .
 docker run -p 3000:3000 -v $(pwd)/docs:/app/docs docs:dev
 ```
 
 **Production:**
+
 ```bash
 docker build --target production -t docs:prod .
 docker run -p 8080:80 docs:prod
@@ -65,9 +71,11 @@ When you push code to GitHub, images are automatically built and pushed!
    - Enable "Read and write permissions"
 
 3. **Push Code**
+
    ```bash
    git push origin main
    ```
+
    Images automatically build and push to `ghcr.io/YOUR-USERNAME/documentation-site`
 
 4. **Create Releases**
@@ -130,6 +138,7 @@ helm install docs ./helm/documentation-site \
 ### Update Content
 
 **Docker Compose (auto-reloads):**
+
 ```bash
 # Edit files in docs/, changes appear immediately
 docker-compose up dev
@@ -199,6 +208,7 @@ curl http://localhost:8080/health
 ## 🔒 Security
 
 Images include:
+
 - ✅ Non-root user (nginx user, UID 101)
 - ✅ Read-only root filesystem
 - ✅ Security headers (X-Frame-Options, etc.)
@@ -214,23 +224,27 @@ Images include:
 ## 🆘 Troubleshooting
 
 **Container won't start:**
+
 ```bash
 docker logs docs-prod
 ```
 
 **Port already in use:**
+
 ```bash
 # Use different port
 docker run -p 9090:80 docs:prod
 ```
 
 **Build fails:**
+
 ```bash
 # Clear cache and rebuild
 docker build --no-cache -t docs:prod .
 ```
 
 **Health check failing:**
+
 ```bash
 # Check if nginx is running
 docker exec -it docs-prod ps aux
@@ -250,6 +264,7 @@ docker exec -it docs-prod cat /var/log/nginx/error.log
 ## 🎉 That's It!
 
 You now have a fully containerized documentation site with:
+
 - Docker development and production environments
 - Automated CI/CD pipelines
 - Kubernetes deployment ready

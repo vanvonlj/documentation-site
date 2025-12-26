@@ -9,12 +9,14 @@ This directory contains CI/CD workflows for automated building, testing, and dep
 **Purpose:** Automatically builds and publishes Docker images to GitHub Container Registry.
 
 **Triggers:**
+
 - Push to `main` or `develop` branches
 - Pull requests to `main` or `develop`
 - Git tags matching `v*.*.*` pattern
 - Manual workflow dispatch
 
 **Features:**
+
 - Multi-platform builds (AMD64 + ARM64)
 - Automatic semantic versioning from tags
 - Docker layer caching for faster builds
@@ -23,6 +25,7 @@ This directory contains CI/CD workflows for automated building, testing, and dep
 - Build attestation for supply chain security
 
 **Artifacts:**
+
 - Docker images: `ghcr.io/OWNER/REPO:TAG`
 - Security scan results in Security tab
 - Build provenance attestation
@@ -32,11 +35,13 @@ This directory contains CI/CD workflows for automated building, testing, and dep
 **Purpose:** Packages and publishes Helm charts for Kubernetes deployment.
 
 **Triggers:**
+
 - Push of version tags (`v*.*.*`)
 - Changes to `helm/**` directory
 - Manual workflow dispatch
 
 **Features:**
+
 - Helm chart linting
 - Chart packaging
 - Push to OCI registry (GHCR)
@@ -44,6 +49,7 @@ This directory contains CI/CD workflows for automated building, testing, and dep
 - Integration testing with Kind cluster
 
 **Artifacts:**
+
 - Helm chart: `oci://ghcr.io/OWNER/charts/documentation-site`
 - Chart archive in GitHub Releases
 
@@ -71,12 +77,12 @@ See [CI-CD.md](../../CI-CD.md) for complete setup instructions.
 
 The `docker-build-push.yml` workflow generates multiple tags:
 
-| Git Event | Generated Tags |
-|-----------|---------------|
-| Push to main | `latest`, `main`, `main-sha-abc123` |
-| Push to develop | `develop`, `develop-sha-abc123` |
-| Tag `v1.2.3` | `v1.2.3`, `v1.2`, `v1`, `latest` |
-| Pull request | `pr-123` |
+| Git Event       | Generated Tags                      |
+| --------------- | ----------------------------------- |
+| Push to main    | `latest`, `main`, `main-sha-abc123` |
+| Push to develop | `develop`, `develop-sha-abc123`     |
+| Tag `v1.2.3`    | `v1.2.3`, `v1.2`, `v1`, `latest`    |
+| Pull request    | `pr-123`                            |
 
 ## Usage Examples
 
@@ -109,6 +115,7 @@ helm install docs oci://ghcr.io/YOUR-USERNAME/charts/documentation-site \
 ## Monitoring
 
 Check workflow status:
+
 - **Actions Tab:** View workflow runs
 - **Security Tab:** View vulnerability scans
 - **Packages:** View published images/charts

@@ -21,16 +21,19 @@ curl -sfL https://get.k3s.io | sh -
 ### Multi-Node Cluster
 
 **On the master node:**
+
 ```bash
 curl -sfL https://get.k3s.io | sh -s - server --cluster-init
 ```
 
 **Get the token:**
+
 ```bash
 sudo cat /var/lib/rancher/k3s/server/node-token
 ```
 
 **On worker nodes:**
+
 ```bash
 curl -sfL https://get.k3s.io | K3S_URL=https://master-ip:6443 K3S_TOKEN=<token> sh -
 ```
