@@ -109,6 +109,33 @@
   text-align: right;
 }
 
+/* Expandable rows */
+.expandButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--ifm-color-primary);
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.expandButton:hover {
+  color: var(--ifm-color-primary-dark);
+}
+
+.expandedRow {
+  background-color: var(--ifm-color-emphasis-50);
+}
+
+.expandedContent {
+  padding: 1rem 0.75rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
 /* Dark mode support */
 html[data-theme='dark'] .th {
   background-color: var(--ifm-color-emphasis-200);
@@ -116,4 +143,8 @@ html[data-theme='dark'] .th {
 
 html[data-theme='dark'] .filterInput {
   background-color: var(--ifm-background-surface-color);
+}
+
+html[data-theme='dark'] .expandedRow {
+  background-color: var(--ifm-color-emphasis-100);
 }

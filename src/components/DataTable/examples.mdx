@@ -183,6 +183,62 @@ const gearData: GearItem[] = [
 <DataTable<GearItem> data={gearData} columns={columns} />
 ```
 
+## Expandable Rows
+
+```tsx
+import DataTable from '@site/src/components/DataTable';
+
+<DataTable
+  data={[
+    {
+      item: "Loyalty's Mantle",
+      slot: 'Helm',
+      sockets: 'Neo-Ohm',
+      have: true,
+      details: {
+        stats: '+500 Armor, +100 Intelligence',
+        source: 'Drops from World Boss',
+        notes: 'Best in slot for casters'
+      }
+    },
+    {
+      item: 'Temerity',
+      slot: 'Pants',
+      sockets: 'Emerald - Royal x2',
+      have: false,
+      details: {
+        stats: '+300 Armor, Barrier Generation',
+        source: 'Random world drop',
+        notes: 'Essential for defensive builds'
+      }
+    },
+  ]}
+  columns={[
+    { key: 'item', header: 'Item' },
+    { key: 'slot', header: 'Gear Slot' },
+    { key: 'sockets', header: 'Sockets' },
+    {
+      key: 'have',
+      header: 'Have',
+      render: (value) => (
+        <span style={{ color: value ? '#49cc90' : '#f93e3e' }}>
+          {value ? '✓' : '✗'}
+        </span>
+      ),
+    },
+  ]}
+  expandable={true}
+  renderExpandedRow={(row) => (
+    <div style={{ padding: '0.5rem' }}>
+      <h4 style={{ marginTop: 0 }}>{row.item} Details</h4>
+      <p><strong>Stats:</strong> {row.details.stats}</p>
+      <p><strong>Source:</strong> {row.details.source}</p>
+      <p><strong>Notes:</strong> {row.details.notes}</p>
+    </div>
+  )}
+/>
+```
+
 ## Props API
 
 | Prop | Type | Default | Description |
@@ -194,6 +250,8 @@ const gearData: GearItem[] = [
 | `striped` | `boolean` | `true` | Alternate row colors |
 | `hoverable` | `boolean` | `true` | Highlight rows on hover |
 | `compact` | `boolean` | `false` | Reduce padding for smaller tables |
+| `expandable` | `boolean` | `false` | Enable expandable rows with toggle button |
+| `renderExpandedRow` | `(row: T) => ReactNode` | `undefined` | Function to render expanded row content |
 
 ### Column Configuration
 

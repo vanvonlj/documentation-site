@@ -17,6 +17,8 @@ export interface DataTableProps<T = any> {
   striped?: boolean;
   hoverable?: boolean;
   compact?: boolean;
+  expandable?: boolean;
+  renderExpandedRow?: (row: T) => React.ReactNode;
 }
 
 type SortDirection = 'asc' | 'desc' | null;
@@ -29,10 +31,13 @@ export default function DataTable<T extends Record<string, any>>({
   striped = true,
   hoverable = true,
   compact = false,
+  expandable = false,
+  renderExpandedRow,
 }: DataTableProps<T>): JSX.Element {
   const [sortKey, setSortKey] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>(null);
   const [filters, setFilters] = useState<Record<string, string>>({});
+  const [expandedRows, setExpandedRows] = useState<Set<number>>(new Set());
 
   const handleSort = (key: string) => {
     if (!sortable) return;
@@ -55,6 +60,18 @@ export default function DataTable<T extends Record<string, any>>({
       ...prev,
       [key]: value,
     }));
+  };
+
+  const toggleRowExpansion = (rowIndex: number) => {
+    setExpandedRows(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(rowIndex)) {
+        newSet.delete(rowIndex);
+      } else {
+        newSet.add(rowIndex);
+      }
+      return newSet;
+    });
   };
 
   const filteredAndSortedData = useMemo(() => {
@@ -125,6 +142,7 @@ export default function DataTable<T extends Record<string, any>>({
       <table className={tableClasses}>
         <thead>
           <tr>
+            {expandable && <th className={styles.th}></th>}
             {columns.map(column => (
               <th key={column.key} className={styles.th}>
                 <div className={styles.headerContent}>
@@ -171,21 +189,41 @@ export default function DataTable<T extends Record<string, any>>({
         <tbody>
           {filteredAndSortedData.length === 0 ? (
             <tr>
-              <td colSpan={columns.length} className={styles.noData}>
+              <td colSpan={columns.length + (expandable ? 1 : 0)} className={styles.noData}>
                 No data found
               </td>
             </tr>
           ) : (
             filteredAndSortedData.map((row, rowIndex) => (
-              <tr key={rowIndex}>
-                {columns.map(column => (
-                  <td key={column.key} className={styles.td}>
-                    {column.render
-                      ? column.render(row[column.key], row)
-                      : String(row[column.key] ?? '')}
-                  </td>
-                ))}
-              </tr>
+              <React.Fragment key={rowIndex}>
+                <tr>
+                  {expandable && (
+                    <td className={styles.td}>
+                      <button
+                        className={styles.expandButton}
+                        onClick={() => toggleRowExpansion(rowIndex)}
+                        aria-label={expandedRows.has(rowIndex) ? 'Collapse row' : 'Expand row'}
+                      >
+                        {expandedRows.has(rowIndex) ? '▼' : '▶'}
+                      </button>
+                    </td>
+                  )}
+                  {columns.map(column => (
+                    <td key={column.key} className={styles.td}>
+                      {column.render
+                        ? column.render(row[column.key], row)
+                        : String(row[column.key] ?? '')}
+                    </td>
+                  ))}
+                </tr>
+                {expandable && expandedRows.has(rowIndex) && renderExpandedRow && (
+                  <tr className={styles.expandedRow}>
+                    <td colSpan={columns.length + 1} className={styles.expandedContent}>
+                      {renderExpandedRow(row)}
+                    </td>
+                  </tr>
+                )}
+              </React.Fragment>
             ))
           )}
         </tbody>
