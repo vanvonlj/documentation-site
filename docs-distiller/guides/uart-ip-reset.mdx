@@ -21,10 +21,14 @@ How to reset the IP address using the UART interface.
 Connect your UART adapter to the Distiller:
 
 - GND → GND
-- TX → RX
-- RX → TX
+- RX → TX (GPIO 14)
+- TX → RX (GPIO 15)
 
 **Warning:** Do NOT connect the VCC pin.
+
+Alternatively, connect to the UART Port on the [Raspberry Pi Debug Probe](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html)
+
+![Raspberry Pi Debug Probe](../assets/raspberry-pi-debug-probe.png)
 
 ## Steps
 
