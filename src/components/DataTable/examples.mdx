@@ -151,6 +151,67 @@ import DataTable from '@site/src/components/DataTable';
 />
 ```
 
+## Headerless Table
+
+```tsx
+import DataTable from '@site/src/components/DataTable';
+
+<DataTable
+  data={[
+    { label: 'Total Items', value: '1,234' },
+    { label: 'Active Users', value: '567' },
+    { label: 'Revenue', value: '$12,345' },
+  ]}
+  columns={[
+    { key: 'label', header: 'Label' },
+    { key: 'value', header: 'Value' },
+  ]}
+  headerless={true}
+  sortable={false}
+  filterable={false}
+/>
+```
+
+## Footerless Table
+
+```tsx
+import DataTable from '@site/src/components/DataTable';
+
+<DataTable
+  data={[
+    { name: 'Item 1', status: 'Active' },
+    { name: 'Item 2', status: 'Inactive' },
+  ]}
+  columns={[
+    { key: 'name', header: 'Name' },
+    { key: 'status', header: 'Status' },
+  ]}
+  footerless={true}
+/>
+```
+
+## Minimal Table (No Header or Footer)
+
+```tsx
+import DataTable from '@site/src/components/DataTable';
+
+<DataTable
+  data={[
+    { label: 'CPU Usage', value: '45%' },
+    { label: 'Memory', value: '2.3 GB' },
+    { label: 'Disk Space', value: '128 GB' },
+  ]}
+  columns={[
+    { key: 'label', header: 'Label' },
+    { key: 'value', header: 'Value' },
+  ]}
+  headerless={true}
+  footerless={true}
+  sortable={false}
+  filterable={false}
+/>
+```
+
 ## TypeScript Type Safety
 
 ```tsx
@@ -252,6 +313,8 @@ import DataTable from '@site/src/components/DataTable';
 | `compact` | `boolean` | `false` | Reduce padding for smaller tables |
 | `expandable` | `boolean` | `false` | Enable expandable rows with toggle button |
 | `renderExpandedRow` | `(row: T) => ReactNode` | `undefined` | Function to render expanded row content |
+| `headerless` | `boolean` | `false` | Hide the table header (thead) completely |
+| `footerless` | `boolean` | `false` | Hide the table footer (row count) completely |
 
 ### Column Configuration
 

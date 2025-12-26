@@ -1,54 +1,61 @@
 import DataTable from '@site/src/components/DataTable';
 
+### Gear
 <DataTable
-data={[
-    { item: "Loyalty's Mantle", slot: 'Helm', sockets: 'Neo-Ohm', have: true },
-    { item: 'Temerity', slot: 'Pants', sockets: 'Emerald - Royal x2', have: false },
-    { item: "Vehement Brawler's Runic Gloves", slot: "Gloves", sockets: "N/A", have: false},
-    { item: "Temerity", slot: "Pants", sockets: "Emerald - Royal x2", have: false},
-    { item: "Wildbolt Runic Cleats", slot: "Boots", sockets: "N/A", have: false},
-    { item: "Wushe Nak Pa", slot: "Weapon", sockets: "Cem-Zec", have: true},
-    { item: "Ocelot's Eye of Redirected Force", slot: "Amulet", sockets: "Diamond - Royal", have: false},
-    { item: "Band of First Breath", slot: "Ring", sockets: "Diamond - Royal", have: false},
-    { item: "Soulwatch Hoop of Unyielding Hits", slot: "Ring", sockets: "Diamond - Royal", have: false}
-]}
-columns={[
-    { key: 'item', header: 'Item' },
-    { key: 'slot', header: 'Gear Slot' },
-    { key: 'sockets', header: 'Sockets' },
-    { key: 'have', header: 'Have', 
-        render: (value) => (
+    data={[
+        { item: "Loyalty's Mantle", slot: 'Helm', sockets: 'Neo-Ohm', have: true, details: { stats: '+500 Armor, +100 Intelligence', source: 'Drops from World Boss', notes: 'Best in slot for casters' } },
+        { item: 'Temerity', slot: 'Pants', sockets: 'Emerald - Royal x2', have: false },
+        { item: "Vehement Brawler's Runic Gloves", slot: "Gloves", sockets: "N/A", have: false},
+        { item: "Temerity", slot: "Pants", sockets: "Emerald - Royal x2", have: false},
+        { item: "Wildbolt Runic Cleats", slot: "Boots", sockets: "N/A", have: false},
+        { item: "Wushe Nak Pa", slot: "Weapon", sockets: "Cem-Zec", have: true},
+        { item: "Ocelot's Eye of Redirected Force", slot: "Amulet", sockets: "Diamond - Royal", have: false},
+        { item: "Band of First Breath", slot: "Ring", sockets: "Diamond - Royal", have: false},
+        { item: "Soulwatch Hoop of Unyielding Hits", slot: "Ring", sockets: "Diamond - Royal", have: false}
+    ]}
+    columns={[
+        { key: 'item', header: 'Item' },
+        { key: 'slot', header: 'Gear Slot' },
+        { key: 'sockets', header: 'Sockets' },
+        { key: 'have', header: 'Have',
+            render: (value) => (
             <span style={{ color: value ? '#49cc90' : '#f93e3e' }}>
                 {value ? 'Yes' : 'No'}
             </span>),
-    }
-]}
+        }
+    ]}
+    expandable={true}
+    renderExpandedRow={(row) => (
+        <div style={{ padding: '0.5rem' }}>
+            <h4 style={{ marginTop: 0 }}>{row.item} Details</h4>
+            <p><strong>Stats:</strong> {row.details.stats}</p>
+        </div>
+    )}
 />
 
-#### Gear
+### Socketables
 
-
-
-| Item                              | Gear Slot | Sockets            | Have  |
-| --------------------------------- | --------- | ------------------ | ----- |
-| Loyalty's Mantle                  | Helm      | Neo-Ohm            | True  |
-| Runic Mail of Tenacity            | Armor     | Emerald - Royal x2 | False |
-| Vehement Brawler's Runic Gloves   | Gloves    | N/A                | False |
-| Temerity                          | Pants     | Emerald - Royal x2 | False |
-| Wildbolt Runic Cleats             | Boots     | N/A                | False |
-| Wushe Nak Pa                      | Weapon    | Cem-Zec            | True  |
-| Ocelot's Eye of Redirected Force  | Amulet    | Diaond - Royal     | False |
-| Band of First Breath              | Ring      | Diaond - Royal     | False |
-| Soulwatch Hoop of Unyielding Hits | Ring      | Diaond - Royal     | False |
-
-#### Socketables
-
-| Type            | Quantity | Gear Slot     | Have  |
-| --------------- | -------- | ------------- | ----- |
-| Neo             | 1        | Head          | True  |
-| Ohm             | 1        | Head          | True  |
-| Emerald - Royal | 2        | Armor         | True  |
-| Emerald - Royal | 2        | Pants         | True  |
-| Gem             | 1        | Weapon        | False |
-| Zec             | 1        | Weapon        | False |
-| Diamond - Royal | 3        | Amulet, Rings | True  |
+<DataTable
+    data={[
+        { type: "Neo", quantity: 1, slot: 'Helm', have: true },
+        { type: "Ohm", quantity: 1, slot: 'Helm', have: true },
+        { type: "Emerald", quantity: 1, slot: 'Chest', have: true },
+        { type: "Emerald", quantity: 1, slot: 'Pants', have: true },
+        { type: "Gem", quantity: 1, slot: 'Weapon', have: false },
+        { type: "Zec", quantity: 1, slot: 'Weapon', have: false },
+        { type: "Diamond", quantity: 1, slot: 'Amulet', have: true },
+        { type: "Diamond", quantity: 1, slot: 'Ring', have: true },
+        { type: "Diamond", quantity: 1, slot: 'Ring', have: true },
+    ]}
+    columns={[
+        { key: 'type', header: 'Type' },
+        { key: 'quantity', header: 'Quantity' },
+        { key: 'slot', header: 'Slot' },
+        { key: 'have', header: 'Have',
+            render: (value) => (
+            <span style={{ color: value ? '#49cc90' : '#f93e3e' }}>
+                {value ? 'Yes' : 'No'}
+            </span>),
+        }
+    ]}
+/>

@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 ---
+import DataTable from '@site/src/components/DataTable';
 import Tabs from '@theme/Tabs';
 import TabItems from '@theme/TabItem';
 import BuildAncestral from './_build-ancestral.mdx'
@@ -10,12 +11,24 @@ import BuildPush from './_build-push.mdx'
 
 ## Builds
 
-|            |                                |
-| ---------- | ------------------------------ |
-| Class      | Spiritborn                     |
-| Build Name | Evade Spiritborn Endgame Guide |
-| Build Type | Evasion                        |
-| Season     | 11 - Divine Intervention       |
+<DataTable
+  data={[
+    { id: 'Class', value: 'Spiritborn' },
+    { id: 'Build Name', value: 'Evade Spiritborn Endgame Guide' },
+    { id: 'Build Type', value: 'Evasion' },
+    { id: 'Season', value: '11 - Divine Intervention' },
+  ]}
+  columns={[
+    { key: 'id', header: '' },
+    { key: 'value', header: '' },
+  ]}
+  compact={true}
+  striped={false}
+  headerless={true}
+  footerless={true}
+  sortable={false}
+  filterable={false}
+/>
 
 <Tabs>
     <TabItems value="Ancestral" title="Ancestral">
@@ -30,4 +43,3 @@ import BuildPush from './_build-push.mdx'
 
 - [Planner](https://maxroll.gg/d4/planner/xt17670c#5)
 - [Build](https://maxroll.gg/d4/build-guides/evade-spiritborn-build-guide#build-variants-header)
-- Gear optimization notes

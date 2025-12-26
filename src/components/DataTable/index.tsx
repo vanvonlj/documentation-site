@@ -19,6 +19,8 @@ export interface DataTableProps<T = any> {
   compact?: boolean;
   expandable?: boolean;
   renderExpandedRow?: (row: T) => React.ReactNode;
+  headerless?: boolean;
+  footerless?: boolean;
 }
 
 type SortDirection = 'asc' | 'desc' | null;
@@ -33,6 +35,8 @@ export default function DataTable<T extends Record<string, any>>({
   compact = false,
   expandable = false,
   renderExpandedRow,
+  headerless = false,
+  footerless = false,
 }: DataTableProps<T>): JSX.Element {
   const [sortKey, setSortKey] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>(null);
@@ -140,52 +144,54 @@ export default function DataTable<T extends Record<string, any>>({
   return (
     <div className={styles.tableWrapper}>
       <table className={tableClasses}>
-        <thead>
-          <tr>
-            {expandable && <th className={styles.th}></th>}
-            {columns.map(column => (
-              <th key={column.key} className={styles.th}>
-                <div className={styles.headerContent}>
-                  <div
-                    className={
-                      sortable && (column.sortable !== false)
-                        ? styles.sortable
-                        : undefined
-                    }
-                    onClick={() =>
-                      column.sortable !== false && handleSort(column.key)
-                    }
-                  >
-                    {column.header}
-                    {sortable && column.sortable !== false && (
-                      <span className={styles.sortIcon}>
-                        {sortKey === column.key ? (
-                          sortDirection === 'asc' ? (
-                            ' ↑'
+        {!headerless && (
+          <thead>
+            <tr>
+              {expandable && <th className={styles.th}></th>}
+              {columns.map(column => (
+                <th key={column.key} className={styles.th}>
+                  <div className={styles.headerContent}>
+                    <div
+                      className={
+                        sortable && (column.sortable !== false)
+                          ? styles.sortable
+                          : undefined
+                      }
+                      onClick={() =>
+                        column.sortable !== false && handleSort(column.key)
+                      }
+                    >
+                      {column.header}
+                      {sortable && column.sortable !== false && (
+                        <span className={styles.sortIcon}>
+                          {sortKey === column.key ? (
+                            sortDirection === 'asc' ? (
+                              ' ↑'
+                            ) : (
+                              ' ↓'
+                            )
                           ) : (
-                            ' ↓'
-                          )
-                        ) : (
-                          <span className={styles.sortIconInactive}> ↕</span>
-                        )}
-                      </span>
+                            <span className={styles.sortIconInactive}> ↕</span>
+                          )}
+                        </span>
+                      )}
+                    </div>
+                    {filterable && column.filterable !== false && (
+                      <input
+                        type="text"
+                        className={styles.filterInput}
+                        placeholder={`Filter ${column.header}...`}
+                        value={filters[column.key] || ''}
+                        onChange={e => handleFilter(column.key, e.target.value)}
+                        onClick={e => e.stopPropagation()}
+                      />
                     )}
                   </div>
-                  {filterable && column.filterable !== false && (
-                    <input
-                      type="text"
-                      className={styles.filterInput}
-                      placeholder={`Filter ${column.header}...`}
-                      value={filters[column.key] || ''}
-                      onChange={e => handleFilter(column.key, e.target.value)}
-                      onClick={e => e.stopPropagation()}
-                    />
-                  )}
-                </div>
-              </th>
-            ))}
-          </tr>
-        </thead>
+                </th>
+              ))}
+            </tr>
+          </thead>
+        )}
         <tbody>
           {filteredAndSortedData.length === 0 ? (
             <tr>
@@ -194,41 +200,46 @@ export default function DataTable<T extends Record<string, any>>({
               </td>
             </tr>
           ) : (
-            filteredAndSortedData.map((row, rowIndex) => (
-              <React.Fragment key={rowIndex}>
-                <tr>
-                  {expandable && (
-                    <td className={styles.td}>
-                      <button
-                        className={styles.expandButton}
-                        onClick={() => toggleRowExpansion(rowIndex)}
-                        aria-label={expandedRows.has(rowIndex) ? 'Collapse row' : 'Expand row'}
-                      >
-                        {expandedRows.has(rowIndex) ? '▼' : '▶'}
-                      </button>
-                    </td>
-                  )}
-                  {columns.map(column => (
-                    <td key={column.key} className={styles.td}>
-                      {column.render
-                        ? column.render(row[column.key], row)
-                        : String(row[column.key] ?? '')}
-                    </td>
-                  ))}
-                </tr>
-                {expandable && expandedRows.has(rowIndex) && renderExpandedRow && (
-                  <tr className={styles.expandedRow}>
-                    <td colSpan={columns.length + 1} className={styles.expandedContent}>
-                      {renderExpandedRow(row)}
-                    </td>
+            filteredAndSortedData.map((row, rowIndex) => {
+              const hasExpandableContent = expandable && renderExpandedRow && row.details;
+              return (
+                <React.Fragment key={rowIndex}>
+                  <tr>
+                    {expandable && (
+                      <td className={styles.td}>
+                        {hasExpandableContent ? (
+                          <button
+                            className={styles.expandButton}
+                            onClick={() => toggleRowExpansion(rowIndex)}
+                            aria-label={expandedRows.has(rowIndex) ? 'Collapse row' : 'Expand row'}
+                          >
+                            {expandedRows.has(rowIndex) ? '▼' : '▶'}
+                          </button>
+                        ) : null}
+                      </td>
+                    )}
+                    {columns.map(column => (
+                      <td key={column.key} className={styles.td}>
+                        {column.render
+                          ? column.render(row[column.key], row)
+                          : String(row[column.key] ?? '')}
+                      </td>
+                    ))}
                   </tr>
-                )}
-              </React.Fragment>
-            ))
+                  {hasExpandableContent && expandedRows.has(rowIndex) && (
+                    <tr className={styles.expandedRow}>
+                      <td colSpan={columns.length + 1} className={styles.expandedContent}>
+                        {renderExpandedRow(row)}
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
+              );
+            })
           )}
         </tbody>
       </table>
-      {filteredAndSortedData.length > 0 && (
+      {!footerless && filteredAndSortedData.length > 0 && (
         <div className={styles.tableFooter}>
           Showing {filteredAndSortedData.length} of {data.length} rows
         </div>
