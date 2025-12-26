@@ -65,8 +65,25 @@ export default function DataTable<T extends Record<string, any>>({
       Object.entries(filters).forEach(([key, filterValue]) => {
         if (filterValue) {
           result = result.filter(row => {
-            const cellValue = String(row[key] || '').toLowerCase();
-            return cellValue.includes(filterValue.toLowerCase());
+            const cellValue = row[key];
+            const filterLower = filterValue.toLowerCase().trim();
+
+            // Handle boolean values with yes/no matching
+            if (typeof cellValue === 'boolean') {
+              // Check if filter matches 'yes' or 'true' (partial match)
+              if ('yes'.startsWith(filterLower) || 'true'.startsWith(filterLower)) {
+                return cellValue === true;
+              }
+              // Check if filter matches 'no' or 'false' (partial match)
+              if ('no'.startsWith(filterLower) || 'false'.startsWith(filterLower)) {
+                return cellValue === false;
+              }
+              // No match
+              return false;
+            }
+
+            // Default string matching
+            return String(cellValue || '').toLowerCase().includes(filterLower);
           });
         }
       });
