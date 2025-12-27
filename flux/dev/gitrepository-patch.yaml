@@ -1,0 +1,7 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: documentation-site
+  namespace: flux-system
+spec:
+  interval: 1m  # Fast polling for dev (1 minute vs 5m in prod)

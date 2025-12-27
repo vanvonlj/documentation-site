@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: documentation-site-values
+  namespace: flux-system
+data:
+  values.yaml: |
+    image:
+      repository: ghcr.io/your-org/documentation-site
+      tag: develop-latest
+      pullPolicy: Always
+
+    ingress:
+      enabled: true
+      hosts:
+        - host: dev-docs.your-domain.com
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: dev-docs-tls
+          hosts:
+            - dev-docs.your-domain.com
+
+    resources:
+      limits:
+        cpu: 200m
+        memory: 128Mi
+      requests:
+        cpu: 50m
+        memory: 64Mi

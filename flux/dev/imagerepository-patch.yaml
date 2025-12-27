@@ -1,0 +1,7 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: documentation-site
+  namespace: flux-system
+spec:
+  interval: 1m  # Fast registry scanning for dev (1 minute vs 5m in prod)

@@ -1,0 +1,11 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: documentation-site
+  namespace: flux-system
+spec:
+  targetNamespace: documentation-dev
+  valuesFrom:
+    - kind: ConfigMap
+      name: documentation-site-values
+      valuesKey: values.yaml
