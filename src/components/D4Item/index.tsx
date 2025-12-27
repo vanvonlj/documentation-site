@@ -2,12 +2,15 @@ import React, { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import styles from "./styles.module.css";
 import { D4_ITEM_IDS } from "../../data/d4-item-ids";
+import { SlotIcon } from "./SlotIcons";
 
 export interface D4ItemProps {
   name: string;
   itemId?: string;
   imageUrl?: string;
   rarity?: "common" | "magic" | "rare" | "legendary" | "unique" | "mythic";
+  slot?: string;
+  sockets?: string;
   details?: {
     stats?: string[];
     source?: string;
@@ -41,6 +44,8 @@ export default function D4Item({
   itemId,
   imageUrl,
   rarity = "unique",
+  slot,
+  sockets,
   details,
 }: D4ItemProps): JSX.Element {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -56,6 +61,57 @@ export default function D4Item({
     unique: "#dca779",
     mythic: "#dc9bf2",
   };
+
+  const rarityLabels = {
+    common: "Common",
+    magic: "Magic",
+    rare: "Rare",
+    legendary: "Legendary",
+    unique: "Unique",
+    mythic: "Mythic",
+  };
+
+
+  // Parse sockets string into array of socket items
+  const parseSocketsString = (socketsStr: string): string[] => {
+    if (!socketsStr || socketsStr === "N/A") return [];
+
+    // Handle patterns like "Neo-Ohm", "Cem-Zec", "Emerald - Royal x2", "Diamond - Royal"
+    const sockets: string[] = [];
+
+    // Split by common delimiters
+    const parts = socketsStr.split(/[\s,]+/);
+
+    for (let i = 0; i < parts.length; i++) {
+      const part = parts[i];
+
+      // Handle hyphen-separated runes like "Neo-Ohm" or "Cem-Zec"
+      if (part.includes("-") && !part.match(/Royal|Flawless|Perfect/i)) {
+        const runeParts = part.split("-");
+        sockets.push(...runeParts);
+      }
+      // Handle gem with tier and quantity like "Emerald", "Royal", "x2"
+      else if (part.match(/^(Diamond|Emerald|Ruby|Sapphire|Topaz|Amethyst|Skull)$/i)) {
+        const gemName = part;
+        // Check for quantity indicator
+        let quantity = 1;
+        if (i + 2 < parts.length && parts[i + 2].match(/^x\d+$/)) {
+          quantity = parseInt(parts[i + 2].substring(1));
+        }
+        for (let j = 0; j < quantity; j++) {
+          sockets.push(gemName);
+        }
+      }
+      // Handle standalone rune names
+      else if (part.match(/^(Neo|Ohm|Cem|Zec|Gar|Poc|Ton)$/i)) {
+        sockets.push(part);
+      }
+    }
+
+    return sockets;
+  };
+
+  const parsedSockets = sockets ? parseSocketsString(sockets) : [];
 
   // Auto-lookup itemId from mapping if not provided
   // Try exact match first, then partial match
@@ -112,6 +168,34 @@ export default function D4Item({
           style={{ color: rarityColors[rarity] }}>
           {name}
         </div>
+        {slot && (
+          <div className={styles.tooltipSubtitle}>
+            <SlotIcon slot={slot} className={styles.slotIcon} />
+            {rarityLabels[rarity]} {slot}
+          </div>
+        )}
+        {parsedSockets.length > 0 && (
+          <div className={styles.tooltipSockets}>
+            {parsedSockets.map((socket, idx) => {
+              const socketItemId = D4_ITEM_IDS[socket];
+              const socketImageUrl = socketItemId
+                ? getItemImageUrl(socket, socketItemId)
+                : "";
+              return (
+                <div key={idx} className={styles.socketSlot}>
+                  {socketImageUrl && (
+                    <img
+                      src={socketImageUrl}
+                      alt={socket}
+                      className={styles.socketImage}
+                      title={socket}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
         {details?.stats && (
           <div className={styles.tooltipStats}>
             {details.stats.map((stat, idx) => (

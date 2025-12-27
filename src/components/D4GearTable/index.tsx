@@ -38,6 +38,8 @@ export default function D4GearTable({
             <D4Item
               name={value}
               rarity={row.rarity || "unique"}
+              slot={row.slot}
+              sockets={row.sockets}
               details={
                 row.details?.stats
                   ? {
