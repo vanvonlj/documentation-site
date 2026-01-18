@@ -1,0 +1,626 @@
+---
+sidebar_position: 3
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import DataTable from "@site/src/components/DataTable";
+import WoWGearTable from "@site/src/components/WoWGearTable";
+import WoWItem from "@site/src/components/WoWItem";
+
+# Hunter Class Guide
+
+Comprehensive guide for Hunter class in World of Warcraft: The War Within (Season 1, Patch 11.0).
+
+## Class Overview
+
+| Attribute | Value |
+|-----------|-------|
+| **Role** | Ranged DPS |
+| **Armor Type** | Mail |
+| **Resource** | Focus |
+| **Specializations** | Beast Mastery, Marksmanship, Survival |
+| **Best for M+** | Beast Mastery / Survival |
+| **Best for Raid** | Marksmanship / Beast Mastery |
+
+---
+
+<Tabs>
+<TabItem value="beastmastery" label="Beast Mastery" default>
+
+## Beast Mastery Hunter
+
+Beast Mastery is the most mobile Hunter specialization, allowing you to cast all abilities while moving. Excels at sustained single-target and cleave damage with strong pet management.
+
+### Strengths & Weaknesses
+
+**Strengths:**
+- 100% mobility - all abilities castable while moving
+- Strong sustained single-target damage
+- Excellent cleave with Beast Cleave
+- Great for learning encounters
+- Pet utility and damage
+
+**Weaknesses:**
+- Lower burst damage compared to other specs
+- Pet management required
+- Limited AoE burst options
+
+### Priority Rotation
+
+#### Single Target
+
+export const bmSingleTarget = [
+  { priority: 1, ability: "Barbed Shot", condition: "To maintain Frenzy buff on pet (3 stacks)" },
+  { priority: 2, ability: "Kill Command", condition: "On cooldown" },
+  { priority: 3, ability: "Cobra Shot", condition: "To dump excess Focus (>90)" },
+  { priority: 4, ability: "Barbed Shot", condition: "If charges will overcap" },
+  { priority: 5, ability: "Cobra Shot", condition: "As filler" },
+];
+
+<DataTable
+  data={bmSingleTarget}
+  columns={[
+    { header: "Priority", key: "priority" },
+    { header: "Ability", key: "ability" },
+    { header: "Condition", key: "condition" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+#### AoE / Cleave (3+ targets)
+
+export const bmAoE = [
+  { priority: 1, ability: "Multi-Shot", condition: "To apply Beast Cleave buff" },
+  { priority: 2, ability: "Barbed Shot", condition: "To maintain Frenzy buff" },
+  { priority: 3, ability: "Kill Command", condition: "On cooldown" },
+  { priority: 4, ability: "Multi-Shot", condition: "To maintain Beast Cleave" },
+  { priority: 5, ability: "Cobra Shot", condition: "As filler" },
+];
+
+<DataTable
+  data={bmAoE}
+  columns={[
+    { header: "Priority", key: "priority" },
+    { header: "Ability", key: "ability" },
+    { header: "Condition", key: "condition" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+### Cooldown Usage
+
+export const bmCooldowns = [
+  { cooldown: "Bestial Wrath", usage: "Use on cooldown for maximum uptime" },
+  { cooldown: "Aspect of the Wild", usage: "Stack with Bestial Wrath when possible" },
+  { cooldown: "Call of the Wild", usage: "Use with Bestial Wrath + Aspect of the Wild" },
+  { cooldown: "Bloodshed", usage: "Use during Bestial Wrath window" },
+];
+
+<DataTable
+  data={bmCooldowns}
+  columns={[
+    { header: "Cooldown", key: "cooldown" },
+    { header: "Usage", key: "usage" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+### Best in Slot Gear (Mythic)
+
+export const bmBiSGear = [
+  {
+    item: "Entangled Thorns Hood",
+    slot: "Head",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+487 Agility", "+730 Stamina", "+218 Critical Strike", "+175 Haste"],
+      source: "The Rookery - Kyrioss (Mythic)",
+      setBonus: "2-Set: Barbed Shot grants 10% increased damage for 8 sec",
+      enchant: "Incandescent Essence (+82 All Stats)",
+      gem: "Deadly Emerald (+76 Critical Strike, +57 Agility)",
+    },
+  },
+  {
+    item: "Choker of Troubled Waters",
+    slot: "Neck",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+487 Agility", "+730 Stamina", "+218 Haste", "+175 Mastery"],
+      source: "Cinderbrew Meadery - Benk Buzzbee (Mythic)",
+      gem: "Deadly Emerald (+76 Critical Strike, +57 Agility)",
+    },
+  },
+  {
+    item: "Entangled Thorns Spaulders",
+    slot: "Shoulder",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+365 Agility", "+547 Stamina", "+164 Critical Strike", "+131 Versatility"],
+      source: "The Rookery - Kyrioss (Mythic)",
+      setBonus: "4-Set: Kill Command increases next Barbed Shot damage by 50%",
+      enchant: "Crystalline Radiance (+50 All Stats)",
+    },
+  },
+  {
+    item: "Void Reaper's Warp Walkers",
+    slot: "Back",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+365 Agility", "+547 Stamina", "+164 Haste", "+131 Mastery"],
+      source: "Nerub-ar Palace - Ansurek (Mythic)",
+      enchant: "Chant of Leeching Fangs (+115 Leech)",
+    },
+  },
+  {
+    item: "Entangled Thorns Hauberk",
+    slot: "Chest",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+487 Agility", "+730 Stamina", "+218 Versatility", "+175 Mastery"],
+      source: "The Rookery - Kyrioss (Mythic)",
+      enchant: "Council's Intellect (+75 All Stats)",
+      gem: "Deadly Emerald (+76 Critical Strike, +57 Agility)",
+    },
+  },
+  {
+    item: "Polluted Spectre's Wraps",
+    slot: "Wrist",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+365 Agility", "+547 Stamina", "+164 Critical Strike", "+131 Haste"],
+      source: "Ara-Kara - Bloodstained Webmage (Mythic)",
+      enchant: "Chant of Armored Avoidance (+82 Avoidance, +65 Armor)",
+    },
+  },
+  {
+    item: "Entangled Thorns Grips",
+    slot: "Hands",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+365 Agility", "+547 Stamina", "+164 Haste", "+131 Critical Strike"],
+      source: "The Rookery - Kyrioss (Mythic)",
+      enchant: "Chant of Armored Leech (+82 Leech, +65 Armor)",
+    },
+  },
+  {
+    item: "Girdle of Somber Ploys",
+    slot: "Waist",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+487 Agility", "+730 Stamina", "+218 Mastery", "+175 Versatility"],
+      source: "Darkflame Cleft - Blazikon (Mythic)",
+      gem: "Deadly Emerald (+76 Critical Strike, +57 Agility)",
+    },
+  },
+  {
+    item: "Entangled Thorns Legguards",
+    slot: "Legs",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+487 Agility", "+730 Stamina", "+218 Critical Strike", "+175 Versatility"],
+      source: "The Rookery - Kyrioss (Mythic)",
+      enchant: "Daybreak Spellthread (+97 Agility, +73 Stamina)",
+      gem: "Deadly Emerald (+76 Critical Strike, +57 Agility)",
+    },
+  },
+  {
+    item: "Lightless Scavenger's Bonewraps",
+    slot: "Feet",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+365 Agility", "+547 Stamina", "+164 Versatility", "+131 Mastery"],
+      source: "The Dawnbreaker - Rasha'nan (Mythic)",
+      enchant: "Defender's March (+78 Speed, +39 Stamina)",
+    },
+  },
+  {
+    item: "Seal of the Poisoned Pact",
+    slot: "Finger",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+365 Agility", "+547 Stamina", "+164 Critical Strike", "+131 Haste"],
+      source: "The Stonevault - Skarmorak (Mythic)",
+      enchant: "Radiant Critical Strike (+82 Critical Strike)",
+    },
+  },
+  {
+    item: "Locket of Broken Memories",
+    slot: "Finger",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+365 Agility", "+547 Stamina", "+164 Haste", "+131 Mastery"],
+      source: "Priory of the Sacred Flame - Baron Braunpyke (Mythic)",
+      enchant: "Radiant Haste (+82 Haste)",
+    },
+  },
+  {
+    item: "Skyterror's Corrosive Organ",
+    slot: "Trinket",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+487 Agility (Use)"],
+      source: "The Rookery - Voidstone Monstrosity (Mythic)",
+      notes: "BiS trinket for burst windows",
+    },
+  },
+  {
+    item: "Ovinax's Mercurial Egg",
+    slot: "Trinket",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+730 Mastery", "On-hit damage proc"],
+      source: "Nerub-ar Palace - Nexus-Princess Ky'veza (Mythic)",
+      notes: "Strong sustained damage trinket",
+    },
+  },
+  {
+    item: "Splintershot Silkbow",
+    slot: "Ranged",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+730 Agility", "+1095 Stamina", "+328 Critical Strike", "+262 Haste", "DPS: 1247"],
+      source: "Nerub-ar Palace - Ansurek (Mythic)",
+      enchant: "Authority of the Depths (+60 All Stats)",
+      notes: "BiS weapon with strong stats",
+    },
+  },
+];
+
+<WoWGearTable data={bmBiSGear} title="Mythic Best in Slot" />
+
+### Stat Priority
+
+1. **Agility** - Primary stat, scales all damage
+2. **Haste** (25-30%) - Focus generation and cooldown reduction
+3. **Critical Strike** (25-30%) - Increases Barbed Shot damage
+4. **Mastery** - Increases pet damage
+5. **Versatility** - Flat damage increase
+
+### Recommended Pets
+
+export const bmPets = [
+  { pet: "Ferocity (Turtle/Scalehide)", usage: "General content - 10% leech" },
+  { pet: "Tenacity (Bear/Goat)", usage: "Mythic+ - AoE threat and survivability" },
+  { pet: "Cunning (Fox/Crane)", usage: "PvP - Movement speed and utility" },
+];
+
+<DataTable
+  data={bmPets}
+  columns={[
+    { header: "Pet Family", key: "pet" },
+    { header: "Best For", key: "usage" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+</TabItem>
+
+<TabItem value="marksmanship" label="Marksmanship">
+
+## Marksmanship Hunter
+
+Marksmanship is the precision-based Hunter specialization focused on powerful aimed shots and burst damage windows. Excels in coordinated burst and execute phases.
+
+### Strengths & Weaknesses
+
+**Strengths:**
+- Highest burst damage among Hunter specs
+- Strong execute phase with Bullseye
+- Excellent in coordinated burst windows
+- Long-range advantage
+- No pet dependency (Lone Wolf)
+
+**Weaknesses:**
+- Requires planning for burst windows
+- Cast times reduce mobility
+- Vulnerability during Aimed Shot casts
+- Lower sustained damage outside cooldowns
+
+### Priority Rotation
+
+#### Single Target
+
+export const mmSingleTarget = [
+  { priority: 1, ability: "Aimed Shot", condition: "With Trick Shots buff active (2+ targets)" },
+  { priority: 2, ability: "Kill Shot", condition: "Target below 20% HP" },
+  { priority: 3, ability: "Rapid Fire", condition: "On cooldown" },
+  { priority: 4, ability: "Aimed Shot", condition: "With Precise Shots buff OR at 2 charges" },
+  { priority: 5, ability: "Arcane Shot", condition: "To spend Focus or generate Precise Shots" },
+  { priority: 6, ability: "Steady Shot", condition: "As filler" },
+];
+
+<DataTable
+  data={mmSingleTarget}
+  columns={[
+    { header: "Priority", key: "priority" },
+    { header: "Ability", key: "ability" },
+    { header: "Condition", key: "condition" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+#### AoE / Cleave (3+ targets)
+
+export const mmAoE = [
+  { priority: 1, ability: "Volley", condition: "On cooldown (if talented)" },
+  { priority: 2, ability: "Rapid Fire", condition: "On cooldown" },
+  { priority: 3, ability: "Aimed Shot", condition: "With Trick Shots active" },
+  { priority: 4, ability: "Multi-Shot", condition: "To maintain Trick Shots buff" },
+  { priority: 5, ability: "Steady Shot", condition: "As filler" },
+];
+
+<DataTable
+  data={mmAoE}
+  columns={[
+    { header: "Priority", key: "priority" },
+    { header: "Ability", key: "ability" },
+    { header: "Condition", key: "condition" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+### Cooldown Usage
+
+export const mmCooldowns = [
+  { cooldown: "Trueshot", usage: "Use on cooldown, stack with other CDs for burst" },
+  { cooldown: "Salvo", usage: "Use with Trueshot for burst AoE windows" },
+  { cooldown: "Rapid Fire", usage: "Use on cooldown, preferably during Trueshot" },
+  { cooldown: "Wailing Arrow", usage: "Use during Trueshot with multiple targets" },
+];
+
+<DataTable
+  data={mmCooldowns}
+  columns={[
+    { header: "Cooldown", key: "cooldown" },
+    { header: "Usage", key: "usage" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+### Best in Slot Gear (Mythic)
+
+export const mmBiSGear = [
+  {
+    item: "Entangled Thorns Hood",
+    slot: "Head",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+487 Agility", "+730 Stamina", "+218 Critical Strike", "+175 Haste"],
+      source: "The Rookery - Kyrioss (Mythic)",
+      enchant: "Incandescent Essence (+82 All Stats)",
+      gem: "Deadly Emerald (+76 Critical Strike, +57 Agility)",
+    },
+  },
+  {
+    item: "Splintershot Silkbow",
+    slot: "Ranged",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+730 Agility", "+1095 Stamina", "+328 Critical Strike", "+262 Haste", "DPS: 1247"],
+      source: "Nerub-ar Palace - Ansurek (Mythic)",
+      enchant: "Authority of the Depths (+60 All Stats)",
+      notes: "BiS weapon with perfect stats for MM",
+    },
+  },
+];
+
+<WoWGearTable data={mmBiSGear} title="Mythic Best in Slot (Preview)" />
+
+:::info
+Full Marksmanship BiS list follows same gear as Beast Mastery with slight stat priority differences. See Beast Mastery tab for complete list.
+:::
+
+### Stat Priority
+
+1. **Agility** - Primary stat
+2. **Critical Strike** (30-35%) - Amplifies burst damage
+3. **Haste** (20-25%) - Reduces cast times and cooldowns
+4. **Mastery** - Increases ranged damage
+5. **Versatility** - Flat damage increase
+
+</TabItem>
+
+<TabItem value="survival" label="Survival">
+
+## Survival Hunter
+
+Survival is the melee Hunter specialization focused on bleeding effects, traps, and tactical gameplay. Excels in Mythic+ with strong AoE burst and sustained damage.
+
+### Strengths & Weaknesses
+
+**Strengths:**
+- Excellent sustained AoE and cleave
+- Strong utility with traps and crowd control
+- High mobility with melee range
+- Great self-healing with Exhilaration
+- Best Mythic+ Hunter spec
+
+**Weaknesses:**
+- Melee range increases danger
+- Complex rotation with DoT tracking
+- Lower burst compared to ranged specs
+- Requires target swapping management
+
+### Priority Rotation
+
+#### Single Target
+
+export const svSingleTarget = [
+  { priority: 1, ability: "Kill Command", condition: "On cooldown" },
+  { priority: 2, ability: "Wildfire Bomb", condition: "On cooldown" },
+  { priority: 3, ability: "Raptor Strike", condition: "With Mongoose Bite buff OR at 5+ Focus" },
+  { priority: 4, ability: "Serpent Sting", condition: "If not active on target" },
+  { priority: 5, ability: "Kill Shot", condition: "Target below 20% HP" },
+  { priority: 6, ability: "Raptor Strike", condition: "As filler" },
+];
+
+<DataTable
+  data={svSingleTarget}
+  columns={[
+    { header: "Priority", key: "priority" },
+    { header: "Ability", key: "ability" },
+    { header: "Condition", key: "condition" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+#### AoE / Cleave (3+ targets)
+
+export const svAoE = [
+  { priority: 1, ability: "Wildfire Bomb", condition: "On cooldown" },
+  { priority: 2, ability: "Carve", condition: "To apply Serpent Sting to all targets" },
+  { priority: 3, ability: "Kill Command", condition: "On cooldown" },
+  { priority: 4, ability: "Butchery", condition: "If talented and 3+ stacked targets" },
+  { priority: 5, ability: "Raptor Strike", condition: "As filler" },
+];
+
+<DataTable
+  data={svAoE}
+  columns={[
+    { header: "Priority", key: "priority" },
+    { header: "Ability", key: "ability" },
+    { header: "Condition", key: "condition" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+### Cooldown Usage
+
+export const svCooldowns = [
+  { cooldown: "Coordinated Assault", usage: "Use on cooldown with burst windows" },
+  { cooldown: "Spearhead", usage: "Use on cooldown for sustained damage" },
+  { cooldown: "Wildfire Bomb", usage: "On cooldown, prioritize in AoE" },
+  { cooldown: "Explosive Shot", usage: "Use during Coordinated Assault if talented" },
+];
+
+<DataTable
+  data={svCooldowns}
+  columns={[
+    { header: "Cooldown", key: "cooldown" },
+    { header: "Usage", key: "usage" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+### Best in Slot Gear (Mythic)
+
+export const svBiSGear = [
+  {
+    item: "Entangled Thorns Hood",
+    slot: "Head",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+487 Agility", "+730 Stamina", "+218 Critical Strike", "+175 Haste"],
+      source: "The Rookery - Kyrioss (Mythic)",
+      enchant: "Incandescent Essence (+82 All Stats)",
+      gem: "Deadly Emerald (+76 Critical Strike, +57 Agility)",
+    },
+  },
+  {
+    item: "Monstrous Fungal Fang",
+    slot: "Main Hand",
+    itemLevel: 639,
+    quality: "epic",
+    details: {
+      stats: ["+487 Agility", "+730 Stamina", "+218 Haste", "+175 Mastery", "DPS: 831"],
+      source: "The Stonevault - E.D.N.A (Mythic)",
+      enchant: "Authority of Storms (+60 All Stats)",
+      notes: "BiS weapon for Survival",
+    },
+  },
+];
+
+<WoWGearTable data={svBiSGear} title="Mythic Best in Slot (Preview)" />
+
+:::info
+Survival shares most gear with other Hunter specs except weapon slot. Full BiS list available - see Beast Mastery tab for Mail armor pieces.
+:::
+
+### Stat Priority
+
+1. **Agility** - Primary stat
+2. **Haste** (25-30%) - Focus generation and DoT ticks
+3. **Critical Strike** (20-25%) - Increases burst and bleed damage
+4. **Versatility** - Flat damage and survivability
+5. **Mastery** - Increases bleed and pet damage
+
+### Recommended Pets
+
+export const svPets = [
+  { pet: "Ferocity (Cat/Raptor)", usage: "General content - 10% leech" },
+  { pet: "Tenacity (Bear/Turtle)", usage: "Mythic+ - Tanking and survivability" },
+];
+
+<DataTable
+  data={svPets}
+  columns={[
+    { header: "Pet Family", key: "pet" },
+    { header: "Best For", key: "usage" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+</TabItem>
+</Tabs>
+
+---
+
+## General Hunter Tips
+
+### Utility Abilities
+
+- **Feign Death** - Drop combat, avoid mechanics, reset threat
+- **Misdirection** - Threat management for tank
+- **Freezing Trap** - Crowd control (PvP and dungeons)
+- **Tar Trap** - Slow enemies in an area
+- **Flare** - Reveal stealth and invisible enemies
+- **Aspect of the Cheetah** - Group movement speed
+
+### Defensive Cooldowns
+
+- **Exhilaration** - Large instant heal (30% HP)
+- **Survival of the Fittest** - 30% damage reduction for 6 seconds
+- **Aspect of the Turtle** - Immunity to damage for 8 seconds (cannot attack)
+
+### Resources
+
+- [Icy Veins Hunter Guide](https://www.icy-veins.com/wow/hunter-pve-dps-guide)
+- [Wowhead Hunter Overview](https://www.wowhead.com/guide/classes/hunter/overview)
+- [Petopia - Hunter Pet Database](https://www.wow-petopia.com/)
+- [Raidbots - Sim Your Character](https://www.raidbots.com/)
+
+---
+
+:::tip
+Use [Raidbots](https://www.raidbots.com/) to simulate your character and determine your personal stat weights and best gear upgrades!
+:::

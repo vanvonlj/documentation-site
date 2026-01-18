@@ -1,0 +1,123 @@
+/* WoW Item Inline Link */
+.wowItem {
+  display: inline;
+  cursor: help;
+  border-bottom: 1px dotted;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.wowItem.inline {
+  display: inline;
+}
+
+.wowItemLink {
+  text-decoration: none;
+  font-weight: inherit;
+}
+
+.wowItemLink:hover {
+  text-decoration: underline;
+}
+
+/* Tooltip Styling */
+.tooltip {
+  position: fixed;
+  z-index: 9999;
+  background: linear-gradient(to bottom, #1a1410, #0f0a08);
+  border: 2px solid;
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 250px;
+  max-width: 350px;
+  font-size: 14px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  color: #ffd100;
+}
+
+.tooltipHeader {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 209, 0, 0.3);
+}
+
+.itemName {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.itemLevel {
+  font-size: 12px;
+  color: #ffd100;
+  margin-bottom: 2px;
+}
+
+.itemSlot {
+  font-size: 12px;
+  color: #aaa;
+  font-style: italic;
+}
+
+.tooltipSection {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 209, 0, 0.2);
+}
+
+.tooltipSection:first-of-type {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.stat {
+  color: #1eff00;
+  font-size: 13px;
+  margin: 2px 0;
+}
+
+.enchant {
+  color: #50c878;
+  font-size: 13px;
+  font-style: italic;
+}
+
+.gem {
+  color: #ff6b6b;
+  font-size: 13px;
+  font-style: italic;
+}
+
+.setBonus {
+  color: #ffd700;
+  font-size: 13px;
+  font-style: italic;
+  margin: 4px 0;
+}
+
+.source {
+  color: #888;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.notes {
+  color: #aaa;
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .tooltip {
+  background: linear-gradient(to bottom, #1a1410, #0f0a08);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
+}
+
+[data-theme='light'] .tooltip {
+  background: linear-gradient(to bottom, #2a2116, #1f1510);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+}

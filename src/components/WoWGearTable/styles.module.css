@@ -1,0 +1,58 @@
+.gearTableContainer {
+  margin: 20px 0;
+}
+
+.tableTitle {
+  margin-bottom: 16px;
+  color: var(--ifm-heading-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.expandedContent {
+  padding: 16px;
+  background-color: var(--ifm-table-stripe-background);
+  border-left: 3px solid var(--ifm-color-primary);
+  margin: 8px 0;
+}
+
+.detailSection {
+  margin-bottom: 12px;
+}
+
+.detailSection:last-child {
+  margin-bottom: 0;
+}
+
+.detailSection strong {
+  color: var(--ifm-color-primary);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.detailSection ul {
+  margin: 4px 0 0 0;
+  padding-left: 20px;
+}
+
+.detailSection li {
+  margin: 2px 0;
+}
+
+.haveYes {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.haveNo {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+[data-theme='dark'] .haveYes {
+  color: #5cb85c;
+}
+
+[data-theme='dark'] .haveNo {
+  color: #e74c3c;
+}
