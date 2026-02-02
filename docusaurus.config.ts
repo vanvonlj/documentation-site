@@ -129,6 +129,10 @@ const config: Config = {
               to: "/distiller/intro",
             },
             {
+              label: "Skills",
+              to: "/distiller/skills/overview",
+            },
+            {
               label: "Cloning Distiller OS",
               to: "/distiller/guides/cloning-distiller-os",
             },
@@ -214,6 +218,10 @@ const config: Config = {
         {
           title: "Distiller",
           items: [
+            {
+              label: "Skills Overview",
+              to: "/distiller/skills/overview",
+            },
             {
               label: "Cloning Distiller OS",
               to: "/distiller/guides/cloning-distiller-os",
