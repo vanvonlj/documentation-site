@@ -9,7 +9,7 @@ Track your RuneScape 3 character stats, experience, and rankings using various t
 ## VanDuran's Stats
 
 Quick links to view VanDuran's current stats:
-- [RuneClan Profile](https://runeclan.com/user/VanDuran)
+- [RunePixels Profile](https://runepixels.com/players/VanDuran)
 - [Official Hiscores](https://secure.runescape.com/m=hiscore/compare?user1=VanDuran)
 - [RuneMetrics](https://apps.runescape.com/runemetrics/app/overview/player/VanDuran)
 
@@ -18,17 +18,17 @@ Quick links to view VanDuran's current stats:
 Enter a RuneScape username to view their stats on various tracking sites:
 
 <details>
-<summary><strong>RuneClan Stats Lookup</strong></summary>
+<summary><strong>RunePixels Stats Lookup</strong></summary>
 
-RuneClan provides comprehensive player tracking, XP gains, and activity monitoring.
+RunePixels provides comprehensive player tracking, XP gains, historical data, and activity monitoring.
 
-<form action="https://runeclan.com/user/" method="get" target="_blank">
-  <label for="runeclan-username">Username:</label><br/>
-  <input type="text" id="runeclan-username" name="user" placeholder="Enter RS3 username" style={{padding: '8px', margin: '10px 0', width: '300px'}} required /><br/>
-  <button type="submit" style={{padding: '8px 16px', cursor: 'pointer'}}>View on RuneClan</button>
+<form id="runepixels-form" onsubmit="event.preventDefault(); window.open('https://runepixels.com/players/' + document.getElementById('runepixels-username').value, '_blank');">
+  <label for="runepixels-username">Username:</label><br/>
+  <input type="text" id="runepixels-username" placeholder="Enter RS3 username" style={{padding: '8px', margin: '10px 0', width: '300px'}} required /><br/>
+  <button type="submit" style={{padding: '8px 16px', cursor: 'pointer'}}>View on RunePixels</button>
 </form>
 
-**Note:** The form will redirect to `https://runeclan.com/user/USERNAME`
+**Note:** The form will redirect to `https://runepixels.com/players/USERNAME`
 
 </details>
 
@@ -60,14 +60,17 @@ Official Jagex player metrics and activity tracking.
 
 ## Available Tracking Services
 
-### RuneClan
-- **Best for:** XP tracking, gains tracking, clan management
+### RunePixels (Recommended)
+- **Best for:** Comprehensive tracking with historical data
 - **Features:**
   - Daily/weekly/monthly XP gains
-  - Skill calculators
+  - Historical stat tracking
+  - Player comparisons
+  - Group/clan tracking
   - Boss kill counts
-  - Activity tracking
-- **URL Format:** `https://runeclan.com/user/USERNAME`
+  - Achievement tracking
+  - Completely free
+- **URL Format:** `https://runepixels.com/players/USERNAME`
 
 ### Official RS3 Hiscores
 - **Best for:** Official rankings and comparisons
@@ -124,11 +127,12 @@ Official Jagex player metrics and activity tracking.
 
 ## Tips for Tracking Progress
 
-1. **Bookmark Your RuneClan Page** - Set up daily/weekly goals and track your gains
-2. **Use RuneMetrics Pro** - If you want detailed drop logs and activity tracking (requires subscription)
-3. **Check Hiscores Regularly** - Track your ranking improvements
-4. **Set XP Goals** - Use the skill calculators to plan your training sessions
-5. **Track Boss KC** - Monitor your boss kill counts and rare drops
+1. **Bookmark Your RunePixels Page** - Track daily/weekly/monthly gains and compare with other players
+2. **Use Historical Data** - RunePixels tracks your progress over time automatically
+3. **Check Hiscores Regularly** - Track your official ranking improvements
+4. **Set XP Goals** - Use RunePixels' tracking features to monitor your progress toward goals
+5. **Track Boss KC** - Monitor your boss kill counts across all tracking platforms
+6. **Use RuneMetrics Pro** - For detailed drop logs and activity tracking (requires subscription)
 
 ## Related Pages
 

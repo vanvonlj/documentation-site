@@ -9,14 +9,15 @@ Get personalized training recommendations based on your current stats and goals.
 ## Quick Stat Lookup
 
 To get started, check your current stats:
-- [VanDuran's Stats on RuneClan](https://runeclan.com/user/VanDuran)
+
+- [VanDuran's Stats on RunePixels](https://runepixels.com/players/VanDuran)
 - [VanDuran's Stats on RuneMetrics](https://apps.runescape.com/runemetrics/app/overview/player/VanDuran)
 
 Or look up any player:
 
-<form action="https://runeclan.com/user/" method="get" target="_blank">
+<form id="stats-form" onsubmit="event.preventDefault(); window.open('https://runepixels.com/players/' + document.getElementById('stats-username').value, '_blank');">
   <label htmlFor="stats-username">Username:</label><br/>
-  <input type="text" name="user" id="stats-username" placeholder="Enter RS3 username" style={{padding: '8px', margin: '10px 0', width: '300px'}} required /><br/>
+  <input type="text" id="stats-username" placeholder="Enter RS3 username" style={{padding: '8px', margin: '10px 0', width: '300px'}} required /><br/>
   <button type="submit" style={{padding: '8px 16px', cursor: 'pointer'}}>Check Stats</button>
 </form>
 
@@ -27,6 +28,7 @@ Or look up any player:
 If you have skills under level 50, focus on these easy wins:
 
 #### Fast Skills to Train
+
 1. **Cooking** - Very fast, cook fish in Lumbridge
 2. **Firemaking** - Jadinko Lair for AFK training
 3. **Fletching** - Make arrow shafts or headless arrows
@@ -34,6 +36,7 @@ If you have skills under level 50, focus on these easy wins:
 5. **Smithing** - Artisans Workshop for fast XP
 
 #### Combat Training
+
 - **Slayer** - Train combat through Slayer for profit
 - **ED3 Trash Runs** - Get carried for fast combat XP (levels 70+)
 - **Revolution++** - Use auto-combat abilities
@@ -43,6 +46,7 @@ If you have skills under level 50, focus on these easy wins:
 Focus on unlocking important content:
 
 #### Priority Unlocks
+
 1. **75 Mining** - Required for Plague's End quest
 2. **75 Herblore** - Required for Plague's End quest
 3. **75 Agility** - Required for Plague's End quest
@@ -51,6 +55,7 @@ Focus on unlocking important content:
 6. **80+ Combat stats** - Access to better money-making
 
 #### Quest Goals
+
 - **Plague's End** (Multiple 75s) - Unlocks Prifddinas
 - **The World Wakes** - Unlocks combat abilities
 - **Temple at Senntisten** - Unlocks Ancient Curses
@@ -61,6 +66,7 @@ Focus on unlocking important content:
 Push toward important milestones:
 
 #### Essential 80+ Unlocks
+
 1. **80 Smithing** - Rune armor and better
 2. **80 Divination** - Invention unlock
 3. **80 Crafting** - Invention unlock
@@ -68,6 +74,7 @@ Push toward important milestones:
 5. **90+ Herblore** - Overloads and supremes
 
 #### Priority Training
+
 - Get **96 Herblore** for Overloads (massive combat boost)
 - Get **95 Prayer** for Curses (significantly better than normal prayers)
 - Get **96 Summoning** for Pack Yak (30-slot familiar)
@@ -78,6 +85,7 @@ Push toward important milestones:
 Work toward completionist content:
 
 #### 120 Priorities
+
 1. **120 Invention** - Perks unlock at higher levels
 2. **120 Slayer** - New creatures and better drops
 3. **120 Dungeoneering** - Elite dungeons and rewards
@@ -85,6 +93,7 @@ Work toward completionist content:
 5. **120 Farming** - Tier 92 seeds
 
 #### End-Game Goals
+
 - **Completionist Cape** - All skills 99+, many achievements
 - **Trimmed Comp** - All achievements, very time-consuming
 - **Master Quest Cape** - All quests completed
@@ -99,6 +108,7 @@ Check your stats on RuneClan and identify your 3-5 lowest skills. Focus on these
 ### Quick Training Plans by Skill
 
 #### Combat Skills
+
 - **Attack/Strength/Defence** - ED3 trash runs, Slayer, Shattered Worlds
 - **Ranged** - ED3 trash runs, Chinning, Slayer
 - **Magic** - ED3 trash runs, Slayer, Player-owned House
@@ -107,6 +117,7 @@ Check your stats on RuneClan and identify your 3-5 lowest skills. Focus on these
 - **Summoning** - Create pouches during Double XP
 
 #### Gathering Skills
+
 - **Mining** - Seren Stones (AFK), Alaea Crablets (active)
 - **Fishing** - Waterfall Fishing, Deep Sea Fishing
 - **Woodcutting** - Crystal trees (AFK), Acadia trees (active)
@@ -115,6 +126,7 @@ Check your stats on RuneClan and identify your 3-5 lowest skills. Focus on these
 - **Divination** - Hall of Memories, Cache daily
 
 #### Artisan Skills
+
 - **Smithing** - Artisans Workshop, burial armor
 - **Crafting** - Harps (AFK), dragonhide bodies
 - **Fletching** - Broad arrows, ascension bolts
@@ -125,6 +137,7 @@ Check your stats on RuneClan and identify your 3-5 lowest skills. Focus on these
 - **Construction** - Mahogany tables, flatpacks
 
 #### Support Skills
+
 - **Agility** - Anachronia Agility Course, Hefin Course (Prifddinas)
 - **Thieving** - Safecracking, Prif elves (AFK)
 - **Slayer** - Highest level master you can access
@@ -134,12 +147,14 @@ Check your stats on RuneClan and identify your 3-5 lowest skills. Focus on these
 ## Efficient Leveling Strategy
 
 ### The 75+ Method
+
 1. Check your stats and find all skills under 75
 2. Get ALL skills to 75 first (unlocks Plague's End and most content)
 3. Then push combat and money-making skills to 90+
 4. Then work on 99s and 120s
 
 ### The Max Efficiency Method
+
 1. Get all skills to 50
 2. Get all skills to 70
 3. Get all skills to 80
@@ -148,6 +163,7 @@ Check your stats on RuneClan and identify your 3-5 lowest skills. Focus on these
 6. Work on 120s
 
 ### The Enjoyment Method
+
 Train what you enjoy, ignore the meta. It's a game!
 
 ## Daily Activities for XP
@@ -168,16 +184,19 @@ Do these every day for free XP:
 If you need GP for buyable skills:
 
 ### Low-Level Money (Requirements: Low)
+
 - **Vis Wax** - 250k-500k/day (50 Runecrafting)
 - **Shop Runs** - 500k-1M/day
 - **Herb Runs** - 500k-1M/hr (varied Farming)
 
 ### Mid-Level Money (Requirements: Medium)
+
 - **Barrows** - 2-3M/hr (70 combat stats)
 - **Slayer** - 2-5M/hr (80+ combat)
 - **Elite Dungeons** - 3-5M/hr (85+ combat)
 
 ### High-Level Money (Requirements: High)
+
 - **Raksha** - 15-20M/hr (90+ combat, experience)
 - **Ambassador (ED3)** - 10-15M/hr (92+ combat)
 - **Arch-Glacor** - 8-12M/hr (85+ combat)
