@@ -179,6 +179,10 @@ const config: Config = {
               to: "/gaming/intro",
             },
             {
+              label: "RuneScape 3",
+              to: "/gaming/rs3/intro",
+            },
+            {
               label: "Diablo IV",
               to: "/gaming/diablo-iv/intro",
             },
