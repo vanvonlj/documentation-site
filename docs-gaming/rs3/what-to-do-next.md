@@ -8,18 +8,51 @@ Get personalized training recommendations based on your current stats and goals.
 
 ## Quick Stat Lookup
 
-To get started, check your current stats:
+<div id="username-form">
+  <p>Enter your RuneScape username to view your stats:</p>
+  <form id="stats-form" onsubmit="event.preventDefault(); showUserStats();">
+    <label htmlFor="stats-username">Username:</label><br/>
+    <input type="text" id="stats-username" placeholder="Enter RS3 username" style={{padding: '8px', margin: '10px 0', width: '300px'}} required /><br/>
+    <button type="submit" style={{padding: '8px 16px', cursor: 'pointer', marginRight: '10px'}}>Show My Stats</button>
+    <button type="button" onclick="resetForm();" style={{padding: '8px 16px', cursor: 'pointer', background: '#6c757d', color: 'white', border: 'none', borderRadius: '4px'}}>Clear</button>
+  </form>
+</div>
 
-- [VanDuran's Stats on RunePixels](https://runepixels.com/players/VanDuran)
-- [VanDuran's Stats on RuneMetrics](https://apps.runescape.com/runemetrics/app/overview/player/VanDuran)
+<div id="user-stats" style={{display: 'none'}}>
+  <p><strong>Viewing stats for: <span id="display-username"></span></strong> <button onclick="resetForm();" style={{padding: '4px 8px', cursor: 'pointer', marginLeft: '10px'}}>Change User</button></p>
+  <ul>
+    <li><a id="runepixels-link" href="#" target="_blank">View on RunePixels</a> - Comprehensive tracking with XP gains and history</li>
+    <li><a id="runemetrics-link" href="#" target="_blank">View on RuneMetrics</a> - Official Jagex player metrics</li>
+    <li><a id="hiscores-link" href="#" target="_blank">View on Official Hiscores</a> - Rankings and comparisons</li>
+  </ul>
+</div>
 
-Or look up any player:
+<script>
+{`
+function showUserStats() {
+  const username = document.getElementById('stats-username').value.trim();
+  if (!username) return;
 
-<form id="stats-form" onsubmit="event.preventDefault(); window.open('https://runepixels.com/players/' + document.getElementById('stats-username').value, '_blank');">
-  <label htmlFor="stats-username">Username:</label><br/>
-  <input type="text" id="stats-username" placeholder="Enter RS3 username" style={{padding: '8px', margin: '10px 0', width: '300px'}} required /><br/>
-  <button type="submit" style={{padding: '8px 16px', cursor: 'pointer'}}>Check Stats</button>
-</form>
+  // Update display username
+  document.getElementById('display-username').textContent = username;
+
+  // Update links
+  document.getElementById('runepixels-link').href = 'https://runepixels.com/players/' + encodeURIComponent(username);
+  document.getElementById('runemetrics-link').href = 'https://apps.runescape.com/runemetrics/app/overview/player/' + encodeURIComponent(username);
+  document.getElementById('hiscores-link').href = 'https://secure.runescape.com/m=hiscore/compare?user1=' + encodeURIComponent(username);
+
+  // Toggle visibility
+  document.getElementById('username-form').style.display = 'none';
+  document.getElementById('user-stats').style.display = 'block';
+}
+
+function resetForm() {
+  document.getElementById('stats-username').value = '';
+  document.getElementById('username-form').style.display = 'block';
+  document.getElementById('user-stats').style.display = 'none';
+}
+`}
+</script>
 
 ## Training Recommendations
 
