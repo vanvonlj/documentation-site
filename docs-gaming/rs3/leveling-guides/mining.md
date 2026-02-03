@@ -219,5 +219,4 @@ Continue with Seren Stones for AFK or Alaea Crablets for active training.
 
 ## Related Guides
 
-- [Smithing Guide](smithing)
 - [What to Do Next](../what-to-do-next)

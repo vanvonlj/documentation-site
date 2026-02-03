@@ -19,39 +19,27 @@ Track your character's progress, stats, and achievements.
 Comprehensive leveling guides for every skill:
 
 ### Combat Skills
-- **[Attack](leveling-guides/attack)** - Melee accuracy training
-- **[Strength](leveling-guides/strength)** - Melee damage training
-- **[Defence](leveling-guides/defence)** - Defensive training
-- **[Ranged](leveling-guides/ranged)** - Ranged combat training
-- **[Magic](leveling-guides/magic)** - Magic training and combat
-- **[Prayer](leveling-guides/prayer)** - Prayer training methods
-- **[Constitution](leveling-guides/constitution)** - HP training (gained through combat)
-- **[Summoning](leveling-guides/summoning)** - Familiar and summoning training
+
+More combat skill guides coming soon.
 
 ### Gathering Skills
+
 - **[Mining](leveling-guides/mining)** - Ore gathering
-- **[Fishing](leveling-guides/fishing)** - Fish catching methods
-- **[Woodcutting](leveling-guides/woodcutting)** - Log cutting
-- **[Farming](leveling-guides/farming)** - Crop and herb farming
-- **[Hunter](leveling-guides/hunter)** - Creature hunting and trapping
-- **[Divination](leveling-guides/divination)** - Energy and memory gathering
+
+More gathering skill guides coming soon.
 
 ### Artisan Skills
-- **[Smithing](leveling-guides/smithing)** - Metalworking and armor creation
-- **[Crafting](leveling-guides/crafting)** - Item crafting
-- **[Fletching](leveling-guides/fletching)** - Bow and arrow making
-- **[Runecrafting](leveling-guides/runecrafting)** - Rune creation
-- **[Cooking](leveling-guides/cooking)** - Food preparation
-- **[Firemaking](leveling-guides/firemaking)** - Fire lighting methods
+
 - **[Herblore](leveling-guides/herblore)** - Potion making
-- **[Construction](leveling-guides/construction)** - Player-owned house building
+
+More artisan skill guides coming soon.
 
 ### Support Skills
-- **[Agility](leveling-guides/agility)** - Agility course training
-- **[Thieving](leveling-guides/thieving)** - Pickpocketing and theft
+
 - **[Slayer](leveling-guides/slayer)** - Slayer task training
-- **[Dungeoneering](leveling-guides/dungeoneering)** - Daemonheim dungeon exploration
 - **[Invention](leveling-guides/invention)** - Elite skill - Item augmentation and discovery
+
+More support skill guides coming soon.
 
 ## Quick Links
 

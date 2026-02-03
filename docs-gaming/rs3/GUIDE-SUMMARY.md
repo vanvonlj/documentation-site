@@ -38,7 +38,7 @@ Features:
 - ✅ Priority unlock guides
 
 ### 📚 Skill Leveling Guides
-**Folder:** [leveling-guides/](leveling-guides/)
+**Folder:** leveling-guides/
 
 **Completed Guides:**
 1. ✅ **Combat Overview** - All combat skills, training methods, gear progression

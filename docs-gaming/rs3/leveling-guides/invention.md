@@ -325,7 +325,5 @@ Continue augmenting and siphoning/disassembling.
 
 ## Related Guides
 
-- [Divination Guide](divination) - Required for Invention
-- [Crafting Guide](crafting) - Required for Invention
 - [Combat Overview](combat-overview) - Best way to train Invention
 - [What to Do Next](../what-to-do-next)

@@ -81,16 +81,12 @@ Constitution levels automatically as you train combat. Every combat XP also give
 
 ## Prayer Training
 
-See the dedicated [Prayer Guide](prayer) for detailed methods.
-
 ### Quick Overview
 - **Gilded Altars** - Standard training (300k-500k XP/hr)
 - **Cleansing Crystals** (Prifddinas) - AFK option (150k-250k XP/hr)
 - **POH Altars** - With burners (350k XP/hr+)
 
 ## Summoning Training
-
-See the dedicated [Summoning Guide](summoning) for detailed methods.
 
 ### Quick Overview
 - **Crimson Charms** - Best XP/charm ratio
@@ -164,11 +160,6 @@ See the dedicated [Summoning Guide](summoning) for detailed methods.
 
 ## Related Guides
 
-- [Attack Guide](attack)
-- [Strength Guide](strength)
-- [Defence Guide](defence)
-- [Ranged Guide](ranged)
-- [Magic Guide](magic)
-- [Prayer Guide](prayer)
-- [Summoning Guide](summoning)
 - [Slayer Guide](slayer)
+
+More combat guides coming soon.

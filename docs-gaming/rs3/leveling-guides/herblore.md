@@ -274,5 +274,4 @@ Prices fluctuate with GE, always check current prices.
 
 ## Related Guides
 
-- [Farming Guide](farming) - Grow your own herbs
 - [What to Do Next](../what-to-do-next)

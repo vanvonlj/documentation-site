@@ -10,16 +10,18 @@
     - [5. Connect to Your Distiller](#5-connect-to-your-distiller)
   - [Recommended Extensions](#recommended-extensions)
     - [AI Coding Assistants](#ai-coding-assistants)
-    - [Git & GitHub](#git--github)
-    - [Code Quality & Formatting](#code-quality--formatting)
+    - [Git \& GitHub](#git--github)
+    - [Code Quality \& Formatting](#code-quality--formatting)
     - [Python Development](#python-development)
-    - [Containers & Kubernetes](#containers--kubernetes)
-    - [Language & File Support](#language--file-support)
+    - [Containers \& Kubernetes](#containers--kubernetes)
+    - [Language \& File Support](#language--file-support)
     - [Utilities](#utilities)
     - [Distiller Extensions](#distiller-extensions)
       - [Installing Distiller Extensions for VS Code Remote SSH](#installing-distiller-extensions-for-vs-code-remote-ssh)
   - [Troubleshooting](#troubleshooting)
-
+    - [Cannot connect to Distiller](#cannot-connect-to-distiller)
+    - [VS Code Server fails to install](#vs-code-server-fails-to-install)
+    - [Extensions not loading after copy](#extensions-not-loading-after-copy)
 
 ## Prerequisites
 
@@ -162,30 +164,37 @@ After copying, reload VS Code (press `Ctrl+Shift+P` and run "Developer: Reload W
 ### Cannot connect to Distiller
 
 1. **Verify SSH works from terminal first:**
+
    ```bash
    ssh distiller@DISTILLER_IP
    ```
+
    If this fails, the issue is with SSH, not VS Code.
 
 2. **Check network connectivity:**
+
    ```bash
    ping DISTILLER_IP
    ```
 
 3. **Verify SSH key is copied correctly:**
+
    ```bash
    ssh -v distiller@DISTILLER_IP
    ```
+
    Look for "Authenticated" in the verbose output.
 
 ### VS Code Server fails to install
 
 On the Distiller, ensure there's enough disk space:
+
 ```bash
 df -h
 ```
 
 You can also try removing the existing VS Code Server and reconnecting:
+
 ```bash
 rm -rf ~/.vscode-server
 ```
@@ -193,6 +202,7 @@ rm -rf ~/.vscode-server
 ### Extensions not loading after copy
 
 1. Make sure the extensions were copied successfully:
+
    ```bash
    ls ~/.vscode-server/extensions/ | grep pamir
    ```
