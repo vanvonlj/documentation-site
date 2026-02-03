@@ -147,9 +147,14 @@ The Distiller extensions are pre-installed on code-server but need to be copied 
 
 #### Installing Distiller Extensions for VS Code Remote SSH
 
-The Distiller extensions are not available on the VS Code Marketplace. To use them with VS Code Remote SSH, copy them from the code-server installation to the VS Code Server extensions directory.
+The Distiller extensions are not available on the VS Code Marketplace. To use them with VS Code Remote SSH, you need to:
 
-> **Note:** The `~/.vscode-server/extensions/` directory is created automatically on your first VS Code Remote SSH connection. Make sure you've connected at least once before running this command.
+1. Copy the extensions from code-server to VS Code Server
+2. Update the extensions.json file so VS Code recognizes them
+
+> **Note:** The `~/.vscode-server/extensions/` directory is created automatically on your first VS Code Remote SSH connection. Make sure you've connected at least once before running these commands.
+
+##### Step 1: Copy the Extension Files
 
 Run this command on your Distiller device (via SSH or terminal):
 
@@ -157,7 +162,112 @@ Run this command on your Distiller device (via SSH or terminal):
 cp -r ~/.local/share/code-server/extensions/pamir-ai.* ~/.vscode-server/extensions/
 ```
 
-After copying, reload VS Code (press `Ctrl+Shift+P` and run "Developer: Reload Window") to load the extensions.
+##### Step 2: Update extensions.json
+
+You can either download the script or create it manually.
+
+###### Option A: Download the script (recommended)
+
+```bash
+# Download the update script
+curl -o /tmp/update_extensions.py https://vanvonlj.github.io/documentation-site/scripts/update_vscode_extensions.py
+
+# Run it
+python3 /tmp/update_extensions.py
+```
+
+###### Option B: Create the script manually
+
+```bash
+cat > /tmp/update_extensions.py << 'EOF'
+import json
+import time
+
+# Read the current extensions.json
+with open('/home/distiller/.vscode-server/extensions/extensions.json', 'r') as f:
+    extensions = json.load(f)
+
+# Pamir AI extensions to add
+pamir_extensions = [
+    {
+        "id": "pamir-ai.device-manager",
+        "version": "1.1.0",
+        "relativeLocation": "pamir-ai.device-manager-1.1.0-universal"
+    },
+    {
+        "id": "pamir-ai.distiller-messaging",
+        "version": "1.0.0",
+        "relativeLocation": "pamir-ai.distiller-messaging-1.0.0-universal"
+    },
+    {
+        "id": "pamir-ai.distiller-ports",
+        "version": "1.1.0",
+        "relativeLocation": "pamir-ai.distiller-ports-1.1.0-universal"
+    },
+    {
+        "id": "pamir-ai.happy-session-manager",
+        "version": "1.1.0",
+        "relativeLocation": "pamir-ai.happy-session-manager-1.1.0-universal"
+    },
+    {
+        "id": "pamir-ai.pamir-welcome",
+        "version": "1.1.0",
+        "relativeLocation": "pamir-ai.pamir-welcome-1.1.0-universal"
+    }
+]
+
+# Get current timestamp
+timestamp = int(time.time() * 1000)
+
+# Add each Pamir extension if not already present
+existing_ids = {ext['identifier']['id'] for ext in extensions}
+
+for pamir in pamir_extensions:
+    if pamir['id'] not in existing_ids:
+        new_ext = {
+            "identifier": {
+                "id": pamir['id']
+            },
+            "version": pamir['version'],
+            "location": {
+                "$mid": 1,
+                "path": f"/home/distiller/.vscode-server/extensions/{pamir['relativeLocation']}",
+                "scheme": "file"
+            },
+            "relativeLocation": pamir['relativeLocation'],
+            "metadata": {
+                "installedTimestamp": timestamp,
+                "source": "vsix",
+                "publisherDisplayName": "Pamir AI",
+                "publisherId": "pamir-ai",
+                "isPreReleaseVersion": False,
+                "hasPreReleaseVersion": False,
+                "preRelease": False
+            }
+        }
+        extensions.append(new_ext)
+        print(f"Added: {pamir['id']}")
+    else:
+        print(f"Already exists: {pamir['id']}")
+
+# Write back to extensions.json
+with open('/home/distiller/.vscode-server/extensions/extensions.json', 'w') as f:
+    json.dump(extensions, f)
+
+print(f"\nUpdated extensions.json with {len(extensions)} total extensions")
+EOF
+
+python3 /tmp/update_extensions.py
+```
+
+##### Step 3: Reload VS Code
+
+After running the script, reload VS Code to load the extensions:
+
+- Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on macOS)
+- Run "Developer: Reload Window"
+
+The Distiller extensions should now appear in your Extensions panel and be fully functional.
 
 ## Troubleshooting
 
