@@ -14,9 +14,9 @@ To get started, check your current stats:
 
 Or look up any player:
 
-<form id="stats-form" onsubmit="event.preventDefault(); window.open('https://runeclan.com/user/' + document.getElementById('stats-username').value, '_blank');">
-  <label for="stats-username">Username:</label><br/>
-  <input type="text" id="stats-username" placeholder="Enter RS3 username" style={{padding: '8px', margin: '10px 0', width: '300px'}} required /><br/>
+<form action="https://runeclan.com/user/" method="get" target="_blank">
+  <label htmlFor="stats-username">Username:</label><br/>
+  <input type="text" name="user" id="stats-username" placeholder="Enter RS3 username" style={{padding: '8px', margin: '10px 0', width: '300px'}} required /><br/>
   <button type="submit" style={{padding: '8px 16px', cursor: 'pointer'}}>Check Stats</button>
 </form>
 
