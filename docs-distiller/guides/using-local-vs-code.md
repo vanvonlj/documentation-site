@@ -1,6 +1,6 @@
-# Developing on Distiller with VS Code
+# Developing on Distiller with VS Code/VSCodium
 
-- [Developing on Distiller with VS Code](#developing-on-distiller-with-vs-code)
+- [Developing on Distiller with VS Code/VSCodium](#developing-on-distiller-with-vs-codevscodium)
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
     - [1. Generate an SSH Key](#1-generate-an-ssh-key)
@@ -151,6 +151,8 @@ The Distiller extensions are not available on the VS Code Marketplace. To use th
 
 1. Copy the extensions from code-server to VS Code Server
 2. Update the extensions.json file so VS Code recognizes them
+
+> **Note:** If you are using VSCodium, use `~/.vscodium-server` instead of `~/.vscode-server` in all the commands below.
 
 > **Note:** The `~/.vscode-server/extensions/` directory is created automatically on your first VS Code Remote SSH connection. Make sure you've connected at least once before running these commands.
 
