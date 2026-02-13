@@ -8,14 +8,16 @@ Complete guide for Distiller hardware and software.
 
 ## Documentation Sections
 
-- **Getting Started** - Initial setup and installation
+- **Skills** - Hardware control, AI capabilities, networking, and project management
 - **Guides** - How-to guides for common tasks
 
 ## Popular Guides
 
 - [Cloning Distiller OS](./guides/cloning-distiller-os.md)
 - [Resetting IP Address via UART](./guides/uart-ip-reset.mdx)
+- [GSD Workflow Guide](./guides/gsd-workflow.md) - Spec-driven project management with Claude Code
+- [GSD Command Reference](./guides/gsd-commands.md) - All `/gsd:` commands
 
 ## Overview
 
-Distiller is a powerful system for [your description here]. This documentation will help you get up and running quickly.
+Distiller is a Pamir AI device that runs Claude Code sessions with hardware integration, AI capabilities, and developer tooling. This documentation covers skills, setup guides, and workflows available on the platform.

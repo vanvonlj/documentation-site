@@ -86,6 +86,18 @@ Expose local web applications publicly through the Distiller platform's built-in
 - Resolving CSS/JS loading issues
 - Handling API 404s behind proxies
 
+### Project Management
+
+#### [GetShitDone (GSD)](./gsd-overview.md)
+Spec-driven development workflow that manages planning, execution, and verification of projects using Claude Code. Eliminates context degradation by spawning fresh subagents for every task.
+
+**Key features:**
+- Project, milestone, and phase lifecycle management
+- Parallel research and execution agents
+- Atomic git commits per task
+- Goal-backward verification
+- Session pause/resume with full context restoration
+
 ## Quick Start
 
 All skills are invoked using the `/skill-name` command in the Distiller environment. For example:

@@ -182,6 +182,32 @@ The skill will perform a comprehensive test suite:
 - USB audio interface
 - Camera Module 3
 
+### Swap Configuration
+
+The 4GB Distiller model ships with an increased swap size of **4GB**, up from the Raspberry Pi OS default of 512MB. This change helps prevent crashes caused by excessive RAM usage during AI model inference and other memory-intensive operations.
+
+| Model | RAM | Default Swap | Distiller Swap |
+|-------|-----|-------------|----------------|
+| 4GB Distiller | 4GB | 512MB | 4GB |
+
+Swap is managed via `dphys-swapfile`. To verify your current swap size:
+
+```bash
+free -h
+```
+
+If you need to manually adjust the swap size, edit `/etc/dphys-swapfile`:
+
+```bash
+sudo nano /etc/dphys-swapfile
+# Set CONF_SWAPSIZE=4096
+sudo systemctl restart dphys-swapfile
+```
+
+:::note
+Increased swap uses additional SD card space but significantly improves stability on 4GB models when running memory-intensive tasks like speech recognition or text-to-speech.
+:::
+
 ### Test Duration
 
 Total verification time varies by system:

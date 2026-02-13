@@ -140,6 +140,10 @@ const config: Config = {
               label: "UART IP Reset",
               to: "/distiller/guides/uart-ip-reset",
             },
+            {
+              label: "GSD Workflow",
+              to: "/distiller/guides/gsd-workflow",
+            },
           ],
         },
         {
@@ -233,6 +237,10 @@ const config: Config = {
             {
               label: "UART Guide",
               to: "/distiller/guides/uart-ip-reset",
+            },
+            {
+              label: "GSD Workflow",
+              to: "/distiller/guides/gsd-workflow",
             },
           ],
         },
