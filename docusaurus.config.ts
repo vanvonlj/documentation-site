@@ -144,6 +144,10 @@ const config: Config = {
               label: "GSD Workflow",
               to: "/distiller/guides/gsd-workflow",
             },
+            {
+              label: "System Verification",
+              to: "/distiller/skills/system-verification",
+            },
           ],
         },
         {
@@ -241,6 +245,10 @@ const config: Config = {
             {
               label: "GSD Workflow",
               to: "/distiller/guides/gsd-workflow",
+            },
+            {
+              label: "System Verification",
+              to: "/distiller/skills/system-verification",
             },
           ],
         },

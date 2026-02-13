@@ -18,6 +18,10 @@ Complete guide for Distiller hardware and software.
 - [GSD Workflow Guide](./guides/gsd-workflow.md) - Spec-driven project management with Claude Code
 - [GSD Command Reference](./guides/gsd-commands.md) - All `/gsd:` commands
 
+## System Configuration
+
+- **Swap Size** - Increased from 512MB (default) to 4GB on the 4GB Distiller model to prevent crashes from excessive RAM usage. See [System Verification](./skills/system-verification.md#swap-configuration) for details.
+
 ## Overview
 
 Distiller is a Pamir AI device that runs Claude Code sessions with hardware integration, AI capabilities, and developer tooling. This documentation covers skills, setup guides, and workflows available on the platform.
