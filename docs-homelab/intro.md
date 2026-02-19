@@ -9,6 +9,7 @@ Complete guide for your HomeLab infrastructure.
 ## Documentation Sections
 
 - **Hardware** - Physical infrastructure and network setup
+- **Linux** - Linux tools and drivers for desktops and laptops
 - **Proxmox** - Virtualization platform guides
 - **Kubernetes (K8s)** - Container orchestration
   - K3s - Lightweight Kubernetes
@@ -21,6 +22,7 @@ This documentation covers the complete HomeLab setup from hardware to applicatio
 ## Quick Start Guides
 
 - [Hardware Setup](./hardware/intro.md)
+- [LogiOps & LogiOpsGUI](./linux/logiops.md) - Logitech driver for Ubuntu/ZorinOS
 - [Proxmox Installation](./proxmox/installation.md)
 - [K3s Cluster Setup](./k8s/k3s/getting-started.md)
 - [RKE2 Cluster Setup](./k8s/rke2/getting-started.md)
