@@ -1,0 +1,157 @@
+---
+sidebar_position: 1
+title: "Hunter BIS Guide"
+description: "Best in Slot gear list for Hunters in Turtle WoW with filterable, sortable tables"
+---
+
+import DataTable from "@site/src/components/DataTable";
+import WoWItem from "@site/src/components/WoWItem";
+import { hunterBisItems } from "@site/src/data/turtle-wow-hunter-bis";
+
+# Hunter Best in Slot Guide
+
+Comprehensive Best in Slot (BIS) gear list for Hunters in Turtle WoW. Use the filters and sorting on each column to find the best gear for your slot, source, or stat priority.
+
+:::tip How to use this table
+- **Filter by slot**: Type a slot name (e.g. "Head", "Ranged") in the Slot filter to see all items for that slot
+- **Filter by source**: Type a location (e.g. "BWL", "AQ40", "MC", "Naxx", "PvP") to see drops from that source
+- **Sort by stat**: Click any stat column header to sort ascending/descending
+- **Sort by Score**: The AP Equiv column ranks items by overall DPS value
+:::
+
+### Stat Weights
+
+The **AP Equiv** score uses these approximate stat weights to rank items:
+
+| Stat | Weight | Reasoning |
+|------|--------|-----------|
+| **AGI** | 2.0 per point | 1 RAP + crit contribution |
+| **STR** | 1.0 per point | 1 melee AP |
+| **Crit %** | 25 per 1% | High value for burst |
+| **Hit %** | 15 per 1% | Critical until 9% cap |
+| **AP** | 1.0 per point | Direct damage increase |
+
+:::info
+These are approximate weights. Your actual stat values may vary based on current gear, buffs, and encounter type. Ranged weapon scores include weapon DPS contribution.
+:::
+
+---
+
+## All Items
+
+export const columns = [
+  {
+    key: "item",
+    header: "Item",
+    sortable: true,
+    render: (value, row) => (
+      <WoWItem
+        name={value}
+        quality={row.quality || "epic"}
+        slot={row.slot}
+        details={{
+          stats: [
+            row.agi ? `+${row.agi} Agility` : null,
+            row.sta ? `+${row.sta} Stamina` : null,
+            row.str ? `+${row.str} Strength` : null,
+            row.int ? `+${row.int} Intellect` : null,
+            row.crit ? `+${row.crit}% Critical Strike` : null,
+            row.hit ? `+${row.hit}% Hit` : null,
+            row.ap ? `+${row.ap} Attack Power` : null,
+            row.dps ? `${row.dps} DPS (${row.minDmg}-${row.maxDmg}, ${row.speed}s)` : null,
+          ].filter(Boolean),
+          source: row.location,
+          notes: row.notes,
+        }}
+      />
+    ),
+  },
+  { key: "slot", header: "Slot", sortable: true },
+  { key: "location", header: "Source", sortable: true },
+  {
+    key: "agi",
+    header: "AGI",
+    sortable: true,
+    filterable: false,
+    render: (v) => (v ? v : ""),
+  },
+  {
+    key: "sta",
+    header: "STA",
+    sortable: true,
+    filterable: false,
+    render: (v) => (v ? v : ""),
+  },
+  {
+    key: "str",
+    header: "STR",
+    sortable: true,
+    filterable: false,
+    render: (v) => (v ? v : ""),
+  },
+  {
+    key: "hit",
+    header: "Hit%",
+    sortable: true,
+    filterable: false,
+    render: (v) => (v ? v : ""),
+  },
+  {
+    key: "crit",
+    header: "Crit%",
+    sortable: true,
+    filterable: false,
+    render: (v) => (v ? v : ""),
+  },
+  {
+    key: "ap",
+    header: "AP",
+    sortable: true,
+    filterable: false,
+    render: (v) => (v ? v : ""),
+  },
+  {
+    key: "apEquiv",
+    header: "Score",
+    sortable: true,
+    filterable: false,
+    render: (v) => <strong>{v}</strong>,
+  },
+];
+
+<DataTable
+  data={hunterBisItems}
+  columns={columns}
+  sortable={true}
+  filterable={true}
+  striped={true}
+  hoverable={true}
+  compact={true}
+/>
+
+---
+
+### Location Key
+
+| Abbreviation | Location |
+|-------------|----------|
+| **AQ40** | Temple of Ahn'Qiraj |
+| **AQ20** | Ruins of Ahn'Qiraj |
+| **AQ Quest** | Ahn'Qiraj quest reward |
+| **BWL** | Blackwing Lair |
+| **BWL Quest** | BWL attunement/quest reward |
+| **MC** | Molten Core |
+| **Naxx** | Naxxramas |
+| **Ony** | Onyxia's Lair |
+| **ZG** | Zul'Gurub |
+| **UBRS** | Upper Blackrock Spire |
+| **LBRS** | Lower Blackrock Spire |
+| **BRD** | Blackrock Depths |
+| **DM** | Dire Maul |
+| **Strath** | Stratholme |
+| **Scholo** | Scholomance |
+| **PvP Vendor** | PvP Honor reward |
+| **AB** | Arathi Basin reputation |
+| **Crafted** | Crafted (Leatherworking/etc.) |
+| **World** | World drop |
+| **Quest** | Quest reward |
