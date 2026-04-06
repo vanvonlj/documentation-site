@@ -1,0 +1,630 @@
+---
+sidebar_position: 4
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import DataTable from "@site/src/components/DataTable";
+import WoWGearTable from "@site/src/components/WoWGearTable";
+import WoWItem from "@site/src/components/WoWItem";
+
+# Death Knight Class Guide
+
+Comprehensive guide for Blood Death Knight tanking in World of Warcraft: Midnight (Season 1, Patch 12.0).
+
+## Class Overview
+
+| Attribute | Value |
+|-----------|-------|
+| **Role** | Tank |
+| **Armor Type** | Plate |
+| **Resource** | Runes / Runic Power |
+| **Hero Talents** | San'layn, Deathbringer |
+| **Best for M+** | San'layn (self-sustain) / Deathbringer (damage) |
+| **Best for Raid** | Deathbringer (ST damage) / San'layn (magic-heavy fights) |
+
+### Strengths & Weaknesses
+
+**Strengths:**
+- Exceptional self-healing via Death Strike
+- Strong magic damage mitigation with Anti-Magic Shell
+- Powerful AoE grip (Gorefiend's Grasp) for Mythic+
+- Great sustained damage for a tank
+- Reactive playstyle rewards skilled players
+
+**Weaknesses:**
+- Limited mobility (no dash or leap)
+- Reactive rather than proactive mitigation
+- Poor against sustained ticking damage without cooldowns
+- Requires strong resource management
+- Bone Shield upkeep can feel punishing if neglected
+
+---
+
+<Tabs>
+<TabItem value="sanlayn" label="San'layn" default>
+
+## San'layn Blood Death Knight
+
+San'layn is the vampiric hero talent tree focused on self-sustain and Vampiric Strike procs during Dancing Rune Weapon windows. Excels at healing through heavy damage with a smoother, more forgiving playstyle.
+
+### Priority Rotation
+
+#### Inside Dancing Rune Weapon
+
+export const sanDrwRotation = [
+  { priority: 1, ability: "Death Strike", condition: "Survival or >75 Runic Power" },
+  { priority: 2, ability: "Marrowrend", condition: "Maintain 5+ Bone Shield charges" },
+  { priority: 3, ability: "Blood Boil", condition: "Once per DRW window" },
+  { priority: 4, ability: "Death and Decay", condition: "On Crimson Scourge proc" },
+  { priority: 5, ability: "Vampiric Strike", condition: "Use procs — core of San'layn damage" },
+  { priority: 6, ability: "Blood Boil", condition: "As filler" },
+];
+
+<DataTable
+  data={sanDrwRotation}
+  columns={[
+    { header: "Priority", key: "priority" },
+    { header: "Ability", key: "ability" },
+    { header: "Condition", key: "condition" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+#### Outside Dancing Rune Weapon
+
+export const sanNormalRotation = [
+  { priority: 1, ability: "Death Strike", condition: "Survival or >75 Runic Power" },
+  { priority: 2, ability: "Marrowrend", condition: "Maintain 5+ Bone Shield charges" },
+  { priority: 3, ability: "Consumption", condition: "After DRW ends (Rank I)" },
+  { priority: 4, ability: "Death and Decay", condition: "Maintain uptime on targets" },
+  { priority: 5, ability: "Blood Boil", condition: "On Boiling Point proc" },
+  { priority: 6, ability: "Vampiric Strike", condition: "Use available procs" },
+  { priority: 7, ability: "Blood Boil", condition: "Prevent charge cap" },
+  { priority: 8, ability: "Heart Strike", condition: "As filler" },
+];
+
+<DataTable
+  data={sanNormalRotation}
+  columns={[
+    { header: "Priority", key: "priority" },
+    { header: "Ability", key: "ability" },
+    { header: "Condition", key: "condition" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+### Cooldown Usage
+
+export const sanCooldowns = [
+  { cooldown: "Dancing Rune Weapon", usage: "On cooldown — enables Vampiric Strike, doubles as offensive and defensive" },
+  { cooldown: "Vampiric Blood", usage: "Primary defensive; use frequently for max HP increase and healing amplification" },
+  { cooldown: "Anti-Magic Shell", usage: "Prioritize against magic damage; generates Runic Power" },
+  { cooldown: "Icebound Fortitude", usage: "Emergency defensive; avoid overlapping with other cooldowns" },
+  { cooldown: "Consumption", usage: "Rank I after DRW; empower to higher ranks in dangerous situations" },
+  { cooldown: "Gorefiend's Grasp", usage: "Group enemies into Death and Decay for M+ pulls" },
+];
+
+<DataTable
+  data={sanCooldowns}
+  columns={[
+    { header: "Cooldown", key: "cooldown" },
+    { header: "Usage", key: "usage" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+### Best in Slot Gear
+
+export const sanBiSGear = [
+  {
+    item: "Relentless Rider's Crown",
+    slot: "Head",
+    quality: "epic",
+    details: {
+      source: "Manaforge Omega (Tier Set)",
+      setBonus: "2-Set: Dancing Rune Weapon increases Vampiric Strike damage by 15%",
+      enchant: "Rune of Avoidance",
+      gem: "Indecipherable Eversong Diamond (meta)",
+    },
+  },
+  {
+    item: "Eternal Voidsong Chain",
+    slot: "Neck",
+    quality: "epic",
+    details: {
+      source: "Crown of the Cosmos",
+      gem: "Flawless Quick Garnet",
+      notes: "Top-priority neck piece for all Blood DK builds",
+    },
+  },
+  {
+    item: "Relentless Rider's Dreadthorns",
+    slot: "Shoulder",
+    quality: "epic",
+    details: {
+      source: "Manaforge Omega (Tier Set)",
+      setBonus: "4-Set: Vampiric Strike has a chance to reset Dancing Rune Weapon cooldown",
+      enchant: "Amirdrassil's Grace",
+    },
+  },
+  {
+    item: "Defiant Defender's Drape",
+    slot: "Back",
+    quality: "epic",
+    details: {
+      source: "Magisters' Terrace",
+      notes: "Strong defensive cloak option",
+    },
+  },
+  {
+    item: "Relentless Rider's Cuirass",
+    slot: "Chest",
+    quality: "epic",
+    details: {
+      source: "Manaforge Omega (Tier Set)",
+      enchant: "Mark of the Worldsoul",
+    },
+  },
+  {
+    item: "Spellbreaker's Bracers",
+    slot: "Wrist",
+    quality: "epic",
+    details: {
+      source: "Crafted (Blacksmithing)",
+      notes: "Best crafted option — customize secondary stats",
+    },
+  },
+  {
+    item: "Voidclaw Gauntlets",
+    slot: "Hands",
+    quality: "epic",
+    details: {
+      source: "Seat of the Triumvirate",
+      notes: "Use over tier gloves — stronger stats than set piece",
+    },
+  },
+  {
+    item: "Bent Gold Belt",
+    slot: "Waist",
+    quality: "epic",
+    details: {
+      source: "Pit of Saron",
+      gem: "Flawless Quick Garnet",
+    },
+  },
+  {
+    item: "Relentless Rider's Legguards",
+    slot: "Legs",
+    quality: "epic",
+    details: {
+      source: "Manaforge Omega (Tier Set)",
+    },
+  },
+  {
+    item: "Greaves of the Unformed",
+    slot: "Feet",
+    quality: "epic",
+    details: {
+      source: "Chimaerus (Manaforge Omega)",
+      enchant: "Lynx's Dexterity",
+    },
+  },
+  {
+    item: "Eye of Midnight",
+    slot: "Finger",
+    quality: "epic",
+    details: {
+      source: "Midnight Falls",
+      enchant: "Nature's Fury",
+    },
+  },
+  {
+    item: "Loa Worshiper's Band",
+    slot: "Finger",
+    quality: "epic",
+    details: {
+      source: "Crafted (Jewelcrafting)",
+      enchant: "Nature's Fury",
+      notes: "Customize stats via crafting",
+    },
+  },
+  {
+    item: "Gaze of the Alnseer",
+    slot: "Trinket",
+    quality: "epic",
+    details: {
+      source: "Chimaerus (Manaforge Omega)",
+      notes: "BiS trinket for both builds — massive defensive value",
+    },
+  },
+  {
+    item: "Light Company Guidon",
+    slot: "Trinket",
+    quality: "epic",
+    details: {
+      source: "Imperator Averzian (Manaforge Omega)",
+      notes: "Strong on-use defensive trinket",
+    },
+  },
+  {
+    item: "Garfrost's Two-Ton Hammer",
+    slot: "Two-Hand",
+    quality: "epic",
+    details: {
+      source: "Pit of Saron",
+      enchant: "Rune of Sanguination",
+      notes: "BiS San'layn weapon — farm Pit of Saron",
+    },
+  },
+];
+
+<WoWGearTable data={sanBiSGear} title="San'layn Best in Slot" />
+
+### Stat Priority
+
+1. **Strength** — Primary stat, directly increases Attack Power + bonus Parry
+2. **Haste** — Top secondary for San'layn; faster Rune regeneration, smoother gameplay
+3. **Critical Strike** — 1:1 conversion to Parry, strong offensive and defensive value
+4. **Versatility** — Flat damage increase and damage reduction
+5. **Mastery** — Increases Blood Shield absorb (physical only); caps at 65% with Bloody Reflection
+
+### Gems & Enchants Summary
+
+export const sanEnchants = [
+  { slot: "Head", enchant: "Rune of Avoidance" },
+  { slot: "Shoulders", enchant: "Amirdrassil's Grace" },
+  { slot: "Chest", enchant: "Mark of the Worldsoul" },
+  { slot: "Boots", enchant: "Lynx's Dexterity" },
+  { slot: "Weapon", enchant: "Rune of Sanguination" },
+  { slot: "Rings", enchant: "Nature's Fury" },
+  { slot: "Meta Gem", enchant: "Indecipherable Eversong Diamond" },
+  { slot: "Other Gems", enchant: "Flawless Quick Garnet (Haste)" },
+];
+
+<DataTable
+  data={sanEnchants}
+  columns={[
+    { header: "Slot", key: "slot" },
+    { header: "Enchant / Gem", key: "enchant" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+</TabItem>
+
+<TabItem value="deathbringer" label="Deathbringer">
+
+## Deathbringer Blood Death Knight
+
+Deathbringer is the damage-focused hero talent tree centered around Reaper's Mark and Exterminate. Offers higher damage output with a more active, aggressive tanking style.
+
+### Priority Rotation
+
+#### Single Target / Raid
+
+export const dbRotation = [
+  { priority: 1, ability: "Death Strike", condition: "Survival or >75 Runic Power" },
+  { priority: 2, ability: "Marrowrend", condition: "Maintain 5+ Bone Shield charges" },
+  { priority: 3, ability: "Death and Decay", condition: "Maintain uptime" },
+  { priority: 4, ability: "Reaper's Mark", condition: "On cooldown — your damage engine" },
+  { priority: 5, ability: "Dancing Rune Weapon", condition: "On cooldown" },
+  { priority: 6, ability: "Blood Boil", condition: "Prevent cap or on Boiling Point proc" },
+  { priority: 7, ability: "Exterminate", condition: "Before Reaper's Mark explodes" },
+  { priority: 8, ability: "Consumption", condition: "After DRW ends (Rank I)" },
+  { priority: 9, ability: "Blood Boil", condition: "Remaining charges" },
+  { priority: 10, ability: "Heart Strike", condition: "As filler" },
+];
+
+<DataTable
+  data={dbRotation}
+  columns={[
+    { header: "Priority", key: "priority" },
+    { header: "Ability", key: "ability" },
+    { header: "Condition", key: "condition" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+#### AoE / Mythic+ (3+ targets)
+
+export const dbAoE = [
+  { priority: 1, ability: "Death and Decay", condition: "Always active — use Gorefiend's Grasp first to stack mobs" },
+  { priority: 2, ability: "Death Strike", condition: "Survival or >75 Runic Power" },
+  { priority: 3, ability: "Marrowrend", condition: "Maintain 5+ Bone Shield charges" },
+  { priority: 4, ability: "Reaper's Mark", condition: "On cooldown on priority target" },
+  { priority: 5, ability: "Blood Boil", condition: "On cooldown — primary AoE threat and damage" },
+  { priority: 6, ability: "Exterminate", condition: "Before Reaper's Mark explodes" },
+  { priority: 7, ability: "Heart Strike", condition: "As filler (cleaves nearby targets)" },
+];
+
+<DataTable
+  data={dbAoE}
+  columns={[
+    { header: "Priority", key: "priority" },
+    { header: "Ability", key: "ability" },
+    { header: "Condition", key: "condition" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+### Cooldown Usage
+
+export const dbCooldowns = [
+  { cooldown: "Reaper's Mark", usage: "On cooldown always — every other ability generates stacks for it" },
+  { cooldown: "Dancing Rune Weapon", usage: "On cooldown for damage; doubles as defensive in M+" },
+  { cooldown: "Vampiric Blood", usage: "Primary defensive; use liberally for max HP and healing amp" },
+  { cooldown: "Anti-Magic Shell", usage: "Prioritize against magic damage; generates Runic Power" },
+  { cooldown: "Icebound Fortitude", usage: "Emergency defensive; don't overlap with Vampiric Blood" },
+  { cooldown: "Consumption", usage: "After DRW; empower higher ranks for dangerous moments" },
+  { cooldown: "Gorefiend's Grasp", usage: "Open M+ pulls by gripping mobs into Death and Decay" },
+];
+
+<DataTable
+  data={dbCooldowns}
+  columns={[
+    { header: "Cooldown", key: "cooldown" },
+    { header: "Usage", key: "usage" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+### Best in Slot Gear
+
+export const dbBiSGear = [
+  {
+    item: "Relentless Rider's Crown",
+    slot: "Head",
+    quality: "epic",
+    details: {
+      source: "Manaforge Omega (Tier Set)",
+      setBonus: "2-Set: Reaper's Mark damage increased by 20%",
+      enchant: "Rune of Avoidance",
+      gem: "Indecipherable Eversong Diamond (meta)",
+    },
+  },
+  {
+    item: "Eternal Voidsong Chain",
+    slot: "Neck",
+    quality: "epic",
+    details: {
+      source: "Crown of the Cosmos",
+      gem: "Flawless Masterful Garnet",
+      notes: "Top-priority neck piece for all Blood DK builds",
+    },
+  },
+  {
+    item: "Relentless Rider's Dreadthorns",
+    slot: "Shoulder",
+    quality: "epic",
+    details: {
+      source: "Manaforge Omega (Tier Set)",
+      setBonus: "4-Set: Exterminate stacks increase Reaper's Mark explosion damage",
+      enchant: "Amirdrassil's Grace",
+    },
+  },
+  {
+    item: "Defiant Defender's Drape",
+    slot: "Back",
+    quality: "epic",
+    details: {
+      source: "Magisters' Terrace",
+      notes: "Strong defensive cloak option",
+    },
+  },
+  {
+    item: "Relentless Rider's Cuirass",
+    slot: "Chest",
+    quality: "epic",
+    details: {
+      source: "Manaforge Omega (Tier Set)",
+      enchant: "Mark of the Worldsoul",
+    },
+  },
+  {
+    item: "Spellbreaker's Bracers",
+    slot: "Wrist",
+    quality: "epic",
+    details: {
+      source: "Crafted (Blacksmithing)",
+      notes: "Best crafted option — customize secondary stats toward Crit",
+    },
+  },
+  {
+    item: "Voidclaw Gauntlets",
+    slot: "Hands",
+    quality: "epic",
+    details: {
+      source: "Seat of the Triumvirate",
+      notes: "Use over tier gloves — stronger stats than set piece",
+    },
+  },
+  {
+    item: "Hate-Tied Waistchain",
+    slot: "Waist",
+    quality: "epic",
+    details: {
+      source: "Crown of the Cosmos (Manaforge Omega)",
+      gem: "Flawless Masterful Garnet",
+    },
+  },
+  {
+    item: "Relentless Rider's Legguards",
+    slot: "Legs",
+    quality: "epic",
+    details: {
+      source: "Manaforge Omega (Tier Set)",
+    },
+  },
+  {
+    item: "Greaves of the Unformed",
+    slot: "Feet",
+    quality: "epic",
+    details: {
+      source: "Chimaerus (Manaforge Omega)",
+      enchant: "Lynx's Dexterity",
+    },
+  },
+  {
+    item: "Signet of the Starved Beast",
+    slot: "Finger",
+    quality: "epic",
+    details: {
+      source: "Vorasius (Manaforge Omega)",
+      enchant: "Silvermoon's Tenacity",
+    },
+  },
+  {
+    item: "Loa Worshiper's Band",
+    slot: "Finger",
+    quality: "epic",
+    details: {
+      source: "Crafted (Jewelcrafting)",
+      enchant: "Silvermoon's Tenacity",
+      notes: "Customize stats toward Crit/Vers via crafting",
+    },
+  },
+  {
+    item: "Gaze of the Alnseer",
+    slot: "Trinket",
+    quality: "epic",
+    details: {
+      source: "Chimaerus (Manaforge Omega)",
+      notes: "BiS trinket for both builds — massive defensive value",
+    },
+  },
+  {
+    item: "Umbral Plume",
+    slot: "Trinket",
+    quality: "epic",
+    details: {
+      source: "Belo'ren (Manaforge Omega)",
+      notes: "Strong damage trinket for Deathbringer",
+      alternatives: [
+        { name: "Heart of Ancient Hunger", source: "Vorasius (Manaforge Omega)", notes: "Alternative damage trinket" },
+      ],
+    },
+  },
+  {
+    item: "Liferipper's Cutlass",
+    slot: "Two-Hand",
+    quality: "epic",
+    details: {
+      source: "Maisara Caverns",
+      enchant: "Rune of Sanguination",
+      notes: "BiS Deathbringer weapon",
+      alternatives: [
+        { name: "Garfrost's Two-Ton Hammer", source: "Pit of Saron", notes: "Alternative if Cutlass doesn't drop" },
+      ],
+    },
+  },
+];
+
+<WoWGearTable data={dbBiSGear} title="Deathbringer Best in Slot" />
+
+### Stat Priority
+
+1. **Strength** — Primary stat, directly increases Attack Power + bonus Parry
+2. **Critical Strike** — Top secondary for Deathbringer; 1:1 Parry conversion, amplifies burst
+3. **Versatility** — Flat damage increase and damage reduction
+4. **Mastery** — Increases Blood Shield absorb (physical only); caps at 65% with Bloody Reflection
+5. **Haste** — Least valuable for Deathbringer; still improves Rune regen
+
+### Gems & Enchants Summary
+
+export const dbEnchants = [
+  { slot: "Head", enchant: "Rune of Avoidance" },
+  { slot: "Shoulders", enchant: "Amirdrassil's Grace" },
+  { slot: "Chest", enchant: "Mark of the Worldsoul" },
+  { slot: "Boots", enchant: "Lynx's Dexterity" },
+  { slot: "Weapon", enchant: "Rune of Sanguination (or Fallen Crusader for high-target M+)" },
+  { slot: "Rings", enchant: "Silvermoon's Tenacity" },
+  { slot: "Meta Gem", enchant: "Indecipherable Eversong Diamond" },
+  { slot: "Other Gems", enchant: "Flawless Masterful Garnet (Mastery)" },
+];
+
+<DataTable
+  data={dbEnchants}
+  columns={[
+    { header: "Slot", key: "slot" },
+    { header: "Enchant / Gem", key: "enchant" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+</TabItem>
+</Tabs>
+
+---
+
+## General Blood DK Tips
+
+### Defensive Abilities
+
+- **Death Strike** — Your bread and butter; heals based on recent damage taken. Time it AFTER big hits, not before
+- **Vampiric Blood** — 30% max HP increase + 30% healing received for 10 sec. Use frequently, not just emergencies
+- **Anti-Magic Shell** — Absorbs magic damage and converts to Runic Power. Essential for magic-heavy fights
+- **Icebound Fortitude** — 30% damage reduction. Emergency button, avoid overlapping with Vampiric Blood
+- **Bone Shield (via Marrowrend)** — Passive mitigation floor. Never let it fall off
+
+### Mythic+ Tips
+
+- Open pulls with **Gorefiend's Grasp** to stack mobs, then drop **Death and Decay** on the pile
+- Use **Death Strike** reactively after damage spikes, not proactively
+- Keep enough Runic Power banked (50+) so you're never caught with an empty bar during a spike
+- **Anti-Magic Shell** is your best friend on magic-heavy packs and affixes
+- Manage **Bone Shield** proactively — Marrowrend at 5 stacks or below, not at 0
+
+### Raid Tanking Tips
+
+- Coordinate tank swaps around your cooldown availability
+- Time **Death Strike** against predictable tank buster abilities
+- Use **Anti-Magic Shell** to soak mechanics that would otherwise require a healer external
+- **Consumption** empowered to higher ranks is a strong raid cooldown in dangerous moments
+- Communicate your **Vampiric Blood** usage with healers for efficient external timing
+
+### Consumables
+
+export const consumables = [
+  { item: "Harandar Celebration", type: "Food", notes: "Best stat food for tanking" },
+  { item: "Shattered Sun", type: "Flask", notes: "Deathbringer — Crit/damage focus" },
+  { item: "Blood Knights", type: "Flask", notes: "San'layn — Haste/sustain focus" },
+  { item: "Potion of Recklessness", type: "Potion", notes: "Damage potion for burst" },
+  { item: "Light's Potential", type: "Potion", notes: "Alternative defensive potion" },
+  { item: "Silvermoon Health Potion", type: "Health Pot", notes: "Emergency healing" },
+  { item: "Thalassian Phoenix Oil", type: "Weapon Oil", notes: "Apply before pulls" },
+  { item: "Void-Touched Augment Rune", type: "Augment Rune", notes: "Always active" },
+];
+
+<DataTable
+  data={consumables}
+  columns={[
+    { header: "Item", key: "item" },
+    { header: "Type", key: "type" },
+    { header: "Notes", key: "notes" },
+  ]}
+  sortable={false}
+  filterable={false}
+/>
+
+### Resources
+
+- [Icy Veins Blood DK Guide](https://www.icy-veins.com/wow/blood-death-knight-pve-tank-guide)
+- [Wowhead Blood DK Overview](https://www.wowhead.com/guide/classes/death-knight/blood/overview-pve-tank)
+- [Method Blood DK Guide](https://www.method.gg/guides/blood-death-knight)
+- [Murlok.io Blood DK M+ Data](https://murlok.io/death-knight/blood/m+)
+- [Raidbots - Sim Your Character](https://www.raidbots.com/)
+
+---
+
+:::tip
+Blood DK is a reactive tank — your power comes from **timing Death Strike after damage**, not before. Keep Runic Power banked, track your Bone Shield stacks, and you'll be nearly unkillable.
+:::
