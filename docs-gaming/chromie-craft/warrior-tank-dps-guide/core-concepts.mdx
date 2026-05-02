@@ -1,0 +1,168 @@
+---
+sidebar_position: 2
+---
+
+# Core Concepts
+
+Everything in this section is the foundation. The dungeon pages assume you know it.
+
+## Tanking (Protection)
+
+### Stat caps
+
+| Stat | Target | Why |
+|------|--------|-----|
+| **Defense** | 540 | Removes boss crits in heroics. Below this, you take random one-shots. |
+| **Hit** | 8% (264 rating @ 80) | Spell hit (17%) is irrelevant — warriors only need melee hit. |
+| **Expertise** | 26 (cap dodge) | Eliminates dodged Shield Slams. Parry cap (56) is overkill in 5-mans. |
+| **Stamina** | As high as possible | Always. |
+| **Armor / Block Value** | Stack while leveling | Mitigation per item budget, falls off slightly in late ICC. |
+
+You can ignore defense entirely while leveling. The 540 crit-immunity threshold only applies to heroic dungeon bosses (level 80 content) and raid bosses. Vanilla, TBC, and WotLK normal mode dungeons don't crit you, so just stack Stamina + Block Value + Armor.
+
+### Threat priority (single target)
+
+```
+Shield Slam > Revenge > Shockwave > Concussion Blow > Devastate > filler
+```
+
+Free GCDs while waiting for cooldowns: **Devastate** to keep 5x Sunder Armor up. **Heroic Strike** as your rage dump (it's an instant attack-replacer, doesn't cost a GCD).
+
+### Threat priority (AoE / pull)
+
+```
+Charge → Thunder Clap → Shockwave → Cleave (instead of HS) → Tab-Devastate
+```
+
+- **Thunder Clap** on cooldown — slows attack speed by 25%, huge mitigation passive.
+- **Shockwave** is a 4-sec stun on a 20-sec CD — use it to stop a runner or buy a kite window.
+- **Cleave** replaces Heroic Strike on AoE pulls. Glyph of Cleaving makes it hit 3 targets.
+- Single-target threat ramps so fast that **you can usually skip Sunder Armor on AoE pulls** and just spam your AoE buttons — DPS won't pull off you in a 5-man.
+
+### Defensive cooldowns
+
+| Ability | CD | Use when |
+|---------|----|----|
+| **Shield Block** | 30s (Glyph: 1min/+10% block) | Default — pop on every hard pull and most boss openers. |
+| **Last Stand** | 3min (2min glyphed) | "Oh shit, healer asleep" button. +30% max HP for 20s. |
+| **Shield Wall** | 5min (Glyph of Shield Wall: 2min) | -40% damage taken, 12s. The big one. |
+| **Enraged Regeneration** | 3min | 30% of max HP heal over 10s. Use during downtime if healer is OOM. |
+| **Spell Reflection** | 10s | Reflects one spell. Great vs. casters in HoR, FoS bone wraith volleys, Grobbulus-style adds. |
+| **War Stomp (racial)** | 2min | 2-sec AoE stun. Use as a free interrupt on a caster pack or panic button. |
+
+### Stance dancing in dungeons
+
+You'll spend 95% of your time in **Defensive Stance** (-10% damage taken, +10% threat). Reasons to leave:
+
+- **Battle Stance** for **Charge** (out of combat) — opens every pull.
+- **Battle Stance** for **Intervene** — break a snare, take a hit for the healer.
+- **Berserker Stance** for **Intercept** (in combat) — best gap-closer if a mob is fixated on the healer or the boss is mid-pack.
+- **Berserker Stance** for **Berserker Rage** — clear fear on a fight like Loken or Bronjahm.
+
+Glyph of Charge extends Charge range — keep it for tanking.
+
+### Tanking glyphs (level 80)
+
+**Major:**
+- Glyph of **Vigilance** — your raid utility, but in 5-mans put it on your top DPS. +10% threat transfer.
+- Glyph of **Devastate** — 2 stacks of Sunder per cast. Smoother threat ramp on bosses.
+- Glyph of **Last Stand** — CD reduced to 2min. Lets you use it more freely.
+
+Optional: Glyph of **Blocking** (+10% block value for 10s after Shield Slam) for heavy physical fights, or Glyph of **Shield Wall** (lowers Shield Wall CD to 2 min, but reduces effect to -40% from -60% — almost always worth it for 5-mans).
+
+**Minor:**
+- Glyph of **Bloodrage** — no health cost.
+- Glyph of **Thunder Clap** — +2 yd range, easier to grab a stragglers.
+- Glyph of **Charge** — +5 yd range.
+
+### Pull templates
+
+**Standard trash pack (3-5 mobs):**
+
+```
+Bloodrage (pre-pull, in Defensive) → Charge first target → Thunder Clap → 
+Shockwave → Cleave + Devastate on focus → Cleave + Shield Slam → 
+Tab through any unattended mob with Devastate
+```
+
+**Caster pack:**
+
+```
+Charge primary → Thunder Clap → War Stomp (interrupts the cast) → 
+LoS pull around a corner if possible to clump them → AoE
+```
+
+**Single big mob / mini-boss:**
+
+```
+Bloodrage → Charge → Shield Slam → Revenge → Devastate → Heroic Strike (rage dump)
+Maintain 5x Sunder, Shield Block on cooldown.
+```
+
+## DPS (Arms / Fury)
+
+### Arms rotation
+
+```
+Mortal Strike (on CD) > Bladestorm (on CD, only if 3+ targets) > 
+Overpower (when proc'd) > Execute (during Sudden Death proc, or sub-20%) > 
+Slam > Heroic Strike (rage dump only above 60 rage)
+```
+
+Keep **Battle Shout** or **Commanding Shout** up. Battle Shout for higher DPS, Commanding for HP buffer.
+
+**AoE:** **Sweeping Strikes** (10s / 30s CD) → Bladestorm or Cleave spam.
+
+### Fury rotation
+
+```
+Bloodthirst (on CD) > Whirlwind (on CD) > Slam (during Bloodsurge proc, instant) >
+Heroic Strike to dump rage, but stop if rage < 50 to keep specials available
+```
+
+Once you're decently geared, **Heroic Strike** can be on auto-cast — but watch your rage; a Heroic Strike-starved BT/WW is much worse than a 5-rage white swing.
+
+**AoE:** Whirlwind hits all four weapons via Titan's Grip — just spam it on cooldown plus Cleave.
+
+### DPS glyphs (level 80)
+
+**Arms (major):**
+- Glyph of Mortal Strike (+10% damage)
+- Glyph of Execution (+1 free Execute)
+- Glyph of Rending (+3s Rend duration)
+
+**Fury (major):**
+- Glyph of Whirlwind (-2s CD)
+- Glyph of Heroic Strike (+10 rage on crit, virtually free)
+- Glyph of Cleaving (+1 target on Cleave) — for AoE; otherwise Glyph of Execution
+
+### Cooldowns to bank for DPS
+
+- **Recklessness** (5min) — +20% crit, 12s. Open with this on bosses.
+- **Death Wish** (Fury, 3min) — +20% damage, 30s. Pair with Recklessness when both are up.
+- **Bladestorm** (Arms, 1.5min) — channeled AoE, also immune to disarm/silence/snare. Use as a soft defensive too.
+- **Berserker Rage** — fear immunity, generates rage with the talent. Press it on Bronjahm, Loken, etc.
+
+## Stuff that applies to both roles
+
+### Consumables (level 80)
+
+- **Flask of Stoneblood** (tank) / **Flask of Endless Rage** (DPS).
+- **Spiced Worm Burger** or **Dragonfin Filet** (food).
+- **Indestructible Potion** (tank pre-pot) / **Potion of Speed** (DPS pre-pot).
+- **Scrolls of Stamina/Strength** are dirt cheap and worth using even at low levels.
+
+### Pre-pulls and trash discipline
+
+- **Mark targets** (skull → focus, X → next, etc.). 5-man pugs respect marks; the warrior is usually the one who places them.
+- **Always Bloodrage before Charge** — you arrive with rage to immediately Shield Slam.
+- **LoS pulls**: walk back behind a corner so casters come to you. The single most underrated tank tool.
+- **Don't move during Bladestorm** — yours OR an enemy's. Save Spell Reflection for casters mid-cast, not someone autoattacking you.
+
+### Common tank mistakes
+
+1. **Tanking in Battle Stance.** -10% mitigation is huge. Stay Defensive unless using a stance-locked ability.
+2. **Spamming Heroic Strike at low rage.** It blocks your next white swing, killing rage generation. Stop using HS below ~40 rage.
+3. **No Shield Block uptime.** It's a 30s cooldown and free threat (Critical Block via Shield Specialization). Use it.
+4. **Forgetting Vigilance.** Cast it on your top DPS at the start of every dungeon — it persists until you die or recast. Free 10% threat transfer.
+5. **Overpulling for healer mana.** A 5-man healer at level 40 in green gear cannot drink between every pull and clear at speed. Match the healer.
